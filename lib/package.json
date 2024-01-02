@@ -1,5 +1,9 @@
 {
   "name": "@verus/vue",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc && vite build"
+  }
 }

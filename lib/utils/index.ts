@@ -1,1 +1,1 @@
-export {}
+export { toPlugin } from './to-plugin'
