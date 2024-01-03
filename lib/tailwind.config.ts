@@ -30,6 +30,9 @@ const vColors = {
   pri: ['0, 94, 177', '166, 200, 255'],
   'on-pri': ['255, 255, 255', '0, 48, 96'],
 
+  nrm: ['195, 230, 255', '50, 70, 110'],
+  'on-nrm': ['0, 20, 40', '213, 227, 255'],
+
   err: ['152, 64, 97', '255, 177, 200'],
   'on-err': ['255, 255, 255', '94, 17, 51'],
   'err-ctr': ['255, 217, 226', '123, 41, 73'],
@@ -47,9 +50,11 @@ const toVar = (v: VColors) => `--color-${v}`
 const theme = {
   opacity: {
     0: '0',
-    v1: '0.08',
-    v2: '0.12',
-    v3: '0.48',
+    8: '0.08',
+    12: '0.12',
+    16: '0.16',
+    48: '0.48',
+    72: '0.72',
     100: '1'
   },
   borderRadius: {
@@ -57,7 +62,7 @@ const theme = {
     none: '0',
     v1: '0.25rem',
     v2: '0.5rem',
-    v3: '0.75rem',
+    v3: '1rem',
     full: '9999px'
   },
   colors: ({ colors }) => ({
@@ -75,11 +80,9 @@ const theme = {
     transitionTimingFunction: {
       braking: 'cubic-bezier(0.36, 0.72, 0, 1)'
     },
-    height: ({ theme }) => ({
-      v1: theme('spacing.7'),
-      v2: theme('spacing.10'),
-      v3: theme('spacing.12')
-    })
+    transitionDuration: {
+      inherit: 'inherit'
+    }
   }
 } satisfies Config['theme']
 
@@ -99,15 +102,15 @@ const base = {
 
 const utilities = (theme => ({
   '.v-outline': {
-    outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.v3')})`,
+    outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.48')})`,
     outlineOffset: '2px'
   },
   '.v-outline-danger': {
-    outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.v3')})`,
+    outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.48')})`,
     outlineOffset: '2px'
   },
   '.v-disabled': {
-    opacity: theme('opacity.v3'),
+    opacity: theme('opacity.48'),
     pointerEvents: 'none'
   }
 })) satisfies (theme: (path: string) => string) => CSSInJS

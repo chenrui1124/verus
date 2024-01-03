@@ -55,11 +55,14 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
+    "@vueuse/core": "^10.7.1",
     "vue": "^3.4.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@iconify-json/ri": "^1.1.18",
+    "@iconify-json/solar": "^1.1.9",
+    "@iconify-json/svg-spinners": "^1.1.2",
     "@iconify/tailwind": "^0.1.4",
     "@types/node": "^20.10.6",
     "@vitejs/plugin-vue": "^4.6.2",
