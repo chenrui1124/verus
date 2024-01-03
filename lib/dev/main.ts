@@ -1,7 +1,7 @@
 import '@css'
 
 import { createApp } from 'vue'
-import app from './app.vue'
+import dev from './dev.vue'
 import router from './router'
 
-createApp(app).use(router).mount('#app')
+createApp(dev).use(router).mount('#app')
