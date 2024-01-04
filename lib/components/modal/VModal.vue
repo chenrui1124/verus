@@ -36,14 +36,14 @@ defineSlots<{
       <!--* Modal Wrapper *-->
       <div
         v-if="visible"
-        :style="{ width, maxHeight: '88vh', maxWidth: '88vw' }"
+        :style="{ width, maxHeight: '88dvh', maxWidth: '88dvw' }"
         class="fixed inset-x-0 top-1/2 z-30 mx-auto grid -translate-y-1/2 grid-cols-1 rounded-v3 bg-bsc p-3 transition-all duration-700 ease-braking before:v-shade before:-z-10"
         :class="!danger ? 'before:bg-nrm/48' : 'before:bg-err-ctr/48'"
       >
         <!--* Modal *-->
         <div
-          style="max-height: calc(88vh - 1.5rem)"
-          class="flex flex-col gap-6 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit"
+          style="max-height: calc(88dvh - 1.5rem)"
+          class="flex flex-col gap-6 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit ease-braking"
         >
           <!--* Title *-->
           <div v-if="title || subtitle" class="flex flex-col gap-4">
