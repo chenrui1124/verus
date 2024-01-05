@@ -1,10 +1,17 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { VSwitch } from '..'
 import { VButton } from '.'
 
 const loading = ref()
 
 const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
+
+const value = ref()
+
+const icon = computed(() =>
+  value.value ? 'i-solar:archive-up-minimlistic-bold-duotone' : undefined
+)
 </script>
 
 <template>
@@ -15,12 +22,20 @@ const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
         :variant="v"
         text="button"
         uppercase
+        :icon
         @click="loading = !loading"
       />
     </div>
 
     <div class="flex gap-4">
-      <VButton v-for="v in variant" :variant="v" text="button" uppercase danger />
+      <VButton
+        v-for="v in variant"
+        :variant="v"
+        text="button"
+        uppercase
+        danger
+        :append-icon="icon"
+      />
     </div>
 
     <div class="flex gap-4">
@@ -28,7 +43,11 @@ const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
     </div>
 
     <div class="flex gap-4">
-      <VButton v-for="v in variant" :variant="v" text="button" uppercase :loading danger />
+      <VButton v-for="v in variant" :icon :variant="v" text="button" uppercase :loading danger />
+    </div>
+
+    <div class="flex gap-4">
+      <VSwitch v-model="value" />
     </div>
   </div>
 </template>
