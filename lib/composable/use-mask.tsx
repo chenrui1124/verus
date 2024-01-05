@@ -3,8 +3,7 @@ import { Transition, computed, defineComponent, h, ref, render } from 'vue'
 export const useMask = (function () {
   const _visible = ref<boolean>(),
     _onClick = ref<(e?: Event) => void>(),
-    _props = computed(() => (_onClick.value ? { onClick: _onClick.value } : {})),
-    _activeCls = ref()
+    _props = computed(() => (_onClick.value ? { onClick: _onClick.value } : {}))
 
   const Overlay = defineComponent({
     name: 'Overlay',

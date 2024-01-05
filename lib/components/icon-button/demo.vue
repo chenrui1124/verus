@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { VIconButton } from '.'
+
+const icon = 'i-solar:download-square-bold-duotone'
 </script>
 
 <template>
   <div class="flex gap-4">
-    <VIconButton icon="i-[solar--square-academic-cap-2-broken]" />
-    <VIconButton icon="i-[solar--square-academic-cap-2-broken]" danger />
-    <VIconButton icon="i-[solar--square-academic-cap-2-broken]" disabled />
-    <VIconButton icon="i-[solar--square-academic-cap-2-broken]" danger disabled />
+    <VIconButton :icon />
+    <VIconButton :icon danger />
+    <VIconButton :icon disabled />
+    <VIconButton :icon danger disabled />
   </div>
 </template>
