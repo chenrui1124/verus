@@ -3,7 +3,7 @@ import type { PureCSSIconClass } from 'mm3'
 
 type IconProps = {
   i: PureCSSIconClass | undefined
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
 function Icon({ i, size }: IconProps) {
@@ -15,7 +15,8 @@ function Icon({ i, size }: IconProps) {
         {
           'min-h-4 min-w-4': size === 'sm',
           'min-h-5 min-w-5': size === 'md',
-          'min-h-6 min-w-6': size === 'lg'
+          'min-h-6 min-w-6': size === 'lg',
+          'min-h-7 min-w-7': size === 'xl'
         }
       ]}
     />
