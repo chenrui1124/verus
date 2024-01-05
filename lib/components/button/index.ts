@@ -1,10 +1,10 @@
-import type { PureCSSIconClass } from 'mm3'
+import type { PureCSSIconClassName } from 'mm3'
 import Button from './VButton.vue'
 
 export type ButtonProps = {
   text?: string
-  icon?: PureCSSIconClass
-  appendIcon?: PureCSSIconClass
+  icon?: PureCSSIconClassName
+  appendIcon?: PureCSSIconClassName
   danger?: boolean
   loading?: boolean
   disabled?: boolean

@@ -1,10 +1,10 @@
-import type { PureCSSIconClass } from 'mm3'
+import type { PureCSSIconClassName } from 'mm3'
 
 import { toPlugin } from '@utils'
 import IconButton from './VIconButton.vue'
 
 export type IconButtonProps = {
-  icon: PureCSSIconClass
+  icon: PureCSSIconClassName
   disabled?: boolean
   danger?: boolean
 }

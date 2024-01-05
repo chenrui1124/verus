@@ -1,8 +1,10 @@
+import type { AsReadonly } from 'mm3'
+
 import { toPlugin } from '@utils'
 import Iterate from './VIterate.vue'
 
 export type IterateProps<T> = {
-  each: T[] | readonly T[]
+  each: AsReadonly<T>
   init?: number
 }
 

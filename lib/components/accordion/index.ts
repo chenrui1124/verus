@@ -1,11 +1,11 @@
-import type { PureCSSIconClass } from 'mm3'
+import type { PureCSSIconClassName } from 'mm3'
 
 import { toPlugin } from '@utils'
 import Accordion from './VAccordion.vue'
 
 export type AccordionProps = {
   init?: boolean
-  icon?: PureCSSIconClass
+  icon?: PureCSSIconClassName
   title?: string
   width?: string
 }

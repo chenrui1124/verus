@@ -11,6 +11,9 @@ importers:
       '@vueuse/core':
         specifier: ^10.7.1
         version: 10.7.1(vue@3.4.5)
+      mm3:
+        specifier: ^0.2.2
+        version: 0.2.2
       vue:
         specifier: ^3.4.5
         version: 3.4.5(typescript@5.3.3)
@@ -39,9 +42,6 @@ importers:
       '@vitejs/plugin-vue-jsx':
         specifier: ^3.1.0
         version: 3.1.0(vite@5.0.11)(vue@3.4.5)
-      mm3:
-        specifier: ^0.2.0
-        version: 0.2.0
       prettier:
         specifier: ^3.1.1
         version: 3.1.1
@@ -2040,9 +2040,9 @@ packages:
       ufo: 1.3.2
     dev: true
 
-  /mm3@0.2.0:
-    resolution: {integrity: sha512-FeKYMHV2kF74aaC+7Nk00cGKCVy7NwUhFa1VWLd/vWN7oP3YrrGOFRXxWsnfEzAQf++1G0cCGzEh0fGM9zRV0g==}
-    dev: true
+  /mm3@0.2.2:
+    resolution: {integrity: sha512-pxI3BEzYLtTlsiSZ0U1flTNMtLdOEhl1cnj2kfNjjse9unvmvxs1oKRMtiwqXSrIlgARSRsvxTQLAV9Tlhfzyg==}
+    dev: false
 
   /mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}

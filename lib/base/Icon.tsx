@@ -1,8 +1,8 @@
 import type { PropType } from 'vue'
-import type { PureCSSIconClass } from 'mm3'
+import type { PureCSSIconClassName } from 'mm3'
 
 type IconProps = {
-  i: PureCSSIconClass | undefined
+  i: PureCSSIconClassName
   size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ButtonProps } from '.'
 
+defineOptions({ name: 'Button' })
+
 import { Icon } from '@base'
 
 const { variant = 'outlined', loading } = defineProps<ButtonProps>()
