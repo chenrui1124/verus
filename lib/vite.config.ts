@@ -6,16 +6,22 @@ import { defineConfig } from 'vite'
  */
 import vue from '@vitejs/plugin-vue'
 import jsx from '@vitejs/plugin-vue-jsx'
+import uno from 'unocss/vite'
 import dts from 'vite-plugin-dts'
 /*
  * PostCSS
  */
 import tw from 'tailwindcss'
+/**
+ * UnoCSS
+ */
+import { presetIcons } from 'unocss'
 
 export default defineConfig({
   plugins: [
     vue({ script: { propsDestructure: true } }),
     jsx({ optimize: true }),
+    uno({ presets: [presetIcons()] }),
     dts({
       rollupTypes: true,
       staticImport: true,

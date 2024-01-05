@@ -1,4 +1,5 @@
 import '@css'
+import 'uno.css'
 
 import { createApp } from 'vue'
 import dev from './dev.vue'
