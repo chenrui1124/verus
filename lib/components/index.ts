@@ -1,5 +1,6 @@
 import '@css'
 
+export { VAccordion, type AccordionProps } from './accordion'
 export { VButton, type ButtonProps } from './button'
 export { VIterate, type IterateProps } from './iterate'
 export { VModal, type ModalProps } from './modal'
