@@ -8,8 +8,8 @@ const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
-    <div class="flex gap-2">
+  <div class="flex flex-col gap-4">
+    <div class="flex gap-4">
       <VButton
         v-for="v in variant"
         :variant="v"
@@ -19,15 +19,15 @@ const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
       />
     </div>
 
-    <div class="flex gap-2">
+    <div class="flex gap-4">
       <VButton v-for="v in variant" :variant="v" text="button" uppercase danger />
     </div>
 
-    <div class="flex gap-2">
+    <div class="flex gap-4">
       <VButton v-for="v in variant" :variant="v" text="button" uppercase disabled />
     </div>
 
-    <div class="flex gap-2">
+    <div class="flex gap-4">
       <VButton v-for="v in variant" :variant="v" text="button" uppercase :loading danger />
     </div>
   </div>

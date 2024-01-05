@@ -5,7 +5,7 @@ import { Icon } from '@base'
 
 const { variant = 'outlined', loading } = defineProps<ButtonProps>()
 
-const emit = defineEmits<{ click: [e: Event] }>()
+const emit = defineEmits<{ click: [event: Event] }>()
 
 function onClick(e: Event) {
   !loading && emit('click', e)
@@ -19,7 +19,7 @@ defineSlots<{ default(props: void): any }>()
     :disabled
     @click="onClick"
     :tabindex="loading ? -1 : void 0"
-    class="relative h-9 cursor-pointer rounded-v1 border-none px-3 transition-all duration-300 before:v-shade before:transition-colors before:duration-inherit disabled:text-on-bsc disabled:v-disabled"
+    class="relative h-9 cursor-pointer rounded-v1 border-none px-3 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit disabled:text-on-bsc disabled:v-disabled"
     :class="{
       [!danger ? 'bg-pri text-on-pri' : 'bg-err text-on-err']: variant === 'solid',
       'before:border-bsc/16 hover:before:bg-bsc/8 focus:text-opacity-72 focus:before:bg-on-bsc/12':
@@ -42,7 +42,10 @@ defineSlots<{ default(props: void): any }>()
 
       'disabled:bg-dis': ['solid', 'tonal'].includes(variant),
 
-      'pointer-events-none': loading
+      'pointer-events-none': loading,
+
+      'focus-visible:v-outline': !danger,
+      'focus-visible:v-outline-danger': danger
     }"
   >
     <!--* Icon *-->
