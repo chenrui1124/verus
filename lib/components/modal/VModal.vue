@@ -37,8 +37,8 @@ defineSlots<{
       <div
         v-if="visible"
         :style="{ width, maxHeight: '88dvh', maxWidth: '88dvw' }"
-        class="fixed inset-x-0 top-1/2 z-30 mx-auto grid -translate-y-1/2 grid-cols-1 rounded-v3 bg-bsc p-3 transition-all duration-700 ease-braking before:v-shade before:-z-10"
-        :class="!danger ? 'before:bg-nrm/48' : 'before:bg-err-ctr/48'"
+        class="fixed inset-x-0 top-1/2 z-30 mx-auto grid -translate-y-1/2 grid-cols-1 rounded-v3 p-3 transition-all duration-700 ease-braking"
+        :class="!danger ? 'bg-nrm-var' : 'bg-err-ctr-var'"
       >
         <!--* Modal *-->
         <div

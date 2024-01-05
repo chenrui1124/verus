@@ -33,10 +33,15 @@ const vColors = {
   nrm: ['195, 230, 255', '50, 70, 110'],
   'on-nrm': ['0, 20, 40', '213, 227, 255'],
 
+  'nrm-var': ['236, 247, 255', '35, 40, 55'],
+
   err: ['152, 64, 97', '255, 177, 200'],
   'on-err': ['255, 255, 255', '94, 17, 51'],
+
   'err-ctr': ['255, 217, 226', '123, 41, 73'],
   'on-err-ctr': ['62, 0, 29', '255, 217, 226'],
+
+  'err-ctr-var': ['255, 243, 246', '59, 31, 43'],
 
   otl: ['148, 143, 153', '122, 117, 127'],
 
@@ -53,6 +58,7 @@ const theme = {
     8: '0.08',
     12: '0.12',
     16: '0.16',
+    32: '0.32',
     48: '0.48',
     72: '0.72',
     100: '1'
@@ -101,12 +107,16 @@ const base = {
 } satisfies CSSInJS
 
 const utilities = (theme => ({
+  '.v-outline-none': {
+    outline: '0px solid transparent',
+    outlineOffset: '2px'
+  },
   '.v-outline': {
-    outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.48')})`,
+    outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.32')})`,
     outlineOffset: '2px'
   },
   '.v-outline-danger': {
-    outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.48')})`,
+    outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.32')})`,
     outlineOffset: '2px'
   },
   '.v-disabled': {
