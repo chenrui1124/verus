@@ -55,8 +55,8 @@
     "arrowParens": "avoid"
   },
   "dependencies": {
-    "mm3": "^0.2.2",
     "@vueuse/core": "^10.7.1",
+    "mm3": "^0.2.2",
     "vue": "^3.4.5",
     "vue-router": "^4.2.5"
   },
@@ -69,8 +69,8 @@
     "@vitejs/plugin-vue": "^4.6.2",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "prettier": "^3.1.1",
-    "prettier-plugin-tailwindcss": "^0.5.10",
-    "tailwindcss": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
     "unocss": "^0.58.3",
     "unocss-transformer-alias": "^0.0.7",
