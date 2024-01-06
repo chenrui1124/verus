@@ -21,7 +21,7 @@ defineSlots<{ default(props: void): any }>()
     :disabled
     @click="onClick"
     :tabindex="loading ? -1 : void 0"
-    class="relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-3 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit disabled:text-on-bsc disabled:v-disabled"
+    class="relative flex h-10 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-3 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit disabled:text-on-bsc disabled:v-disabled"
     :class="{
       [!danger ? 'bg-pri text-on-pri' : 'bg-err text-on-err']: variant === 'solid',
       'before:border-bsc/16 hover:before:bg-bsc/8 focus:text-opacity-72 focus:before:bg-on-bsc/12':
@@ -55,7 +55,7 @@ defineSlots<{ default(props: void): any }>()
 
     <!--* Text *-->
     <span
-      class="pointer-events-none z-10 select-none text-sm tracking-wider"
+      class="pointer-events-none select-none text-sm tracking-wider"
       :class="{ uppercase, 'ml-1': !icon, 'mr-1': !appendIcon, invisible: loading && !disabled }"
     >
       <slot>{{ text }}</slot>

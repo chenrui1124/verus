@@ -66,10 +66,14 @@ const theme = {
   borderRadius: {
     inherit: 'inherit',
     none: '0',
-    v1: '0.25rem',
-    v2: '0.5rem',
-    v3: '1rem',
+    v1: '6.4px',
+    v2: '12.8px',
+    v3: '19.6px',
     full: '9999px'
+  },
+  borderWidth: {
+    0: '0',
+    DEFAULT: '1.2px'
   },
   colors: ({ colors }) => ({
     black: colors.black,
@@ -88,7 +92,10 @@ const theme = {
     },
     transitionDuration: {
       inherit: 'inherit'
-    }
+    },
+    lineHeight: ({ theme }) => ({
+      12: theme('height.12')
+    })
   }
 } satisfies Config['theme']
 
@@ -159,6 +166,8 @@ const variants = [
 
 export default {
   content: ['**/*.{vue,ts,tsx}'],
+
+  darkMode: 'class',
 
   theme,
 
