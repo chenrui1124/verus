@@ -73,6 +73,7 @@ const theme = {
   },
   borderWidth: {
     0: '0',
+    4: '4px',
     DEFAULT: '1.2px'
   },
   colors: ({ colors }) => ({
