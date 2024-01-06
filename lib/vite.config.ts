@@ -50,8 +50,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'components/index.ts'),
-      name: 'Verus',
-      fileName: 'verus',
+      name: 'VerusUI',
+      fileName: 'verus-ui',
       formats: ['es']
     },
     rollupOptions: {
