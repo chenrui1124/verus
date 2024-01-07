@@ -6,7 +6,7 @@ import { Icon } from '@base'
 
 defineOptions({ name: 'Accordion' })
 
-const { init, width } = defineProps<AccordionProps>()
+const { init, width = 'auto' } = defineProps<AccordionProps>()
 
 const visible = ref(init)
 
@@ -26,17 +26,16 @@ defineSlots<{ default(props: void): any }>()
       <div class="select-none text-base">{{ title }}</div>
       <Icon
         i="i-[solar--alt-arrow-right-line-duotone]"
-        class="-mr-1 ml-auto transition-all duration-500"
+        class="-mr-1 ml-auto transition-all duration-inherit"
         :class="{ 'rotate-90': visible }"
       />
     </div>
 
     <div
-      style="transition-property: color, background-color, padding"
-      class="overflow-y-hidden rounded-b-v2 px-6 text-sm leading-6 text-on-bsc duration-500 ease-braking"
+      class="overflow-y-hidden rounded-b-v2 px-6 text-sm leading-6 text-on-bsc transition-all duration-500 ease-braking"
       :class="{ 'pb-6 pt-4': visible }"
     >
-      <slot></slot>
+      <slot />
     </div>
   </div>
 </template>

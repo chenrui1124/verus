@@ -26,5 +26,5 @@ defineSlots<{ default(props: { item: T; index: number; next: () => void }): any 
 </script>
 
 <template>
-  <slot v-bind="{ index, item, next }"></slot>
+  <slot v-bind="{ index, item, next }" />
 </template>
