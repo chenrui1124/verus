@@ -1,5 +1,5 @@
 {
-  "name": "@verus/vue",
+  "name": "@verus-ui/vue",
   "private": true,
   "type": "module",
   "scripts": {

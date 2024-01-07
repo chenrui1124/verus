@@ -11,48 +11,17 @@
     "Components"
   ],
   "license": "MIT",
-  "main": "./lib/dist/verus.js",
+  "main": "./lib/dist/verus-ui.js",
   "exports": {
-    ".": "./lib/dist/verus.js",
+    ".": "./lib/dist/verus-ui.js",
     "./style": "./lib/dist/style.css"
   },
-  "types": "./lib/dist/verus.d.ts",
+  "types": "./lib/dist/verus-ui.d.ts",
   "scripts": {
-    "dev": "pnpm --filter @verus/vue dev",
-    "build": "pnpm --filter @verus/vue build",
-    "doc": "pnpm --filter @verus/doc",
-    "lib": "pnpm --filter @verus/vue"
-  },
-  "prettier": {
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ],
-    "tailwindConfig": "./lib/tailwind.config.ts",
-    "tailwindAttributes": [
-      "class",
-      "enterFromClass",
-      "enterActiveClass",
-      "enterToClass",
-      "leaveFromClass",
-      "leaveActiveClass",
-      "leaveToClass",
-      "enter-from-class",
-      "enter-active-class",
-      "enter-to-class",
-      "leave-from-class",
-      "leave-active-class",
-      "leave-to-class"
-    ],
-    "bracketSameLine": false,
-    "jsxBracketSameLine": true,
-    "jsxSingleQuote": true,
-    "printWidth": 100,
-    "semi": false,
-    "singleAttributePerLine": false,
-    "singleQuote": true,
-    "tabWidth": 2,
-    "trailingComma": "none",
-    "arrowParens": "avoid"
+    "dev": "pnpm --filter @verus-ui/vue dev",
+    "build": "pnpm --filter @verus-ui/vue build",
+    "doc": "pnpm --filter @verus-ui/doc",
+    "lib": "pnpm --filter @verus-ui/vue"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.1",
