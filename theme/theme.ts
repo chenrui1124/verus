@@ -41,6 +41,7 @@ export default {
   }),
   extend: {
     transitionTimingFunction: {
+      inherit: 'inherit',
       braking: 'cubic-bezier(0.36, 0.72, 0, 1)'
     },
     transitionDuration: {
@@ -48,6 +49,9 @@ export default {
     },
     lineHeight: ({ theme }) => ({
       12: theme('height.12')
-    })
+    }),
+    gap: {
+      inherit: 'inherit'
+    }
   }
 } satisfies Config['theme']

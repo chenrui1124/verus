@@ -22,7 +22,7 @@ defineSlots<{
 </script>
 
 <template>
-  <slot name="trigger" v-bind="{ open }"></slot>
+  <slot name="trigger" v-bind="{ open }" />
 
   <Teleport to="body">
     <Transition
@@ -43,15 +43,13 @@ defineSlots<{
         <!--* Modal *-->
         <div
           style="max-height: calc(88dvh - 1.5rem)"
-          class="flex flex-col gap-6 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit ease-braking"
+          class="flex flex-col gap-4 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit ease-braking"
         >
           <!--* Title *-->
-          <div v-if="title || subtitle" class="flex flex-col gap-4">
-            <div v-if="title" class="text-xl" :class="danger ? 'text-err' : 'text-pri'">
-              {{ title }}
-            </div>
-            <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl">{{ subtitle }}</div>
+          <div v-if="title" class="text-2xl" :class="danger ? 'text-err' : 'text-pri'">
+            {{ title }}
           </div>
+          <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl">{{ subtitle }}</div>
 
           <!--* Content *-->
           <div
@@ -62,7 +60,7 @@ defineSlots<{
           </div>
 
           <!--* Actions *-->
-          <div v-if="$slots.actions" class="flex justify-end gap-6">
+          <div v-if="$slots.actions" class="flex justify-end gap-inherit">
             <slot name="actions" v-bind="{ close, closeWith }" />
           </div>
         </div>
