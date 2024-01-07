@@ -13,10 +13,10 @@ watchEffect(() =>
 </script>
 
 <template>
-  <div
-    class="fixed inset-0 flex items-center justify-center bg-bsc text-on-bsc transition-colors duration-300"
-  >
-    <RouterView />
+  <div class="h-dvh w-screen overflow-y-auto bg-bsc text-on-bsc transition-colors duration-300">
+    <div class="box-border flex min-h-dvh w-full items-center justify-center py-12">
+      <RouterView />
+    </div>
 
     <Teleport to="body">
       <div class="fixed right-2 top-2">
@@ -25,3 +25,9 @@ watchEffect(() =>
     </Teleport>
   </div>
 </template>
+
+<style>
+body {
+  @apply m-0 p-0;
+}
+</style>
