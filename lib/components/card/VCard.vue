@@ -22,7 +22,7 @@ defineSlots<{ default(props: void): any }>()
     <!--* Title *-->
     <div
       v-if="title"
-      class="text-xl transition-colors duration-300"
+      class="text-2xl transition-colors duration-300"
       :class="[image && '-mr-1', !danger ? 'text-pri' : 'text-err']"
     >
       {{ title }}

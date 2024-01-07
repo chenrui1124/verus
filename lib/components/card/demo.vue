@@ -13,7 +13,7 @@ const danger = ref()
       v-for="i in <const>['solid', 'outlined']"
       :variant="i"
       image="https://publicdomainarchive.com/wp-content/uploads/2017/09/free-stock-photos-public-domain-images-013-1000x667.jpg"
-      title="LOREM"
+      title="Lorem"
       subtitle="Lorem ipsum dolor sit"
       :danger
     >
