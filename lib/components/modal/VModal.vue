@@ -2,6 +2,7 @@
 import type { ModalProps } from '.'
 
 import { useMask, useVisible } from '@composable'
+import { vShortcut } from '@directives'
 
 defineOptions({ name: 'Modal' })
 
@@ -36,13 +37,19 @@ defineSlots<{
       <!--* Modal Wrapper *-->
       <div
         v-if="visible"
-        :style="{ width, maxHeight: '88dvh', maxWidth: '88dvw' }"
+        v-shortcut="['escape', close]"
+        :style="{ width }"
+        style="
+          max-height: calc(100vh - 8vmin);
+          max-height: calc(100dvh - 8vmin);
+          max-width: calc(100vw - 8vmin);
+        "
         class="fixed inset-x-0 top-1/2 z-30 mx-auto grid -translate-y-1/2 grid-cols-1 rounded-v3 p-3 transition-all duration-700 ease-braking"
         :class="!danger ? 'bg-nrm-var' : 'bg-err-ctr-var'"
       >
         <!--* Modal *-->
         <div
-          style="max-height: calc(88dvh - 1.5rem)"
+          style="max-height: calc(100dvh - 3rem - 8vmin)"
           class="flex flex-col gap-4 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit ease-braking"
         >
           <!--* Title *-->
