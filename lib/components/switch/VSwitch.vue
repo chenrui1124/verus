@@ -2,7 +2,7 @@
 import type { ObjectDirective } from 'vue'
 import type { SwitchModel, SwitchProps } from '.'
 
-defineOptions({ name: 'Switch', inheritAttrs: false })
+defineOptions({ name: 'Switch' })
 
 defineProps<SwitchProps>()
 

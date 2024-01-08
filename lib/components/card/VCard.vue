@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { CardProps } from '.'
 
+defineOptions({ name: 'Card' })
+
 const { width = '16rem', variant = 'outlined' } = defineProps<CardProps>()
 
 defineSlots<{ default(props: void): any }>()
