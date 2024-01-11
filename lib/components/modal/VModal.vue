@@ -31,13 +31,13 @@ defineSlots<{
       enter-to-class="grid-rows-[1fr]"
       leave-from-class="grid-rows-[1fr]"
       leave-to-class="-translate-y-[calc(50%_+_32vh)] grid-rows-[0fr] py-0 [&_>_div]:py-0"
-      enter-active-class="[&_.v-modal\_\_content]:overflow-y-hidden"
-      leave-active-class="[&_.v-modal\_\_content]:overflow-y-hidden"
+      enter-active-class="select-none [&_.v-modal\_\_content]:overflow-y-hidden"
+      leave-active-class="select-none [&_.v-modal\_\_content]:overflow-y-hidden"
     >
       <!--* Modal Wrapper *-->
       <div
         v-if="visible"
-        v-shortcut="['escape', close]"
+        v-shortcut="shortcut && ['escape', close]"
         :style="{ width }"
         style="
           max-height: calc(100vh - 8vmin);
@@ -45,7 +45,7 @@ defineSlots<{
           max-width: calc(100vw - 8vmin);
         "
         class="fixed inset-x-0 top-1/2 z-30 mx-auto grid -translate-y-1/2 grid-cols-1 rounded-v3 p-3 transition-all duration-700 ease-braking"
-        :class="!danger ? 'bg-nrm-var' : 'bg-err-ctr-var'"
+        :class="!danger ? 'bg-pri-ctr' : 'bg-err-ctr'"
       >
         <!--* Modal *-->
         <div

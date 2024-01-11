@@ -13,8 +13,8 @@ defineSlots<{ default(props: void): any }>()
     :style="{ width }"
     class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300"
     :class="{
-      [!danger ? 'bg-nrm/32' : 'bg-err-ctr/32']: variant === 'solid',
-      'bg-bsc before:v-shade before:border before:border-solid': variant === 'outlined',
+      [!danger ? 'bg-pri-ctr' : 'bg-err-ctr']: variant === 'solid',
+      'bg-bsc before:v-shade before:v-border': variant === 'outlined',
       [!danger ? 'before:border-pri' : 'before:border-err']: variant === 'outlined'
     }"
   >

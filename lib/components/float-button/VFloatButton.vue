@@ -30,7 +30,10 @@ defineSlots<{ default(props: void): any }>()
         'active:scale-90',
         cls`scale-90`,
         absolute ? 'absolute' : 'fixed',
-        { 'bg-pri text-on-pri': variant === 'solid', 'bg-nrm text-on-nrm': variant === 'tonal' }
+        {
+          'bg-pri text-on-pri': variant === 'solid',
+          'bg-pri-var text-on-pri-var': variant === 'tonal'
+        }
       ]"
     >
       <Icon v-if="icon" :i="icon" size="xl" />

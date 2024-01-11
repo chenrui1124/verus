@@ -16,11 +16,11 @@ defineSlots<{ default(props: void): any }>()
 <template>
   <div
     :style="{ width, gridTemplateRows: visible ? '3.5rem 1fr' : '3rem 0fr' }"
-    class="relative grid grid-cols-1 rounded-v2 transition-all duration-500 ease-braking before:v-shade before:border before:border-solid before:border-otl before:transition-colors before:duration-300"
+    class="relative grid grid-cols-1 rounded-v2 transition-all duration-500 ease-braking before:v-shade before:border-otl before:transition-colors before:duration-300 before:v-border"
   >
     <div
       @click="visible = !visible"
-      class="flex cursor-pointer items-center gap-4 rounded-inherit px-6 text-pri transition-colors duration-300 hover:bg-pri/8"
+      class="flex cursor-pointer items-center gap-4 rounded-inherit px-6 text-pri transition-colors duration-300 hover:bg-pri-ctr"
     >
       <Icon v-if="icon" :i="icon" class="-ml-0.5" />
       <div class="select-none text-base">{{ title }}</div>

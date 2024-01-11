@@ -27,7 +27,7 @@ defineSlots<{ default(props: void): any }>()
       'before:border-bsc/16 hover:before:bg-bsc/8 focus:text-opacity-72 focus:before:bg-on-bsc/12':
         variant === 'solid',
 
-      [!danger ? 'bg-nrm text-on-nrm' : 'bg-err-ctr text-on-err-ctr']: variant === 'tonal',
+      [!danger ? 'bg-pri-var text-on-pri-var' : 'bg-err-var text-on-err-var']: variant === 'tonal',
       'hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12': variant === 'tonal',
 
       [!danger ? 'text-pri focus:before:border-pri' : 'text-err focus:before:border-err']:
@@ -37,7 +37,7 @@ defineSlots<{ default(props: void): any }>()
       [!danger ? 'text-pri' : 'text-err']: variant === 'clean',
       'bg-transparent': variant === 'clean',
 
-      'before:border before:border-solid': ['solid', 'outlined'].includes(variant),
+      'before:v-border': ['solid', 'outlined'].includes(variant),
       [!danger
         ? 'hover:before:bg-pri/8 focus:before:bg-pri/12'
         : 'hover:before:bg-err/8 focus:before:bg-err/12']: ['outlined', 'clean'].includes(variant),

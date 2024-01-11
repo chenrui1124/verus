@@ -30,7 +30,7 @@ function onChange(e: Event) {
   <label
     class="group/v-switch relative inline-block h-7 w-12 cursor-pointer rounded-full transition-colors duration-300 has-[:focus-visible]:v-outline has-[:disabled]:v-disabled"
     :class="[
-      'before:v-shade before:border before:border-solid before:transition-colors before:duration-inherit',
+      'before:v-shade before:transition-colors before:duration-inherit before:v-border',
       'after:pointer-events-none after:absolute after:inset-y-1 after:left-1 after:-m-2 after:size-9 after:rounded-inherit after:transition after:duration-inherit after:ease-braking',
       {
         'bg-pri before:border-transparent after:translate-x-5 focus-within:after:!bg-pri/12 hover:after:bg-pri/8 has-[:disabled]:bg-dis':

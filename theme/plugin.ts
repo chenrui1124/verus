@@ -25,16 +25,20 @@ const custom = {
       outlineOffset: '2px'
     },
     '.v-outline': {
-      outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.32')})`,
+      outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.48')})`,
       outlineOffset: '2px'
     },
     '.v-outline-danger': {
-      outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.32')})`,
+      outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.48')})`,
       outlineOffset: '2px'
     },
     '.v-disabled': {
       opacity: theme('opacity.48'),
       pointerEvents: 'none'
+    },
+    '.v-border': {
+      borderWidth: '1.2px',
+      borderStyle: 'solid'
     }
   }),
 
