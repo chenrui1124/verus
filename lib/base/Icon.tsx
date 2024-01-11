@@ -11,7 +11,7 @@ function Icon({ i, size }: IconProps) {
     <span
       class={[
         i,
-        'pointer-events-none inline-block',
+        'pointer-events-none inline-block duration-inherit ease-inherit',
         {
           'min-h-4 min-w-4': size === 'sm',
           'min-h-5 min-w-5': size === 'md',

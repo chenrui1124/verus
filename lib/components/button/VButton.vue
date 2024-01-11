@@ -55,7 +55,7 @@ defineSlots<{ default(props: void): any }>()
 
     <!--* Text *-->
     <span
-      class="pointer-events-none select-none text-sm tracking-wider"
+      class="pointer-events-none select-none text-sm tracking-wider duration-inherit"
       :class="{ uppercase, 'ml-1': !icon, 'mr-1': !appendIcon, invisible: loading && !disabled }"
     >
       <slot>{{ text }}</slot>
@@ -64,11 +64,10 @@ defineSlots<{ default(props: void): any }>()
     <!--* Append Icon *-->
     <Icon v-if="appendIcon" :i="appendIcon" :class="{ invisible: loading && !disabled }" />
 
-    <!--* loading *-->
+    <!--* Loading *-->
     <Icon
       v-if="loading && !disabled"
-      i="i-[svg-spinners--3-dots-fade]"
-      size="lg"
+      i="i-[svg-spinners--ring-resize]"
       class="absolute inset-0 m-auto"
     />
   </button>

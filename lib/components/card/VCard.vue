@@ -11,7 +11,7 @@ defineSlots<{ default(props: void): any }>()
 <template>
   <div
     :style="{ width }"
-    class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300"
+    class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-[3s]"
     :class="{
       [!danger ? 'bg-pri-ctr' : 'bg-err-ctr']: variant === 'solid',
       'bg-bsc before:v-shade before:v-border': variant === 'outlined',
@@ -24,17 +24,17 @@ defineSlots<{ default(props: void): any }>()
     <!--* Title *-->
     <div
       v-if="title"
-      class="text-2xl transition-colors duration-300"
+      class="text-2xl duration-inherit"
       :class="[image && '-mr-1', !danger ? 'text-pri' : 'text-err']"
     >
       {{ title }}
     </div>
-    <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl transition-colors duration-300">
+    <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl duration-inherit">
       {{ subtitle }}
     </div>
 
     <!--* Content *-->
-    <div class="text-sm leading-6 text-on-bsc transition-colors duration-300">
+    <div class="text-sm leading-6 text-on-bsc duration-inherit">
       <slot />
     </div>
   </div>

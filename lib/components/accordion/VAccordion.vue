@@ -20,19 +20,21 @@ defineSlots<{ default(props: void): any }>()
   >
     <div
       @click="visible = !visible"
-      class="flex cursor-pointer items-center gap-4 rounded-inherit px-6 text-pri transition-colors duration-300 hover:bg-pri-ctr"
+      class="flex cursor-pointer items-center gap-4 rounded-inherit px-6 text-pri transition-colors duration-inherit ease-inherit hover:bg-pri-ctr"
     >
       <Icon v-if="icon" :i="icon" class="-ml-0.5" />
-      <div class="select-none text-base">{{ title }}</div>
+      <div class="pointer-events-none select-none text-base duration-inherit ease-inherit">
+        {{ title }}
+      </div>
       <Icon
-        i="i-[solar--alt-arrow-right-line-duotone]"
-        class="-mr-1 ml-auto transition-all duration-inherit"
+        i="i-[solar--alt-arrow-right-linear]"
+        class="-mr-1 ml-auto transition"
         :class="{ 'rotate-90': visible }"
       />
     </div>
 
     <div
-      class="overflow-y-hidden rounded-b-v2 px-6 text-sm leading-6 text-on-bsc transition-all duration-500 ease-braking"
+      class="overflow-hidden rounded-b-v2 px-6 text-sm leading-6 text-on-bsc transition-all duration-inherit ease-inherit"
       :class="{ 'pb-6 pt-4': visible }"
     >
       <slot />

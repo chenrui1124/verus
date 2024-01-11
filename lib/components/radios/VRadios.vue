@@ -23,7 +23,7 @@ const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
       ]"
     >
       <Icon v-if="i.icon" :i="i.icon" class="-m-1" />
-      <span class="mr-auto text-sm">{{ i.text }}</span>
+      <span class="mr-auto text-sm duration-inherit">{{ i.text }}</span>
 
       <span
         class="pointer-events-none box-border inline-flex size-4 items-center justify-center rounded-full bg-bsc transition-all duration-inherit v-border group-active/v-radio:scale-75"

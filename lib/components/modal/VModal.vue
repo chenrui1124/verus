@@ -50,18 +50,20 @@ defineSlots<{
         <!--* Modal *-->
         <div
           style="max-height: calc(100dvh - 3rem - 8vmin)"
-          class="flex flex-col gap-4 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit ease-braking"
+          class="flex flex-col gap-4 overflow-y-hidden rounded-v2 p-3 transition-all duration-inherit ease-inherit"
         >
           <!--* Title *-->
-          <div v-if="title" class="text-2xl" :class="danger ? 'text-err' : 'text-pri'">
+          <div v-if="title" class="text-2xl duration-300" :class="danger ? 'text-err' : 'text-pri'">
             {{ title }}
           </div>
-          <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl">{{ subtitle }}</div>
+          <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl duration-300">
+            {{ subtitle }}
+          </div>
 
           <!--* Content *-->
           <div
             v-if="$slots.default && visible"
-            class="v-modal__content flex-0 overflow-y-auto text-sm leading-6 text-on-bsc"
+            class="v-modal__content flex-0 overflow-y-auto text-sm leading-6 text-on-bsc duration-300"
           >
             <slot v-bind="{ close, closeWith }" />
           </div>
