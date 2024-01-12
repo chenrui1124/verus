@@ -11,7 +11,7 @@ defineSlots<{ default(props: void): any }>()
 <template>
   <div
     :style="{ width }"
-    class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-[3s]"
+    class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300"
     :class="{
       [!danger ? 'bg-pri-ctr' : 'bg-err-ctr']: variant === 'solid',
       'bg-bsc before:v-shade before:v-border': variant === 'outlined',

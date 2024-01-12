@@ -51,24 +51,26 @@ defineSlots<{ default(props: void): any }>()
     }"
   >
     <!--* Icon *-->
-    <Icon v-if="icon" :i="icon" :class="{ invisible: loading && !disabled }" />
+    <Icon v-if="icon" :i="icon" :class="{ 'opacity-0': loading && !disabled }" />
 
     <!--* Text *-->
     <span
       class="pointer-events-none select-none text-sm tracking-wider duration-inherit"
-      :class="{ uppercase, 'ml-1': !icon, 'mr-1': !appendIcon, invisible: loading && !disabled }"
+      :class="{ uppercase, 'ml-1': !icon, 'mr-1': !appendIcon, 'opacity-0': loading && !disabled }"
     >
       <slot>{{ text }}</slot>
     </span>
 
     <!--* Append Icon *-->
-    <Icon v-if="appendIcon" :i="appendIcon" :class="{ invisible: loading && !disabled }" />
+    <Icon v-if="appendIcon" :i="appendIcon" :class="{ 'opacity-0': loading && !disabled }" />
 
-    <!--* Loading *-->
-    <Icon
-      v-if="loading && !disabled"
-      i="i-[svg-spinners--ring-resize]"
-      class="absolute inset-0 m-auto"
-    />
+    <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
+      <!--* Loading *-->
+      <Icon
+        v-if="loading && !disabled"
+        i="i-[svg-spinners--ring-resize]"
+        class="absolute inset-0 m-auto transition duration-inherit"
+      />
+    </Transition>
   </button>
 </template>
