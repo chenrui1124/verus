@@ -1,6 +1,7 @@
 import '@css'
 
 export { VAccordion, type AccordionProps } from './accordion'
+export { VBreadcrumbs, type BreadcrumbsProps, type BreadcrumbsModel } from './breadcrumbs'
 export { VButton, type ButtonProps } from './button'
 export { VCard, type CardProps } from './card'
 export { VFloatButton, type FloatButtonProps } from './float-button'

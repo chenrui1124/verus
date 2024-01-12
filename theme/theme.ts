@@ -18,9 +18,9 @@ export default {
   borderRadius: {
     inherit: 'inherit',
     none: '0',
-    v1: '6.4px',
-    v2: '12.8px',
-    v3: '19.6px',
+    v1: '0.4rem',
+    v2: '0.8rem',
+    v3: '1.2rem',
     full: '9999px'
   },
   colors: ({ colors }) => ({
