@@ -11,6 +11,11 @@ export type AccordionProps = {
    * @default 'auto'
    */
   width?: string
+  /**
+   * @default 'outlined'
+   */
+  variant?: 'solid' | 'outlined'
+  danger?: boolean
 }
 
 export const VAccordion = toPlugin(Accordion)
