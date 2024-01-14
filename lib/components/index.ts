@@ -1,6 +1,7 @@
 import '@css'
 
 export { VAccordion, type AccordionProps } from './accordion'
+export { VAutoGrid, type AutoGridProps } from './auto-grid'
 export { VBreadcrumbs, type BreadcrumbsProps, type BreadcrumbsModel } from './breadcrumbs'
 export { VButton, type ButtonProps } from './button'
 export { VCard, type CardProps } from './card'
