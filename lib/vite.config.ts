@@ -23,10 +23,10 @@ export default defineConfig({
     jsx({ optimize: true }),
     uno({ presets: [presetIcons()] }),
     dts({
-      rollupTypes: true,
       staticImport: true,
       insertTypesEntry: true,
-      include: ['components/**/*'],
+      copyDtsFiles: true,
+      include: ['components/**/*.ts'],
       exclude: ['vite.config.ts', 'tailwind.config.ts']
     })
   ],
