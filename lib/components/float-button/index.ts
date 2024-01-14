@@ -1,4 +1,5 @@
 import type { PureCSSIconClassName } from 'mm3'
+import type { TooltipOptions } from '@base'
 
 import { toPlugin } from '@utils'
 import FloatButton from './VFloatButton.vue'
@@ -11,6 +12,7 @@ export type FloatButtonProps = {
    * @default 'tonal'
    */
   variant?: 'solid' | 'tonal'
+  tooltip?: TooltipOptions
 }
 
 export const VFloatButton = toPlugin(FloatButton)

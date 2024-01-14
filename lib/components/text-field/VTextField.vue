@@ -33,10 +33,10 @@ function onSubmit(e: Event) {
 <template>
   <form class="relative inline-flex h-10 rounded-v1">
     <input
-      v-bind="{ ...$attrs, autocomplete, pattern, placeholder, disabled }"
-      :type="secret ? 'password' : 'text'"
-      v-model="modelValue"
       @submit.prevent="onSubmit"
+      :type="secret ? 'password' : 'text'"
+      v-bind="{ ...$attrs, autocomplete, pattern, placeholder, disabled }"
+      v-model="modelValue"
       class="peer/v-text-field invalid:focus-visible:-outline-danger relative flex-1 rounded-inherit text-sm text-on-bsc transition-all duration-300 v-outline-none v-border placeholder:text-on-bsc invalid:focus:border-err disabled:bg-dis disabled:v-disabled"
       :class="[
         {

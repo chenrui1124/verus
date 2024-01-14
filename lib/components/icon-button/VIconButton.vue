@@ -20,8 +20,9 @@ function onClick(e: Event) {
 
 <template>
   <button
-    :disabled
     @click="onClick"
+    type="button"
+    v-bind="{ disabled }"
     class="group/v-icon-button relative inline-flex size-10 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent transition-all duration-300 ease-braking v-outline-none disabled:text-dis disabled:v-disabled"
     :class="{
       'text-pri hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline': !danger,
@@ -34,5 +35,7 @@ function onClick(e: Event) {
       :class="cls`scale-75`"
       size="lg"
     />
+
+    <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />
   </button>
 </template>

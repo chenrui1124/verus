@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ButtonProps } from '.'
 
+import { Tooltip } from '@base'
+
 defineOptions({ name: 'Button' })
 
 import { Icon } from '@base'
@@ -18,10 +20,10 @@ defineSlots<{ default(props: void): any }>()
 
 <template>
   <button
-    :disabled
     @click="onClick"
-    :tabindex="loading ? -1 : void 0"
-    class="relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-3 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit disabled:text-on-bsc disabled:v-disabled"
+    type="button"
+    v-bind="{ disabled, tabindex: loading ? -1 : void 0 }"
+    class="group/v-tooltip group-focus/v-tooltip group-focus-visible/v-tooltip relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-3 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit disabled:text-on-bsc disabled:v-disabled"
     :class="{
       [!danger ? 'bg-pri text-on-pri' : 'bg-err text-on-err']: variant === 'solid',
       'before:border-bsc/16 hover:before:bg-bsc/8 focus:text-opacity-72 focus:before:bg-on-bsc/12':
@@ -72,5 +74,7 @@ defineSlots<{ default(props: void): any }>()
         class="absolute inset-0 m-auto transition duration-inherit"
       />
     </Transition>
+
+    <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />
   </button>
 </template>

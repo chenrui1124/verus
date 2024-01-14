@@ -24,6 +24,7 @@ const icon = computed(() =>
         uppercase
         :icon
         @click="loading = !loading"
+        :tooltip="{ content: 'Button', danger: true }"
       />
     </div>
 

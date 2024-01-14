@@ -1,5 +1,6 @@
 import type { InputHTMLAttributes } from 'vue'
 import type { PureCSSIconClassName } from 'mm3'
+import type { TooltipOptions } from '@base'
 
 import { toPlugin } from '@utils'
 import TextField from './VTextField.vue'
@@ -17,6 +18,7 @@ export type TextFieldProps = {
    */
   variant?: 'solid' | 'outlined'
   validator?: (modelValue: string | undefined) => boolean
+  tooltip?: TooltipOptions
 }
 
 export type TextFieldModel = {

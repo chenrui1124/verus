@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FloatButtonProps } from '.'
 
-import { Icon } from '@base'
+import { Icon, Tooltip } from '@base'
 import { useClassName } from '@composable'
 
 defineOptions({ name: 'FloatButton' })
@@ -23,8 +23,9 @@ defineSlots<{ default(props: void): any }>()
 <template>
   <Teleport to="body">
     <button
-      :disabled
       @click="onClick"
+      type="button"
+      v-bind="{ disabled }"
       class="bottom-6 right-6 z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition-all duration-300 ease-braking focus-visible:v-outline disabled:bg-dis disabled:v-disabled sm:bottom-12 sm:right-12"
       :class="[
         'active:scale-90',
@@ -37,6 +38,11 @@ defineSlots<{ default(props: void): any }>()
       ]"
     >
       <Icon v-if="icon" :i="icon" size="xl" />
+
+      <Tooltip
+        v-if="tooltip"
+        v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip"
+      />
     </button>
   </Teleport>
 </template>

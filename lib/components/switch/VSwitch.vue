@@ -41,10 +41,10 @@ function onChange(e: Event) {
     ]"
   >
     <input
-      type="checkbox"
-      :disabled
-      v-init
       @change="onChange"
+      type="checkbox"
+      v-bind="{ disabled }"
+      v-init
       class="pointer-events-none absolute inset-y-1 left-1 m-0 size-5 appearance-none rounded-inherit outline-none transition duration-inherit ease-braking group-active/v-switch:scale-125"
       :class="{
         'bg-on-pri disabled:bg-bsc': modelValue,
@@ -52,5 +52,7 @@ function onChange(e: Event) {
         'translate-x-5': modelValue
       }"
     />
+
+    <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />
   </label>
 </template>
