@@ -1,8 +1,10 @@
+import type { PureCSSIconClassName, AsReadonly } from 'mm3'
+
 import { toPlugin } from '@utils'
 import Breadcrumbs from './VBreadcrumbs.vue'
 
 export type BreadcrumbsProps = {
-  each: string[]
+  each: AsReadonly<(string | { icon?: PureCSSIconClassName; text: string; value: string })[]>
   selectable?: boolean
 }
 

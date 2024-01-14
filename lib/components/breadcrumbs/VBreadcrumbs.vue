@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Icon } from '@base'
 import type { BreadcrumbsModel, BreadcrumbsProps } from '.'
 
 defineOptions({ name: 'Breadcrumbs' })
@@ -12,24 +13,25 @@ const modelValue = defineModel<BreadcrumbsModel['modelValue']>({ default: undefi
   <div class="inline-flex flex-wrap gap-2">
     <component
       :is="selectable ? 'label' : 'span'"
-      v-for="(item, index) in each"
+      v-for="(item, index) in each.map(v => (typeof v == 'string' ? { text: v, value: v } : v))"
       :key="index"
-      class="relative inline-block h-7 rounded-v1 px-3 text-sm leading-7 transition-all duration-300 v-outline-none v-border has-[:focus-visible]:v-outline"
+      class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 px-3 transition-all duration-300 v-outline-none v-border has-[:focus-visible]:v-outline"
       :class="[
-        { 'cursor-pointer': selectable },
-        modelValue && modelValue?.includes(item)
+        { 'cursor-pointer select-none': selectable },
+        modelValue && modelValue?.includes(item.value)
           ? 'border-transparent bg-pri-var text-on-pri-var'
           : 'border-otl bg-bsc text-on-bsc'
       ]"
     >
       <input
         type="checkbox"
-        :value="item"
+        :value="item.value"
         v-if="selectable"
         v-model="modelValue"
         class="absolute left-0 top-0 -z-10 outline-none"
       />
-      {{ item }}
+      <Icon v-if="item.icon" :i="item.icon" size="sm" class="-ml-1 duration-inherit" />
+      <span class="pointer-events-none text-sm text-inherit duration-inherit">{{ item.text }}</span>
     </component>
   </div>
 </template>
