@@ -7,6 +7,9 @@ export type AccordionProps = {
   init?: boolean
   icon?: PureCSSIconClassName
   title?: string
+  /**
+   * @default 'auto'
+   */
   width?: string
 }
 

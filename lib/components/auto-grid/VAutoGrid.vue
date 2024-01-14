@@ -3,20 +3,23 @@ import type { AutoGridProps } from '.'
 
 defineOptions({ name: 'AutoGrid' })
 
-const { size = 'md' } = defineProps<AutoGridProps>()
+const { gap = 'md', width = 'auto' } = defineProps<AutoGridProps>()
 
 defineSlots<{ default(props: {}): any }>()
 </script>
 
 <template>
   <div
-    :style="{ gridTemplateColumns: `repeat(auto-fill, minmax(${minWidth}, 1fr))` }"
+    :style="{
+      width,
+      gridTemplateColumns: `repeat(auto-fill, minmax(${itemWidth}, 1fr))`
+    }"
     :class="[
       'grid',
       {
-        'gap-2': size === 'sm',
-        'gap-4': size === 'md',
-        'gap-6': size === 'lg'
+        'gap-2': gap === 'sm',
+        'gap-4': gap === 'md',
+        'gap-6': gap === 'lg'
       }
     ]"
   >
