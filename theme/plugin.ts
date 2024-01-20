@@ -37,7 +37,7 @@ const custom = {
       pointerEvents: 'none'
     },
     '.v-border': {
-      borderWidth: '1.2px',
+      borderWidth: theme('borderWidth.v1'),
       borderStyle: 'solid'
     }
   }),

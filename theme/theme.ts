@@ -47,6 +47,9 @@ export default {
     }),
     gap: {
       inherit: 'inherit'
+    },
+    borderWidth: {
+      v1: '1.2px'
     }
   }
 } satisfies Config['theme']

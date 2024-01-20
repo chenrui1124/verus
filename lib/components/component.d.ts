@@ -10,6 +10,7 @@ declare module 'vue' {
     VIterate: typeof import('@components').VIterate
     VModal: typeof import('@components').VModal
     VRadios: typeof import('@components').VRadios
+    VSegmentedButton: typeof import('@components').VSegmentedButton
     VSwitch: typeof import('@components').VSwitch
     VTextField: typeof import('@components').VTextField
   }

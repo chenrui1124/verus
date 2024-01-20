@@ -10,5 +10,10 @@ export { VIconButton, type IconButtonProps } from './icon-button'
 export { VIterate, type IterateProps } from './iterate'
 export { VModal, type ModalProps } from './modal'
 export { VRadios, type RadiosProps, type RadiosModel } from './radios'
+export {
+  VSegmentedButton,
+  type SegmentedButtonProps,
+  type SegmentedButtonModel
+} from './segmented-button'
 export { VSwitch, type SwitchProps, type SwitchModel } from './switch'
 export { VTextField, type TextFieldProps, type TextFieldModel } from './text-field'
