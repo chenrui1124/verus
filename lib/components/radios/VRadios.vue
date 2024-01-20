@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { RadiosModel, RadiosProps } from '.'
 
+import { computed } from 'vue'
 import { Icon } from '@base'
 
 defineOptions({ name: 'Radios' })
 
-defineProps<RadiosProps>()
+const { each } = defineProps<RadiosProps>()
+
+const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, value: i } : i)))
 
 const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
 </script>
@@ -13,25 +16,22 @@ const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
 <template>
   <div :style="{ width }" class="flex flex-col gap-2">
     <label
-      v-for="i in each.map(v => (typeof v == 'string' ? { text: v, value: v } : v))"
-      :key="i.value"
-      class="group/v-radio relative box-border inline-flex h-12 min-w-12 select-none items-center justify-center gap-4 rounded-v2 px-4 outline-transparent transition-all duration-300 v-outline-none v-border hover:bg-pri-ctr has-[:focus-visible]:v-outline"
-      :class="[
-        i.value === modelValue
-          ? 'pointer-events-none border-pri bg-pri/12 text-pri'
-          : 'cursor-pointer border-otl text-on-bsc'
-      ]"
+      v-for="(item, index) in _each"
+      :key="index"
+      :data-selected="item.value === modelValue ? '' : void 0"
+      class="group/v-radio relative box-border inline-flex h-12 min-w-12 cursor-pointer select-none items-center justify-center gap-4 rounded-v2 border-otl px-4 text-on-bsc outline-transparent transition-all duration-300 v-outline-none v-border hover:bg-pri-ctr has-[:focus-visible]:v-outline data-[selected]:pointer-events-none data-[selected]:border-pri data-[selected]:bg-pri/12 data-[selected]:text-pri"
     >
-      <Icon v-if="i.icon" :i="i.icon" class="-m-1" />
-      <span class="mr-auto text-sm duration-inherit">{{ i.text }}</span>
+      <Icon v-if="item.icon" :icon="item.icon" class="-m-1" />
+
+      <span class="mr-auto text-sm duration-inherit">{{ item.text }}</span>
 
       <span
-        class="pointer-events-none box-border inline-flex size-4 items-center justify-center rounded-full bg-bsc transition-all duration-inherit v-border group-active/v-radio:scale-75"
-        :class="i.value === modelValue ? '!border-4' : 'border-otl'"
+        :data-selected="item.value === modelValue ? '' : void 0"
+        class="pointer-events-none box-border inline-flex size-4 items-center justify-center rounded-full border-inherit bg-bsc transition-all duration-inherit v-border group-active/v-radio:scale-75 data-[selected]:border-4"
       >
         <input
           type="radio"
-          :value="i.value"
+          :value="item.value"
           v-model="modelValue"
           class="m-0 opacity-0 outline-none"
         />

@@ -35,7 +35,7 @@ function onChange(e: Event) {
       {
         'bg-pri before:border-transparent after:translate-x-5 focus-within:after:!bg-pri/12 hover:after:bg-pri/8 has-[:disabled]:bg-dis':
           modelValue,
-        'bg-bsc before:border-otl focus-within:after:!bg-on-bsc/12 hover:after:bg-on-bsc/8 has-[:disabled]:before:border-dis':
+        'bg-bsc before:border-otl before:bg-otl/16 focus-within:after:!bg-on-bsc/12 hover:after:bg-on-bsc/8 has-[:disabled]:before:border-dis':
           !modelValue
       }
     ]"

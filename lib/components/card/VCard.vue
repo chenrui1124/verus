@@ -3,7 +3,7 @@ import type { CardProps } from '.'
 
 defineOptions({ name: 'Card' })
 
-const { width = '16rem', variant = 'outlined' } = defineProps<CardProps>()
+const { width = '16rem', variant = 'outlined', danger } = defineProps<CardProps>()
 
 defineSlots<{ default(props: void): any }>()
 </script>
@@ -11,11 +11,12 @@ defineSlots<{ default(props: void): any }>()
 <template>
   <div
     :style="{ width }"
-    class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300"
+    :data-danger="danger ? '' : void 0"
+    class="relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300 *:duration-inherit"
     :class="{
-      [!danger ? 'bg-pri-ctr' : 'bg-err-ctr']: variant === 'solid',
-      'bg-bsc before:v-shade before:v-border': variant === 'outlined',
-      [!danger ? 'before:border-pri' : 'before:border-err']: variant === 'outlined'
+      'bg-pri-ctr data-[danger]:bg-err-ctr': variant === 'solid',
+      'bg-bsc before:v-shade before:border-pri before:v-border data-[danger]:before:border-err':
+        variant === 'outlined'
     }"
   >
     <!--* Image *-->
@@ -24,17 +25,18 @@ defineSlots<{ default(props: void): any }>()
     <!--* Title *-->
     <div
       v-if="title"
-      class="text-2xl duration-inherit"
-      :class="[image && '-mr-1', !danger ? 'text-pri' : 'text-err']"
+      :data-danger="danger ? '' : void 0"
+      class="text-2xl text-pri data-[danger]:text-err"
+      :class="image && '-mr-1'"
     >
       {{ title }}
     </div>
-    <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl duration-inherit">
+    <div v-if="subtitle" class="-mt-2 pl-px text-sm text-otl">
       {{ subtitle }}
     </div>
 
     <!--* Content *-->
-    <div class="text-sm leading-6 text-on-bsc duration-inherit">
+    <div class="text-sm leading-6 text-on-bsc">
       <slot />
     </div>
   </div>

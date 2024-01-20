@@ -22,18 +22,15 @@ function onClick(e: Event) {
   <button
     @click="onClick"
     type="button"
-    v-bind="{ disabled }"
-    class="group/v-icon-button relative inline-flex size-10 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent transition-all duration-300 ease-braking v-outline-none disabled:text-dis disabled:v-disabled"
-    :class="{
-      'text-pri hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline': !danger,
-      'text-err hover:bg-err/8 focus:bg-err/12 focus-visible:v-outline-danger': danger
-    }"
+    :data-danger="danger ? '' : void 0"
+    :disabled="disabled"
+    class="group/v-icon-button relative inline-flex size-10 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent text-pri transition-all duration-300 ease-braking v-outline-none hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline disabled:text-dis disabled:v-disabled data-[danger]:text-err data-[danger]:hover:bg-err/8 data-[danger]:focus:bg-err/12 data-[danger]:focus-visible:v-outline-danger"
   >
     <Icon
-      :i="icon"
+      size="lg"
+      :icon="icon"
       class="transition group-active/v-icon-button:scale-75"
       :class="cls`scale-75`"
-      size="lg"
     />
 
     <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />

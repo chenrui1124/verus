@@ -10,18 +10,8 @@ defineSlots<{ default(props: {}): any }>()
 
 <template>
   <div
-    :style="{
-      width,
-      gridTemplateColumns: `repeat(auto-fill, minmax(${itemWidth}, 1fr))`
-    }"
-    :class="[
-      'grid',
-      {
-        'gap-2': gap === 'sm',
-        'gap-4': gap === 'md',
-        'gap-6': gap === 'lg'
-      }
-    ]"
+    :style="{ width, gridTemplateColumns: `repeat(auto-fill, minmax(${itemWidth}, 1fr))` }"
+    :class="['grid', { sm: 'gap-2', md: 'gap-4', lg: 'gap-6' }[gap]]"
   >
     <slot></slot>
   </div>

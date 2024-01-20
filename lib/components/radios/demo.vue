@@ -6,7 +6,7 @@ const each = [
   { icon: 'i-ri:windows-fill', text: 'Windows', value: 'windows' },
   { icon: 'i-ri:android-fill', text: 'Android', value: 'android' },
   { icon: 'i-ri:apple-fill', text: 'IOS', value: 'ios' }
-] as const
+]
 
 const model = ref()
 </script>

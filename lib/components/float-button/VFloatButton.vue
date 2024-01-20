@@ -26,9 +26,8 @@ defineSlots<{ default(props: void): any }>()
       @click="onClick"
       type="button"
       v-bind="{ disabled }"
-      class="bottom-6 right-6 z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition-all duration-300 ease-braking focus-visible:v-outline disabled:bg-dis disabled:v-disabled sm:bottom-12 sm:right-12"
+      class="bottom-6 right-6 z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition-all duration-300 ease-braking focus-visible:v-outline active:scale-90 disabled:bg-dis disabled:v-disabled sm:bottom-12 sm:right-12"
       :class="[
-        'active:scale-90',
         cls`scale-90`,
         absolute ? 'absolute' : 'fixed',
         {
@@ -37,7 +36,7 @@ defineSlots<{ default(props: void): any }>()
         }
       ]"
     >
-      <Icon v-if="icon" :i="icon" size="xl" />
+      <Icon v-if="icon" :icon="icon" size="xl" />
 
       <Tooltip
         v-if="tooltip"

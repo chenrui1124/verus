@@ -9,9 +9,7 @@ const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
 
 const value = ref()
 
-const icon = computed(() =>
-  value.value ? 'i-solar:archive-up-minimlistic-bold-duotone' : undefined
-)
+const icon = computed(() => (value.value ? 'i-ri-square-fill' : undefined))
 </script>
 
 <template>
@@ -22,7 +20,7 @@ const icon = computed(() =>
         :variant="v"
         text="button"
         uppercase
-        :icon
+        :icon="icon"
         @click="loading = !loading"
         :tooltip="{ content: 'Button', danger: true }"
       />
@@ -44,7 +42,15 @@ const icon = computed(() =>
     </div>
 
     <div class="flex gap-4">
-      <VButton v-for="v in variant" :icon :variant="v" text="button" uppercase :loading danger />
+      <VButton
+        v-for="v in variant"
+        :icon="icon"
+        :variant="v"
+        text="button"
+        uppercase
+        :loading="loading"
+        danger
+      />
     </div>
 
     <div class="flex gap-4">

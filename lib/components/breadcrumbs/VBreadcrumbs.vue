@@ -1,37 +1,39 @@
 <script setup lang="ts">
-import { Icon } from '@base'
 import type { BreadcrumbsModel, BreadcrumbsProps } from '.'
+
+import { computed } from 'vue'
+import { Icon } from '@base'
 
 defineOptions({ name: 'Breadcrumbs' })
 
-defineProps<BreadcrumbsProps>()
+const { each } = defineProps<BreadcrumbsProps>()
+
+const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, value: i } : i)))
 
 const modelValue = defineModel<BreadcrumbsModel['modelValue']>({ default: undefined })
 </script>
 
 <template>
-  <div class="inline-flex flex-wrap gap-2">
+  <div
+    class="inline-flex flex-wrap gap-2"
+    :class="{ '*:cursor-pointer *:select-none': selectable }"
+  >
     <component
-      :is="selectable ? 'label' : 'span'"
-      v-for="(item, index) in each.map(v => (typeof v == 'string' ? { text: v, value: v } : v))"
+      v-for="(item, index) in _each"
       :key="index"
-      class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 px-3 transition-all duration-300 v-outline-none v-border has-[:focus-visible]:v-outline"
-      :class="[
-        { 'cursor-pointer select-none': selectable },
-        modelValue && modelValue?.includes(item.value)
-          ? 'border-transparent bg-pri-var text-on-pri-var'
-          : 'border-otl bg-bsc text-on-bsc'
-      ]"
+      :is="selectable ? 'label' : 'span'"
+      :data-selected="modelValue && modelValue?.includes(item.value) ? '' : void 0"
+      class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 border-otl bg-bsc px-3 text-sm text-on-bsc transition-all duration-300 v-outline-none v-border has-[:focus-visible]:v-outline data-[selected]:border-transparent data-[selected]:bg-pri-var data-[selected]:text-on-pri-var"
     >
       <input
-        type="checkbox"
-        :value="item.value"
         v-if="selectable"
+        type="checkbox"
         v-model="modelValue"
-        class="absolute left-0 top-0 -z-10 outline-none"
+        :value="item.value"
+        class="absolute inset-0 -z-10 m-auto outline-none"
       />
-      <Icon v-if="item.icon" :i="item.icon" size="sm" class="-ml-1 duration-inherit" />
-      <span class="pointer-events-none text-sm text-inherit duration-inherit">{{ item.text }}</span>
+      <Icon v-if="item.icon" :icon="item.icon" size="sm" class="-ml-1" />
+      {{ item.text }}
     </component>
   </div>
 </template>
