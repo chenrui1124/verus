@@ -36,7 +36,7 @@ defineSlots<{ default(props: void): any }>()
     </div>
 
     <!--* Content *-->
-    <div class="text-sm leading-6 text-on-bsc">
+    <div class="text-sm/6 text-on-bsc">
       <slot />
     </div>
   </div>
