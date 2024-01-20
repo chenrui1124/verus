@@ -26,18 +26,20 @@ const isValid = validator
 const emit = defineEmits<{ submit: [e: Event] }>()
 
 function onSubmit(e: Event) {
+  if (typeof isValid == 'object' && (!isValid.value || !modelValue.value)) return
   emit('submit', e)
 }
 </script>
 
 <template>
-  <form class="relative inline-flex h-10 rounded-v1">
+  <form class="relative inline-block rounded-v1">
     <input
       @submit.prevent="onSubmit"
       :type="secret ? 'password' : 'text'"
+      :data-invalid="isValid ? '' : void 0"
       v-bind="{ ...$attrs, autocomplete, pattern, placeholder, disabled }"
       v-model="modelValue"
-      class="peer/v-text-field invalid:focus-visible:-outline-danger relative flex-1 rounded-inherit text-sm text-on-bsc transition-all duration-300 v-outline-none v-border placeholder:text-on-bsc invalid:focus:border-err disabled:bg-dis disabled:v-disabled"
+      class="peer/v-text-field box-border h-10 rounded-inherit text-sm text-on-bsc transition-all duration-300 v-outline-none v-border placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled"
       :class="[
         {
           [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]:
@@ -55,20 +57,20 @@ function onSubmit(e: Event) {
 
     <Icon
       v-if="icon"
-      :i="icon"
-      class="absolute inset-y-2 left-2 text-on-pri-var peer-invalid/n-text-field:text-on-err peer-focus/v-text-field:text-pri"
+      :icon="icon"
+      class="absolute inset-y-0 left-2 my-auto text-on-pri-var peer-invalid/v-text-field:text-on-err peer-focus/v-text-field:text-pri"
       size="lg"
     />
 
     <Transition enter-from-class="scale-0" leave-to-class="scale-0">
       <button
-        type="button"
         v-if="clearable && !disabled"
         v-show="modelValue"
         @click="clear"
-        class="absolute inset-y-0 right-0 inline-flex size-10 items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
+        type="button"
+        class="absolute inset-y-0 right-0 inline-flex w-10 items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
       >
-        <Icon i="i-[solar--close-circle-bold-duotone]" />
+        <Icon icon="i-[solar--close-circle-bold-duotone]" />
       </button>
     </Transition>
   </form>
