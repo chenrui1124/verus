@@ -1,12 +1,12 @@
-import type { PureCSSIconClassName } from 'mm3'
 import type { TooltipOptions } from '@base'
 
 import { toPlugin } from '@utils'
 import IconButton from './VIconButton.vue'
+import type { ButtonHTMLAttributes } from 'vue'
 
 export type IconButtonProps = {
-  icon: PureCSSIconClassName
-  disabled?: boolean
+  icon: string
+  disabled?: ButtonHTMLAttributes['disabled']
   danger?: boolean
   tooltip?: TooltipOptions
 }

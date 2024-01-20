@@ -1,16 +1,15 @@
 import type { PropType } from 'vue'
-import type { PureCSSIconClassName } from 'mm3'
 
 type IconProps = {
-  i: PureCSSIconClassName
+  icon: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
-function Icon({ i, size }: IconProps) {
+function Icon({ icon, size }: IconProps) {
   return (
     <span
       class={[
-        i,
+        icon,
         'pointer-events-none inline-block duration-inherit ease-inherit',
         {
           'min-h-4 min-w-4': size === 'sm',
@@ -24,8 +23,14 @@ function Icon({ i, size }: IconProps) {
 }
 
 Icon.props = {
-  i: { type: String, required: true },
-  size: { type: String as PropType<IconProps['size']>, default: 'md' }
+  icon: {
+    type: String,
+    required: true
+  },
+  size: {
+    type: String as PropType<IconProps['size']>,
+    default: 'md'
+  }
 }
 
 export default Icon

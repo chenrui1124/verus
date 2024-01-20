@@ -1,13 +1,13 @@
-import type { PureCSSIconClassName } from 'mm3'
 import type { TooltipOptions } from '@base'
 
 import { toPlugin } from '@utils'
 import FloatButton from './VFloatButton.vue'
+import type { ButtonHTMLAttributes } from 'vue'
 
 export type FloatButtonProps = {
-  icon?: PureCSSIconClassName
+  icon?: string
   absolute?: boolean
-  disabled?: boolean
+  disabled?: ButtonHTMLAttributes['disabled']
   /**
    * @default 'tonal'
    */

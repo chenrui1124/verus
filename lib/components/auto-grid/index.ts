@@ -2,11 +2,11 @@ import { toPlugin } from '@utils'
 import AutoGrid from './VAutoGrid.vue'
 
 export type AutoGridProps = {
-  itemWidth: string
   /**
    * @default 'auto'
    */
   width?: string
+  itemWidth: string
   gap?: 'sm' | 'md' | 'lg'
 }
 

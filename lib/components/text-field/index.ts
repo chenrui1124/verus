@@ -1,5 +1,4 @@
 import type { InputHTMLAttributes } from 'vue'
-import type { PureCSSIconClassName } from 'mm3'
 import type { TooltipOptions } from '@base'
 
 import { toPlugin } from '@utils'
@@ -7,10 +6,10 @@ import TextField from './VTextField.vue'
 
 export type TextFieldProps = {
   autocomplete?: InputHTMLAttributes['autocomplete']
+  disabled?: InputHTMLAttributes['disabled']
   pattern?: InputHTMLAttributes['pattern']
   placeholder?: string
-  disabled?: boolean
-  icon?: PureCSSIconClassName
+  icon?: string
   secret?: boolean
   clearable?: boolean
   /**

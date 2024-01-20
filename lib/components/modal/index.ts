@@ -12,7 +12,7 @@ export type ModalProps = {
   /**
    * allow use 'esc' to close.
    */
-  shortcut?: string
+  shortcut?: boolean
 }
 
 export const VModal = toPlugin(Modal)
