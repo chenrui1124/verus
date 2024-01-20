@@ -10,7 +10,7 @@ const { variant = 'outlined', loading } = defineProps<ButtonProps>()
 const emit = defineEmits<{ click: [event: Event] }>()
 
 function onClick(e: Event) {
-  void (loading || emit('click', e))
+  loading || emit('click', e)
 }
 
 defineSlots<{ default(props: void): any }>()
