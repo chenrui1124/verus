@@ -9,46 +9,46 @@ const { each, direction = 'row' } = defineProps<SegmentedButtonProps>()
 const modelValue = defineModel<SegmentedButtonModel['modelValue']>()
 
 const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, value: i } : i)))
-
-function select(e: Event) {
-  const t = e.target as HTMLButtonElement
-  const v = t.dataset.value
-  v && (modelValue.value = v)
-}
 </script>
 
 <template>
   <div
-    @click="select"
-    class="relative rounded-v1 transition-colors duration-300 before:v-shade before:border-pri before:v-border"
-    :class="direction === 'row' ? 'inline-flex' : 'inline-grid grid-cols-1'"
+    :class="[
+      'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-otl before:v-border',
+      direction === 'row' ? 'inline-flex' : 'inline-grid grid-cols-1'
+    ]"
   >
-    <button
+    <label
       v-for="(item, index) in _each"
       :key="index"
-      :data-value="item.value"
-      :data-selected="item.value === modelValue ? '' : void 0"
-      class="cursor-pointer items-center border-0 border-solid border-pri bg-transparent p-0 text-otl duration-inherit v-outline-none hover:bg-pri-ctr hover:text-on-pri-var focus-visible:v-outline data-[selected]:pointer-events-none data-[selected]:bg-pri/12 data-[selected]:text-pri"
-      :class="
+      :class="[
+        'relative cursor-pointer items-center bg-transparent px-4 text-otl duration-inherit v-outline-none hover:bg-pri/8 focus-visible:v-outline has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri',
         {
-          row: 'inline-flex justify-center border-r-v1 first:rounded-l-inherit last:rounded-r-inherit last:border-r-0',
-          col: 'col-span-2 inline-grid grid-cols-subgrid border-b-v1 first:rounded-t-inherit last:rounded-b-inherit last:border-b-0'
+          row: '-mx-[0.6px] inline-flex justify-center border-l-transparent v-border first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit',
+          col: 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-t-transparent v-border first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
         }[direction]
-      "
+      ]"
     >
+      <input
+        type="radio"
+        :value="item.value"
+        v-model="modelValue"
+        class="pointer-events-none invisible absolute inset-0 -z-10 m-auto opacity-0 outline-none"
+      />
       <Icon
         v-if="item.icon"
         :icon="item.icon"
         size="sm"
-        class="-mr-2 ml-3"
-        :class="{ 'col-start-1': direction === 'col' }"
+        :class="['-ml-1 mr-2', { 'col-start-1': direction === 'col' }]"
       />
       <span
-        class="pointer-events-none mx-4 h-9 text-left text-sm/9 duration-inherit"
-        :class="{ 'col-start-2': direction === 'col' }"
+        :class="[
+          'pointer-events-none h-9 text-left text-sm/9 duration-inherit',
+          { 'col-start-2': direction === 'col' }
+        ]"
       >
         {{ item.text }}
       </span>
-    </button>
+    </label>
   </div>
 </template>

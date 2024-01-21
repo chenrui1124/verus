@@ -22,8 +22,7 @@ const modelValue = defineModel<BreadcrumbsModel['modelValue']>({ default: undefi
       v-for="(item, index) in _each"
       :key="index"
       :is="selectable ? 'label' : 'span'"
-      :data-selected="modelValue && modelValue?.includes(item.value) ? '' : void 0"
-      class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 border-otl bg-bsc px-3 text-sm text-on-bsc transition-all duration-300 v-outline-none v-border has-[:focus-visible]:v-outline data-[selected]:border-transparent data-[selected]:bg-pri-var data-[selected]:text-on-pri-var"
+      class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 border-otl bg-bsc px-3 text-sm text-on-bsc transition-all duration-300 v-outline-none v-border has-[:checked]:border-transparent has-[:checked]:bg-pri-var has-[:checked]:text-on-pri-var has-[:focus-visible]:v-outline"
     >
       <input
         v-if="selectable"

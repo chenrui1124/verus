@@ -5,6 +5,8 @@ import { VButton } from '.'
 
 const loading = ref()
 
+const text = '按钮'
+
 const variant = ['solid', 'tonal', 'outlined', 'clean'] as const
 
 const value = ref()
@@ -17,12 +19,12 @@ const icon = computed(() => (value.value ? 'i-ri-square-fill' : undefined))
     <div class="flex gap-4">
       <VButton
         v-for="v in variant"
-        :variant="v"
-        text="button"
-        uppercase
-        :icon="icon"
         @click="loading = !loading"
-        :tooltip="{ content: 'Button', danger: true }"
+        :variant="v"
+        :text="text"
+        :icon="icon"
+        :tooltip="{ content: text }"
+        uppercase
       />
     </div>
 
@@ -30,15 +32,15 @@ const icon = computed(() => (value.value ? 'i-ri-square-fill' : undefined))
       <VButton
         v-for="v in variant"
         :variant="v"
-        text="button"
+        :text="text"
+        :append-icon="icon"
         uppercase
         danger
-        :append-icon="icon"
       />
     </div>
 
     <div class="flex gap-4">
-      <VButton v-for="v in variant" :variant="v" text="button" uppercase disabled />
+      <VButton v-for="v in variant" :variant="v" :text="text" uppercase disabled />
     </div>
 
     <div class="flex gap-4">
@@ -46,9 +48,9 @@ const icon = computed(() => (value.value ? 'i-ri-square-fill' : undefined))
         v-for="v in variant"
         :icon="icon"
         :variant="v"
-        text="button"
-        uppercase
+        :text="text"
         :loading="loading"
+        uppercase
         danger
       />
     </div>

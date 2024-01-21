@@ -5,20 +5,20 @@ import { VAccordion } from '.'
 
 <template>
   <div class="flex flex-col gap-2">
-    <VAccordion title="Accordion" width="24rem" variant="solid">
-      {{ lorem() }}
+    <VAccordion title="折叠面板" width="24rem" variant="solid">
+      {{ lorem('sc') }}
     </VAccordion>
 
-    <VAccordion title="Accordion" width="24rem">
-      {{ lorem() }}
+    <VAccordion title="折叠面板" width="24rem">
+      {{ lorem('sc') }}
     </VAccordion>
 
-    <VAccordion title="Accordion" width="24rem" variant="solid" danger>
-      {{ lorem() }}
+    <VAccordion title="折叠面板" width="24rem" variant="solid" danger>
+      {{ lorem('sc') }}
     </VAccordion>
 
-    <VAccordion title="Accordion" width="24rem" danger>
-      {{ lorem() }}
+    <VAccordion title="折叠面板" width="24rem" danger>
+      {{ lorem('sc') }}
     </VAccordion>
   </div>
 </template>

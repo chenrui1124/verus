@@ -23,31 +23,32 @@ defineSlots<{ default(props: void): any }>()
     :disabled="disabled"
     :tabindex="loading ? -1 : void 0"
     :data-danger="danger ? '' : void 0"
-    class="relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit focus-visible:v-outline disabled:text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger"
-    :class="{
-      'group/v-tooltip group-focus/v-tooltip group-focus-visible/v-tooltip': tooltip,
+    :class="[
+      'relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit focus-visible:v-outline disabled:text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger',
+      {
+        'group/v-tooltip': tooltip,
+        'pointer-events-none': loading,
 
-      'bg-pri text-on-pri hover:before:bg-bsc/8 focus:text-opacity-72 focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
-        variant === 'solid',
+        'bg-pri text-on-pri hover:before:bg-bsc/8 focus:text-opacity-72 focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
+          variant === 'solid',
+        'bg-pri-var text-on-pri-var hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12 data-[danger]:bg-err-var data-[danger]:text-on-err-var':
+          variant === 'tonal',
+        'disabled:bg-dis': ['solid', 'tonal'].includes(variant),
 
-      'bg-pri-var text-on-pri-var hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12 data-[danger]:bg-err-var data-[danger]:text-on-err-var':
-        variant === 'tonal',
-
-      'disabled:bg-dis': ['solid', 'tonal'].includes(variant),
-
-      'before:border-otl before:v-border focus:before:border-current': variant === 'outlined',
-
-      'bg-transparent text-pri hover:before:bg-pri/8 focus:before:bg-pri/12 data-[danger]:text-err data-[danger]:hover:before:bg-err/8 data-[danger]:focus:before:bg-err/12':
-        ['outlined', 'clean'].includes(variant),
-
-      'pointer-events-none': loading
-    }"
+        'before:border-otl before:v-border focus:before:border-current': variant === 'outlined',
+        'bg-transparent text-pri hover:before:bg-pri/8 focus:before:bg-pri/12 data-[danger]:text-err data-[danger]:hover:before:bg-err/8 data-[danger]:focus:before:bg-err/12':
+          ['outlined', 'clean'].includes(variant)
+      }
+    ]"
   >
     <Icon v-if="icon" :icon="icon" class="-ml-1" :class="loading && 'opacity-0'" />
 
     <span
-      class="pointer-events-none select-none text-sm tracking-wider duration-inherit"
-      :class="[uppercase && 'uppercase', loading && 'opacity-0']"
+      :class="[
+        'pointer-events-none select-none text-sm tracking-wider duration-inherit',
+        uppercase && 'uppercase',
+        loading && 'opacity-0'
+      ]"
     >
       <slot>{{ text }}</slot>
     </span>

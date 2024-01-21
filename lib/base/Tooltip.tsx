@@ -16,9 +16,9 @@ type TooltipProps = {
 function Tooltip({ content, position, trigger, danger }: TooltipProps) {
   return (
     <div
+      data-danger={danger ? '' : void 0}
       class={[
-        'pointer-events-none absolute whitespace-nowrap rounded-v1 px-4 py-1.5 text-sm opacity-0 transition duration-300 before:absolute before:size-2 before:rotate-45 before:bg-inherit group-has-[:disabled]/v-tooltip:hidden',
-        !danger ? 'bg-on-bsc text-bsc' : 'bg-err text-on-err',
+        'pointer-events-none absolute whitespace-nowrap rounded-v1 bg-on-bsc px-4 py-1.5 text-sm text-bsc opacity-0 transition duration-300 before:absolute before:size-2 before:rotate-45 before:bg-inherit group-has-[:disabled]/v-tooltip:hidden data-[danger]:bg-err data-[danger]:text-on-err',
         {
           'group-hover/v-tooltip:opacity-100': trigger?.includes('hover'),
           'group-focus/v-tooltip:opacity-100': trigger?.includes('focus'),
