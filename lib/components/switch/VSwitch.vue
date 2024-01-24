@@ -2,6 +2,8 @@
 import type { ObjectDirective } from 'vue'
 import type { SwitchModel, SwitchProps } from '.'
 
+import { Tooltip } from '@base'
+
 defineOptions({ name: 'Switch' })
 
 defineProps<SwitchProps>()

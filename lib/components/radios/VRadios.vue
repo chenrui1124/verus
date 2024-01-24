@@ -31,7 +31,7 @@ const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
           type="radio"
           :value="item.value"
           v-model="modelValue"
-          class="invisible -z-10 m-0 opacity-0 outline-none"
+          class="pointer-events-none -z-10 m-0 opacity-0 outline-none"
         />
       </span>
     </label>

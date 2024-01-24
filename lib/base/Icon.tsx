@@ -10,13 +10,13 @@ function Icon({ icon, size }: IconProps) {
     <span
       class={[
         icon,
-        'pointer-events-none inline-block duration-inherit ease-inherit',
+        'pointer-events-none inline-block transition-colors duration-300',
         {
-          'min-h-4 min-w-4': size === 'sm',
-          'min-h-5 min-w-5': size === 'md',
-          'min-h-6 min-w-6': size === 'lg',
-          'min-h-7 min-w-7': size === 'xl'
-        }
+          sm: 'min-h-4 min-w-4',
+          md: 'min-h-5 min-w-5',
+          lg: 'min-h-6 min-w-6',
+          xl: 'min-h-7 min-w-7'
+        }[size!]
       ]}
     />
   )

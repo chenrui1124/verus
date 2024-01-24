@@ -24,7 +24,7 @@ defineSlots<{ default(props: void): any }>()
     :tabindex="loading ? -1 : void 0"
     :data-danger="danger ? '' : void 0"
     :class="[
-      'relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit focus-visible:v-outline disabled:text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger',
+      'group/v-button relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit focus-visible:v-outline disabled:!text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger',
       {
         'group/v-tooltip': tooltip,
         'pointer-events-none': loading,
@@ -33,7 +33,7 @@ defineSlots<{ default(props: void): any }>()
           variant === 'solid',
         'bg-pri-var text-on-pri-var hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12 data-[danger]:bg-err-var data-[danger]:text-on-err-var':
           variant === 'tonal',
-        'disabled:bg-dis': ['solid', 'tonal'].includes(variant),
+        'disabled:!bg-dis': ['solid', 'tonal'].includes(variant),
 
         'before:border-otl before:v-border focus:before:border-current': variant === 'outlined',
         'bg-transparent text-pri hover:before:bg-pri/8 focus:before:bg-pri/12 data-[danger]:text-err data-[danger]:hover:before:bg-err/8 data-[danger]:focus:before:bg-err/12':
@@ -41,25 +41,30 @@ defineSlots<{ default(props: void): any }>()
       }
     ]"
   >
-    <Icon v-if="icon" :icon="icon" class="-ml-1" :class="loading && 'opacity-0'" />
+    <Icon v-if="icon" :icon="icon" class="-ml-1" :class="loading && !disabled && 'opacity-0'" />
 
     <span
       :class="[
         'pointer-events-none select-none text-sm tracking-wider duration-inherit',
         uppercase && 'uppercase',
-        loading && 'opacity-0'
+        loading && !disabled && 'opacity-0'
       ]"
     >
       <slot>{{ text }}</slot>
     </span>
 
-    <Icon v-if="appendIcon" :icon="appendIcon" class="-mr-1" :class="loading && 'opacity-0'" />
+    <Icon
+      v-if="appendIcon"
+      :icon="appendIcon"
+      class="-mr-1"
+      :class="loading && !disabled && 'opacity-0'"
+    />
 
     <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">
       <Icon
         v-if="loading"
         icon="i-[svg-spinners--ring-resize]"
-        class="absolute inset-0 m-auto disabled:hidden"
+        class="absolute inset-0 m-auto group-disabled/v-button:hidden"
       />
     </Transition>
 
