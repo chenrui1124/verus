@@ -3,6 +3,7 @@ import type { TextFieldModel, TextFieldProps } from '.'
 
 import { computed } from 'vue'
 import { Icon } from '@base'
+import { boolAttr } from '@utils'
 
 defineOptions({ name: 'TextField', inheritAttrs: false })
 
@@ -36,11 +37,11 @@ function onSubmit(e: Event) {
     <input
       @submit.prevent="onSubmit"
       :type="secret ? 'password' : 'text'"
-      :data-invalid="isValid ? '' : void 0"
+      :data-invalid="boolAttr(isValid)"
       v-bind="{ ...$attrs, autocomplete, pattern, placeholder, disabled }"
       v-model="modelValue"
-      class="peer/v-text-field box-border h-10 rounded-inherit text-sm text-on-bsc transition-all duration-300 v-outline-none v-border placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled"
       :class="[
+        'peer/v-text-field box-border h-10 rounded-inherit border-v1 border-solid text-sm text-on-bsc transition-all duration-300 v-outline-none placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
         {
           [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]:
             variant === 'solid',
@@ -58,8 +59,8 @@ function onSubmit(e: Event) {
     <Icon
       v-if="icon"
       :icon="icon"
-      class="absolute inset-y-0 left-2 my-auto text-on-pri-var peer-invalid/v-text-field:text-on-err peer-focus/v-text-field:text-pri"
       size="lg"
+      class="absolute inset-y-0 left-2 my-auto text-on-pri-var transition-colors duration-300 peer-invalid/v-text-field:text-on-err peer-focus/v-text-field:text-pri"
     />
 
     <Transition enter-from-class="scale-0" leave-to-class="scale-0">
@@ -70,7 +71,7 @@ function onSubmit(e: Event) {
         type="button"
         class="absolute inset-y-0 right-0 inline-flex w-10 items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
       >
-        <Icon icon="i-[solar--close-circle-bold-duotone]" />
+        <Icon icon="i-[solar--close-circle-bold-duotone]" class="transition-colors duration-300" />
       </button>
     </Transition>
   </form>

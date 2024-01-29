@@ -10,7 +10,7 @@ function Icon({ icon, size }: IconProps) {
     <span
       class={[
         icon,
-        'pointer-events-none inline-block transition-colors duration-300',
+        'pointer-events-none inline-block',
         {
           sm: 'min-h-4 min-w-4',
           md: 'min-h-5 min-w-5',

@@ -2,14 +2,15 @@
 import type { ButtonProps } from '.'
 
 import { Icon, Tooltip } from '@base'
+import { boolAttr } from '@utils'
 
 defineOptions({ name: 'Button' })
 
 const { variant = 'outlined', loading } = defineProps<ButtonProps>()
 
-const emit = defineEmits<{ click: [event: Event] }>()
+const emit = defineEmits<{ click: [event: MouseEvent] }>()
 
-function onClick(e: Event) {
+function onClick(e: MouseEvent) {
   loading || emit('click', e)
 }
 
@@ -22,9 +23,10 @@ defineSlots<{ default(props: void): any }>()
     type="button"
     :disabled="disabled"
     :tabindex="loading ? -1 : void 0"
-    :data-danger="danger ? '' : void 0"
+    :data-danger="boolAttr(danger)"
     :class="[
-      'group/v-button relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 transition-all duration-300 v-outline-none before:v-shade before:transition-colors before:duration-inherit focus-visible:v-outline disabled:!text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger',
+      'group/v-button relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 text-sm tracking-wider transition-all duration-300 v-outline-none before:v-shade before:transition before:duration-inherit focus-visible:v-outline disabled:!text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger',
+
       {
         'group/v-tooltip': tooltip,
         'pointer-events-none': loading,
@@ -35,17 +37,20 @@ defineSlots<{ default(props: void): any }>()
           variant === 'tonal',
         'disabled:!bg-dis': ['solid', 'tonal'].includes(variant),
 
-        'before:border-otl before:v-border focus:before:border-current': variant === 'outlined',
+        'before:border-v1 before:border-solid before:border-otl focus:before:border-current':
+          variant === 'outlined',
         'bg-transparent text-pri hover:before:bg-pri/8 focus:before:bg-pri/12 data-[danger]:text-err data-[danger]:hover:before:bg-err/8 data-[danger]:focus:before:bg-err/12':
           ['outlined', 'clean'].includes(variant)
-      }
+      },
+
+      '*:transition-color *:duration-300'
     ]"
   >
-    <Icon v-if="icon" :icon="icon" class="-ml-1" :class="loading && !disabled && 'opacity-0'" />
+    <Icon v-if="icon" :icon="icon" :class="['-ml-1', loading && !disabled && 'opacity-0']" />
 
     <span
       :class="[
-        'pointer-events-none select-none text-sm tracking-wider duration-inherit',
+        'pointer-events-none select-none text-sm tracking-wider',
         uppercase && 'uppercase',
         loading && !disabled && 'opacity-0'
       ]"
@@ -56,8 +61,7 @@ defineSlots<{ default(props: void): any }>()
     <Icon
       v-if="appendIcon"
       :icon="appendIcon"
-      class="-mr-1"
-      :class="loading && !disabled && 'opacity-0'"
+      :class="['-mr-1', loading && !disabled && 'opacity-0']"
     />
 
     <Transition enter-from-class="opacity-0" leave-to-class="opacity-0">

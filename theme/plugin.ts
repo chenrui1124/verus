@@ -35,10 +35,6 @@ const custom = {
     '.v-disabled': {
       opacity: theme('opacity.48'),
       pointerEvents: 'none'
-    },
-    '.v-border': {
-      borderWidth: theme('borderWidth.v1'),
-      borderStyle: 'solid'
     }
   }),
 

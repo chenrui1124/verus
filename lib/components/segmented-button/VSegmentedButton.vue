@@ -16,7 +16,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
 <template>
   <div
     :class="[
-      'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-otl before:v-border',
+      'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-v1 before:border-solid before:border-otl',
       direction === 'row' ? 'inline-flex' : 'inline-grid grid-cols-1'
     ]"
   >
@@ -25,10 +25,13 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
       :key="index"
       :class="[
         'relative cursor-pointer items-center bg-transparent px-4 text-otl duration-inherit v-outline-none hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
+
         {
-          row: '-mx-[0.6px] inline-flex justify-center border-l-transparent v-border first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit',
-          col: 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-t-transparent v-border first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
-        }[direction]
+          row: '-mx-[0.6px] inline-flex justify-center border-v1 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit',
+          col: 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-v1 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
+        }[direction],
+
+        '*:transition-colors *:duration-300'
       ]"
     >
       <input
@@ -45,7 +48,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
       />
       <span
         :class="[
-          'pointer-events-none h-9 text-left text-sm/9 duration-inherit',
+          'pointer-events-none h-9 text-left text-sm/9',
           { 'col-start-2': direction === 'col' }
         ]"
       >

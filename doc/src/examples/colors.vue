@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-otl font-mono text-sm v-border [&>div>div]:h-20 [&>div>div]:w-80 [&>div>div]:p-2"
+    class="border-v1 border-solid border-otl font-mono text-sm [&>div>div]:h-20 [&>div>div]:w-80 [&>div>div]:p-2"
   >
     <div class="flex">
       <div class="bg-bsc text-on-bsc">Basic / On Basic</div>

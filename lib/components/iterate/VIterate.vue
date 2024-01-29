@@ -11,9 +11,7 @@ const index = ref<number>(init < each.length && init >= 0 ? init : 0)
 
 const item = computed<T>(() => each[index.value])
 
-const emit = defineEmits<{
-  next: [item: T]
-}>()
+const emit = defineEmits<{ next: [item: T] }>()
 
 function next() {
   requestAnimationFrame(() => {

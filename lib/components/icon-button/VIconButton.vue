@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { IconButtonProps } from '.'
 
-import { Icon } from '@base'
+import { Icon, Tooltip } from '@base'
 import { useClassName } from '@composable'
+import { boolAttr } from '@utils'
 
 defineOptions({ name: 'IconButton' })
 
@@ -22,15 +23,17 @@ function onClick(e: Event) {
   <button
     @click="onClick"
     type="button"
-    :data-danger="danger ? '' : void 0"
+    :data-danger="boolAttr(danger)"
     :disabled="disabled"
-    class="group/v-icon-button relative inline-flex size-10 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent text-pri transition-all duration-300 ease-braking v-outline-none hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline disabled:text-dis disabled:v-disabled data-[danger]:text-err data-[danger]:hover:bg-err/8 data-[danger]:focus:bg-err/12 data-[danger]:focus-visible:v-outline-danger"
+    class="group/v-icon-button relative inline-flex size-10 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent text-pri transition-all duration-300 ease-braking v-outline-none hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline disabled:!text-dis disabled:v-disabled data-[danger]:text-err data-[danger]:hover:bg-err/8 data-[danger]:focus:bg-err/12 data-[danger]:focus-visible:v-outline-danger"
   >
     <Icon
       size="lg"
       :icon="icon"
-      class="transition group-active/v-icon-button:scale-75"
-      :class="cls`scale-75`"
+      :class="[
+        'transition duration-inherit ease-inherit group-active/v-icon-button:scale-75',
+        cls`scale-75`
+      ]"
     />
 
     <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />
