@@ -26,7 +26,6 @@ defineSlots<{ default(props: void): any }>()
     :data-danger="boolAttr(danger)"
     :class="[
       'group/v-button relative flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none px-4 text-sm tracking-wider transition-all duration-300 v-outline-none before:v-shade before:transition before:duration-inherit focus-visible:v-outline disabled:!text-on-bsc disabled:v-disabled data-[danger]:focus-visible:v-outline-danger',
-
       {
         'group/v-tooltip': tooltip,
         'pointer-events-none': loading,
@@ -43,7 +42,7 @@ defineSlots<{ default(props: void): any }>()
           ['outlined', 'clean'].includes(variant)
       },
 
-      '*:transition-color *:duration-300'
+      '*:transition-colors *:duration-inherit'
     ]"
   >
     <Icon v-if="icon" :icon="icon" :class="['-ml-1', loading && !disabled && 'opacity-0']" />

@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { VButton } from '..'
-import { VIterate } from '.'
-
 const each = ['solid', 'tonal', 'outlined', 'clean'] as const
 </script>
 

@@ -1,17 +1,29 @@
 <script setup lang="ts">
-import { VSegmentedButton } from '.'
+import { ref } from 'vue'
+import { DisplayStand } from '@utils'
 
-const each = [
-  { text: 'Windows', value: 'win', icon: 'i-ri-windows-fill' },
-  { text: 'Android', value: 'and', icon: 'i-ri-android-fill' },
-  'IOS'
-]
+const modelValue = ref()
 </script>
 
 <template>
-  <div class="flex items-baseline gap-4">
-    <VSegmentedButton :each="each" />
-
-    <VSegmentedButton :each="each" direction="col" />
-  </div>
+  <DisplayStand
+    :options="[
+      {
+        name: 'direction',
+        type: 'literal',
+        value: ['row', 'col']
+      }
+    ]"
+    #="{ props }"
+  >
+    <VSegmentedButton
+      :each="[
+        { text: 'Windows', value: 'win', icon: 'i-ri-windows-fill' },
+        { text: 'Android', value: 'and', icon: 'i-ri-android-fill' },
+        'IOS'
+      ]"
+      v-bind="props"
+      v-model="modelValue"
+    />
+  </DisplayStand>
 </template>

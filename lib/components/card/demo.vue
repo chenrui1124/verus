@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { lorem } from 'mm3'
-import { VSwitch } from '..'
-import { VCard } from '.'
-
-const danger = ref()
+import { DisplayStand } from '@utils'
 </script>
 
 <template>
-  <div class="flex gap-4 max-sm:flex-col">
-    <VCard
-      v-for="i in <const>['solid', 'outlined']"
-      :variant="i"
-      image="https://publicdomainarchive.com/wp-content/uploads/2017/09/free-stock-photos-public-domain-images-013-1000x667.jpg"
-      title="LOREM"
-      subtitle="Lorem ipsum dolor sit"
-      :danger="danger"
-    >
-      {{ lorem() }}
+  <DisplayStand
+    :options="[
+      { name: 'variant', type: 'literal', value: ['solid', 'outlined'] },
+      { name: 'danger', type: 'boolean' },
+      {
+        name: 'image',
+        type: 'toggle',
+        value: 'https://image.meiye.art/pic_1629273084446fKuKDwYIFO1Cybi2wrrRV'
+      },
+      { name: 'width', type: 'string', init: '16rem' }
+    ]"
+    #="{ props }"
+  >
+    <VCard title="卡片" subtitle="这是副标题" v-bind="props">
+      {{ lorem('sc') }}
     </VCard>
-    <VSwitch v-model="danger" />
-  </div>
+  </DisplayStand>
 </template>

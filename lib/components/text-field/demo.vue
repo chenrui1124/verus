@@ -1,13 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { VTextField } from '.'
+import { DisplayStand } from '@utils'
 
 const modelValue = ref()
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
-    <VTextField v-model="modelValue" icon="i-ri-key-2-fill" clearable/>
-    <VTextField v-model="modelValue" icon="i-ri-key-2-fill" clearable variant="solid" />
-  </div>
+  <DisplayStand
+    :options="[
+      { name: 'variant', type: 'literal', value: ['solid', 'outlined'] },
+      { name: 'disabled', type: 'boolean' },
+      { name: 'clearable', type: 'boolean' },
+      { name: 'secret', type: 'boolean' },
+      { name: 'icon', type: 'toggle', value: 'i-ri-key-2-fill' }
+    ]"
+    #="{ props }"
+  >
+    <VTextField v-model="modelValue" v-bind="props" />
+  </DisplayStand>
 </template>

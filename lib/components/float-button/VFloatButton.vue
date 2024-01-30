@@ -21,7 +21,7 @@ defineSlots<{ default(props: void): any }>()
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport to="body" :disabled="absolute">
     <button
       @click="onClick"
       type="button"
