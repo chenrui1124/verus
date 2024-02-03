@@ -1,6 +1,6 @@
 import { Transition, computed, defineComponent, h, ref, render } from 'vue'
 
-export const useMask = (function () {
+export const useOverlay = (function () {
   const _visible = ref<boolean>(),
     _onClick = ref<(e?: Event) => void>(),
     _props = computed(() => (_onClick.value ? { onClick: _onClick.value } : {}))
@@ -22,16 +22,16 @@ export const useMask = (function () {
   render(h(Overlay), document.body)
 
   return () => ({
-    show() {
+    on() {
       requestAnimationFrame(() => (_visible.value = true))
     },
-    showWith(action?: (e?: Event) => void) {
+    onWith(action?: (e?: Event) => void) {
       requestAnimationFrame(() => {
         _visible.value = true
         _onClick.value = action
       })
     },
-    hide() {
+    off() {
       requestAnimationFrame(() => {
         _visible.value = false
         !_onClick.value && (_onClick.value = void 0)

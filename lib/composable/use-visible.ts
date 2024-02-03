@@ -12,12 +12,12 @@ export function useVisible(options?: {
   return {
     visible,
 
-    open() {
+    show() {
       options?.beforeOpen?.()
       requestAnimationFrame(() => void (visible.value = true))
     },
 
-    close() {
+    hide() {
       options?.beforeClose?.()
       requestAnimationFrame(() => void (visible.value = false))
     },
@@ -27,13 +27,13 @@ export function useVisible(options?: {
       requestAnimationFrame(() => void (visible.value = !visible.value))
     },
 
-    openWith(callback?: Function) {
+    showWith(callback?: Function) {
       callback?.()
       options?.beforeOpen?.()
       requestAnimationFrame(() => void (visible.value = true))
     },
 
-    async closeWith(callback?: Function) {
+    async hideWith(callback?: Function) {
       await callback?.()
       options?.beforeClose?.()
       requestAnimationFrame(() => void (visible.value = false))

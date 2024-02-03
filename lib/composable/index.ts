@@ -1,4 +1,3 @@
 export { useClassName } from './use-class-name'
 export { useVisible } from './use-visible'
-
-export { useMask } from './use-mask'
+export { useOverlay } from './use-overlay'
