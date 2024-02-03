@@ -20,17 +20,13 @@ const custom = {
   },
 
   utilities: theme => ({
-    '.v-outline-none': {
-      outline: '0px solid transparent',
-      outlineOffset: '2px'
-    },
     '.v-outline': {
-      outline: `2px solid rgba(var(${toVar('pri')}), ${theme('opacity.48')})`,
-      outlineOffset: '2px'
+      outline: `2.8px solid rgba(var(${toVar('pri')}), ${theme('opacity.48')})`,
+      outlineOffset: '1.2px'
     },
     '.v-outline-danger': {
-      outline: `2px solid rgba(var(${toVar('err')}), ${theme('opacity.48')})`,
-      outlineOffset: '2px'
+      outline: `2.8px solid rgba(var(${toVar('err')}), ${theme('opacity.48')})`,
+      outlineOffset: '1.2px'
     },
     '.v-disabled': {
       opacity: theme('opacity.48'),

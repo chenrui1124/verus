@@ -1,4 +1,3 @@
-import type { ButtonHTMLAttributes } from 'vue'
 import type { TooltipOptions } from '@base'
 
 import { toPlugin } from '@utils'
@@ -8,7 +7,7 @@ export type ButtonProps = {
   text?: string
   icon?: string
   appendIcon?: string
-  disabled?: ButtonHTMLAttributes['disabled']
+  disabled?: boolean
   uppercase?: boolean
   /**
    * @default 'outlined'

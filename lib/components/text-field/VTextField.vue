@@ -41,7 +41,7 @@ function onSubmit(e: Event) {
       v-bind="{ ...$attrs, autocomplete, pattern, placeholder, disabled }"
       v-model="modelValue"
       :class="[
-        'peer/v-text-field box-border h-10 rounded-inherit border-v1 border-solid text-sm text-on-bsc transition-all duration-300 v-outline-none placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
+        'peer/v-text-field box-border h-10 w-full rounded-inherit border-v1 border-solid text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
         {
           [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]:
             variant === 'solid',
