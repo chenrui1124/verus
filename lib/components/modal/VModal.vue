@@ -1,57 +1,55 @@
 <script setup lang="ts">
 import type { ModalProps } from '.'
 
-import { computed } from 'vue'
-import { useMask, useVisible } from '@composable'
-import { vShortcut } from '@directives'
+import { useOverlay, useVisible } from '@composable'
+import { boolAttr } from '@utils'
 
 defineOptions({ name: 'Modal' })
 
 const { width = '28rem', danger } = defineProps<ModalProps>()
 
-const { show, hide } = useMask()
+const { on, off } = useOverlay()
 
-const { visible, open, close, closeWith } = useVisible({
-  beforeOpen: show,
-  beforeClose: hide
-})
+const { visible, show, hide, hideWith } = useVisible({ beforeOpen: on, beforeClose: off })
 
-const _danger = computed(() => (danger ? '' : void 0))
+const emit = defineEmits<{ close: [e: Event] }>()
 
-defineExpose({ open, close, closeWith })
+defineExpose({ show, hide, hideWith })
 
 defineSlots<{
-  trigger(props: { open: typeof open }): any
-  default(props: { close: typeof close; closeWith: typeof closeWith }): any
-  actions(props: { close: typeof close; closeWith: typeof closeWith }): any
+  trigger(props: { show: typeof show }): any
+  default(props: { hide: typeof hide; hideWith: typeof hideWith }): any
+  actions(props: { hide: typeof hide; hideWith: typeof hideWith }): any
 }>()
 </script>
 
 <template>
-  <slot name="trigger" v-bind="{ open }" />
+  <slot name="trigger" v-bind="{ show }" />
 
   <Teleport to="body">
     <Transition
-      enter-from-class="-translate-y-[32vh] grid-rows-[0fr] py-0 *:py-0"
+      @enter="el => void (el as HTMLDialogElement).showModal()"
+      @after-leave="el => void (el as HTMLDialogElement).close()"
+      enter-from-class="-translate-y-[44vh] grid-rows-[0fr] py-0 *:py-0"
       enter-to-class="grid-rows-[1fr]"
       leave-from-class="grid-rows-[1fr]"
-      leave-to-class="-translate-y-[32vh] grid-rows-[0fr] py-0 *:py-0"
-      enter-active-class="select-none [&_[data-content]]:overflow-y-hidden"
-      leave-active-class="select-none [&_[data-content]]:overflow-y-hidden"
+      leave-to-class="-translate-y-[44vh] grid-rows-[0fr] py-0 *:py-0"
+      enter-active-class="select-none [&_[data-content]]:!overflow-y-hidden"
+      leave-active-class="select-none [&_[data-content]]:!overflow-y-hidden"
     >
       <!--* Modal Wrapper *-->
       <dialog
-        open
         v-if="visible"
-        v-shortcut="shortcut && ['escape', close]"
-        :data-danger="_danger"
+        @close="$emit('close', $event)"
+        @cancel="hide"
+        :data-danger="boolAttr(danger)"
         :style="{ width }"
         style="
           max-width: calc(100vw - 8vmin);
           max-height: calc(100vh - 8vmin);
           max-height: calc(100dvh - 8vmin);
         "
-        class="fixed inset-0 z-30 m-auto grid grid-cols-1 rounded-v3 border-none bg-pri-ctr p-3 transition-all duration-700 ease-braking data-[danger]:bg-err-ctr"
+        class="group/v-modal fixed inset-0 z-30 m-auto grid grid-cols-1 rounded-v3 border-none bg-pri-ctr p-2 transition-all duration-700 ease-braking backdrop:opacity-0 data-[danger]:bg-err-ctr"
       >
         <!--* Modal *-->
         <div
@@ -59,21 +57,21 @@ defineSlots<{
           class="flex flex-col gap-4 overflow-y-hidden rounded-v2 p-3 text-sm transition-all duration-inherit ease-inherit *:duration-inherit *:ease-inherit"
         >
           <!--* Title *-->
-          <div v-if="title" :data-danger="_danger" class="text-2xl text-pri data-[danger]:text-err">
+          <div v-if="title" class="p-1 text-2xl text-pri group-data-[danger]/v-modal:text-err">
             {{ title }}
           </div>
-          <div v-if="subtitle" class="-mt-2 pl-px text-otl">
+          <div v-if="subtitle" class="-mt-2 px-1 text-otl">
             {{ subtitle }}
           </div>
 
           <!--* Content *-->
-          <div v-if="$slots.default" data-content class="overflow-y-auto leading-6 text-on-bsc">
-            <slot v-bind="{ close, closeWith }" />
+          <div v-if="$slots.default" data-content class="overflow-y-auto p-1 leading-6 text-on-bsc">
+            <slot v-bind="{ hide, hideWith }" />
           </div>
 
           <!--* Actions *-->
-          <div v-if="$slots.actions" class="flex justify-end gap-inherit">
-            <slot name="actions" v-bind="{ close, closeWith }" />
+          <div v-if="$slots.actions" class="flex justify-end gap-inherit p-1">
+            <slot name="actions" v-bind="{ hide, hideWith }" />
           </div>
         </div>
       </dialog>

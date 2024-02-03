@@ -9,10 +9,6 @@ export type ModalProps = {
    * @default '28rem'
    */
   width?: string
-  /**
-   * allow use 'esc' to close.
-   */
-  shortcut?: boolean
 }
 
 export const VModal = toPlugin(Modal)
