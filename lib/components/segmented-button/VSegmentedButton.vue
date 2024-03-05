@@ -48,7 +48,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
       />
       <span
         :class="[
-          'pointer-events-none h-9 text-left text-sm/9',
+          'pointer-events-none h-9 select-none text-left text-sm/9',
           { 'col-start-2': direction === 'col' }
         ]"
       >

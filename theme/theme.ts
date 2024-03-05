@@ -19,8 +19,8 @@ export default {
     inherit: 'inherit',
     none: '0',
     v1: '0.4rem',
-    v2: '0.8rem',
-    v3: '1.2rem',
+    v2: '0.6rem',
+    v3: '0.8rem',
     full: '9999px'
   },
   colors: ({ colors }) => ({

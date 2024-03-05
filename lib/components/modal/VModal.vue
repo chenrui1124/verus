@@ -70,7 +70,10 @@ defineSlots<{
           </div>
 
           <!--* Actions *-->
-          <div v-if="$slots.actions" class="flex justify-end gap-inherit p-1">
+          <div
+            v-if="$slots.actions"
+            class="flex justify-end gap-inherit p-1 focus:[&_button]:v-outline focus:data-[danger]:[&_button]:v-outline-danger"
+          >
             <slot name="actions" v-bind="{ hide, hideWith }" />
           </div>
         </div>
