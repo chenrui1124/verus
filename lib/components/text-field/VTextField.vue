@@ -38,7 +38,11 @@ function onSubmit(e: Event) {
       @submit.prevent="onSubmit"
       :type="secret ? 'password' : 'text'"
       :data-invalid="boolAttr(isValid)"
-      v-bind="{ ...$attrs, autocomplete, pattern, placeholder, disabled }"
+      :pattern
+      :placeholder
+      :disabled
+      :autocomplete
+      v-bind="$attrs"
       v-model="modelValue"
       :class="[
         'peer/v-text-field box-border h-10 w-full rounded-inherit border-v1 border-solid text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
@@ -58,7 +62,7 @@ function onSubmit(e: Event) {
 
     <Icon
       v-if="icon"
-      :icon="icon"
+      :icon
       size="lg"
       class="absolute inset-y-0 left-2 my-auto text-on-pri-var transition-colors duration-300 peer-invalid/v-text-field:text-on-err peer-focus/v-text-field:text-pri"
     />

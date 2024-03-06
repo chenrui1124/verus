@@ -45,7 +45,7 @@ function onChange(e: Event) {
     <input
       @change="onChange"
       type="checkbox"
-      v-bind="{ disabled }"
+      :disabled
       v-init
       class="pointer-events-none absolute inset-y-1 left-1 m-0 size-5 appearance-none rounded-inherit outline-none transition duration-inherit ease-braking group-active/v-switch:scale-125"
       :class="{

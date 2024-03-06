@@ -21,7 +21,7 @@ defineSlots<{ default(props: void): any }>()
   <button
     @click="onClick"
     type="button"
-    :disabled="disabled"
+    :disabled
     :tabindex="loading ? -1 : void 0"
     :data-danger="boolAttr(danger)"
     :class="[
@@ -45,7 +45,7 @@ defineSlots<{ default(props: void): any }>()
       '*:transition *:duration-inherit'
     ]"
   >
-    <Icon v-if="icon" :icon="icon" :class="['-ml-1', loading && !disabled && 'opacity-0']" />
+    <Icon v-if="icon" :icon :class="['-ml-1', loading && !disabled && 'opacity-0']" />
 
     <span
       :class="[

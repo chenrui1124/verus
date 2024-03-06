@@ -38,7 +38,7 @@ defineSlots<{ default(props: void): any }>()
         }
       ]"
     >
-      <Icon v-if="icon" :icon="icon" class="-ml-1" />
+      <Icon v-if="icon" :icon class="-ml-1" />
 
       <div class="pointer-events-none mr-auto select-none text-base">
         {{ title }}

@@ -25,7 +25,7 @@ defineSlots<{ default(props: void): any }>()
     <button
       @click="onClick"
       type="button"
-      v-bind="{ disabled }"
+      :disabled
       :class="[
         'bottom-6 right-6 z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition duration-300 ease-braking focus-visible:v-outline active:scale-90 disabled:bg-dis disabled:v-disabled sm:bottom-12 sm:right-12',
         cls`scale-90`,
@@ -36,7 +36,7 @@ defineSlots<{ default(props: void): any }>()
         }[variant]
       ]"
     >
-      <Icon v-if="icon" :icon="icon" size="xl" class="transition-colors duration-300" />
+      <Icon v-if="icon" :icon size="xl" class="transition-colors duration-300" />
 
       <Tooltip
         v-if="tooltip"
