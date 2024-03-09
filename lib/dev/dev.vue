@@ -13,19 +13,19 @@ watchEffect(() =>
 </script>
 
 <template>
-  <div class="h-dvh w-screen overflow-y-auto bg-bsc text-on-bsc transition-colors duration-300">
-    <div class="box-border flex min-h-dvh w-full items-center justify-center py-12">
+  <div class="absolute inset-0 overflow-y-auto bg-bsc text-on-bsc transition-colors duration-300">
+    <div class="box-border flex min-h-dvh w-full items-center justify-center">
       <RouterView />
     </div>
 
     <Teleport to="body">
-      <div class="fixed right-2 top-2">
+      <div class="fixed right-2 top-2 z-10">
         <VSwitch v-model="isDark" />
       </div>
-
+<!-- 
       <div class="fixed left-2 top-2 flex flex-col gap-1 text-sm text-pri">
         <RouterLink v-for="i in $router.options.routes" :to="i.path">{{ i.name }}</RouterLink>
-      </div>
+      </div> -->
     </Teleport>
   </div>
 </template>
