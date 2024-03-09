@@ -13,5 +13,6 @@ export {
   type SegmentedButtonProps,
   type SegmentedButtonModel
 } from './segmented-button'
+export { VSkeleton } from './skeleton'
 export { VSwitch, type SwitchProps, type SwitchModel } from './switch'
 export { VTextField, type TextFieldProps, type TextFieldModel } from './text-field'

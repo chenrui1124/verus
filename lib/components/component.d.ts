@@ -11,6 +11,7 @@ declare module 'vue' {
     VModal: typeof import('@components').VModal
     VRadios: typeof import('@components').VRadios
     VSegmentedButton: typeof import('@components').VSegmentedButton
+    VSkeleton: typeof import('@components').VSkeleton
     VSwitch: typeof import('@components').VSwitch
     VTextField: typeof import('@components').VTextField
   }
