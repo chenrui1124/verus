@@ -16,7 +16,7 @@ defineSlots<{ default(props: void): any }>()
   >
     <aside
       :class="[
-        'absolute inset-y-0 left-0 box-border bg-pri-ctr p-4 transition-all max-sm:w-[calc(100vw_-_6rem)] sm:w-[17rem]',
+        'absolute inset-y-0 left-0 box-border bg-pri-ctr p-4 transition-all duration-300 max-sm:w-[calc(100vw_-_6rem)] sm:w-[17rem]',
         {
           'max-sm:pointer-events-none': modelValue == -1,
           'pointer-events-none max-sm:-translate-x-full': modelValue == 0

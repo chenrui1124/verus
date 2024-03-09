@@ -50,7 +50,7 @@ defineSlots<{
     >
       <VSkeletonSidebarSwitch v-if="$slots.sidebar" @click="toggleSidebar" :sidebar-open />
 
-      <main :class="['relative p-4']">
+      <main class="p-4">
         <slot />
       </main>
     </div>
