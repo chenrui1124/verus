@@ -72,6 +72,10 @@ importers:
       verus-ui:
         specifier: workspace:^
         version: link:..
+    devDependencies:
+      '@verus-ui/theme':
+        specifier: workspace:^
+        version: link:../theme
 
   lib:
     devDependencies:

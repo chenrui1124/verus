@@ -9,5 +9,8 @@
   },
   "dependencies": {
     "verus-ui": "workspace:^"
+  },
+  "devDependencies": {
+    "@verus-ui/theme": "workspace:^"
   }
 }
