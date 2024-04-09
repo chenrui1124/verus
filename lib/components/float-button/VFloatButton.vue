@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FloatButtonProps } from '.'
 
-import { Icon, Tooltip } from '@base'
+import { Icon } from '@base'
 import { useClassName } from '@composable'
 
 defineOptions({ name: 'FloatButton' })
@@ -37,11 +37,6 @@ defineSlots<{ default(props: void): any }>()
       ]"
     >
       <Icon v-if="icon" :icon size="xl" class="transition-colors duration-300" />
-
-      <Tooltip
-        v-if="tooltip"
-        v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip"
-      />
     </button>
   </Teleport>
 </template>

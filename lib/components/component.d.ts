@@ -14,6 +14,7 @@ declare module 'vue' {
     VSkeleton: typeof import('@components').VSkeleton
     VSwitch: typeof import('@components').VSwitch
     VTextField: typeof import('@components').VTextField
+    VTooltip: typeof import('@components').VTooltip
   }
 }
 

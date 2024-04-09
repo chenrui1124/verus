@@ -24,14 +24,12 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
       v-for="(item, index) in _each"
       :key="index"
       :class="[
-        'relative cursor-pointer items-center bg-transparent px-4 text-otl transition duration-inherit hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
+        'relative cursor-pointer items-center bg-transparent px-4 text-otl transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
 
         {
           row: '-mx-[0.6px] inline-flex justify-center border-v1 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit',
           col: 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-v1 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
-        }[direction],
-
-        '*:transition-colors *:duration-300'
+        }[direction]
       ]"
     >
       <input

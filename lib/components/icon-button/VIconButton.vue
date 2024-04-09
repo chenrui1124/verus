@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IconButtonProps } from '.'
 
-import { Icon, Tooltip } from '@base'
+import { Icon } from '@base'
 import { useClassName } from '@composable'
 import { boolAttr } from '@utils'
 
@@ -35,7 +35,5 @@ function onClick(e: Event) {
         cls`scale-75`
       ]"
     />
-
-    <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />
   </button>
 </template>

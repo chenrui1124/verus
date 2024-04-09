@@ -22,10 +22,10 @@ watchEffect(() =>
       <div class="fixed right-2 top-2 z-10">
         <VSwitch v-model="isDark" />
       </div>
-<!-- 
+
       <div class="fixed left-2 top-2 flex flex-col gap-1 text-sm text-pri">
         <RouterLink v-for="i in $router.options.routes" :to="i.path">{{ i.name }}</RouterLink>
-      </div> -->
+      </div>
     </Teleport>
   </div>
 </template>

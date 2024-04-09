@@ -2,8 +2,6 @@
 import type { ObjectDirective } from 'vue'
 import type { SwitchModel, SwitchProps } from '.'
 
-import { Tooltip } from '@base'
-
 defineOptions({ name: 'Switch' })
 
 defineProps<SwitchProps>()
@@ -53,7 +51,5 @@ function onChange(e: Event) {
         'scale-75 bg-otl': !modelValue
       }"
     />
-
-    <Tooltip v-if="tooltip" v-bind="typeof tooltip == 'string' ? { content: tooltip } : tooltip" />
   </label>
 </template>
