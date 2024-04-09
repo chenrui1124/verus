@@ -1,25 +1,29 @@
 <script setup lang="ts">
 import type { ModalProps } from '.'
 
-import { useOverlay, useVisible } from '@composable'
+import { useVisible } from '@composable'
+import { useOverlay } from '@singleton'
 import { boolAttr } from '@utils'
 
 defineOptions({ name: 'Modal' })
 
 const { width = '28rem', danger } = defineProps<ModalProps>()
 
-const { on, off } = useOverlay()
+const { showOverlay, hideOverlay } = useOverlay()
 
-const { visible, show, hide, hideWith } = useVisible({ beforeOpen: on, beforeClose: off })
+const { state, show, hide, withHide } = useVisible({
+  onBeforeShow: showOverlay,
+  onBeforeClose: hideOverlay
+})
 
 const emit = defineEmits<{ close: [e: Event] }>()
 
-defineExpose({ show, hide, hideWith })
+defineExpose({ show, hide, withHide })
 
 defineSlots<{
   trigger(props: { show: typeof show }): any
-  default(props: { hide: typeof hide; hideWith: typeof hideWith }): any
-  actions(props: { hide: typeof hide; hideWith: typeof hideWith }): any
+  default(props: { hide: typeof hide; withHide: typeof withHide }): any
+  actions(props: { hide: typeof hide; withHide: typeof withHide }): any
 }>()
 </script>
 
@@ -39,7 +43,7 @@ defineSlots<{
     >
       <!--* Modal Wrapper *-->
       <dialog
-        v-if="visible"
+        v-if="state"
         @close="$emit('close', $event)"
         @cancel="hide"
         :data-danger="boolAttr(danger)"
@@ -66,7 +70,7 @@ defineSlots<{
 
           <!--* Content *-->
           <div v-if="$slots.default" data-content class="overflow-y-auto p-1 leading-6 text-on-bsc">
-            <slot v-bind="{ hide, hideWith }" />
+            <slot v-bind="{ hide, withHide }" />
           </div>
 
           <!--* Actions *-->
@@ -74,7 +78,7 @@ defineSlots<{
             v-if="$slots.actions"
             class="flex justify-end gap-inherit p-1 focus:[&_button]:v-outline focus:data-[danger]:[&_button]:v-outline-danger"
           >
-            <slot name="actions" v-bind="{ hide, hideWith }" />
+            <slot name="actions" v-bind="{ hide, withHide }" />
           </div>
         </div>
       </dialog>
