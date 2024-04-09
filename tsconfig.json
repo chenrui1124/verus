@@ -14,6 +14,7 @@
       "@components": ["./lib/components/index.ts"],
       "@composable": ["./lib/composable/index.ts"],
       "@directives": ["./lib/directives/index.ts"],
+      "@singleton": ["./lib/singleton/index.ts"],
       "@utils": ["./lib/utils/index.ts"]
     },
 

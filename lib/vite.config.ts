@@ -12,7 +12,7 @@ import dts from 'vite-plugin-dts'
  * PostCSS
  */
 import tw from 'tailwindcss'
-/**
+/*
  * UnoCSS
  */
 import { presetIcons } from 'unocss'
@@ -32,7 +32,7 @@ export default defineConfig({
   ],
 
   resolve: {
-    alias: ['base', 'components', 'composable', 'directives', 'utils'].reduce<{
+    alias: ['base', 'components', 'composable', 'directives', 'singleton', 'utils'].reduce<{
       [A: `@${string}`]: string
     }>(
       (a, p) => {

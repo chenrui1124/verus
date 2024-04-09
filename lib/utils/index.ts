@@ -1,6 +1,4 @@
-export type { WithSlots } from './types'
-
-export { toPlugin } from './to-plugin'
-export { boolAttr } from './bool-attr'
+export { toPlugin } from './toPlugin'
+export { boolAttr } from './boolAttr'
 
 export { default as DisplayStand } from './DisplayStand.vue'
