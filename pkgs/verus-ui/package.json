@@ -1,0 +1,28 @@
+{
+  "name": "verus-ui",
+  "version": "0.8.0",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/verus-ui.js",
+  "exports": {
+    ".": "./lib/verus-ui.js",
+    "./style": "./lib/style.css"
+  },
+  "types": "./lib/verus-ui.d.ts",
+  "description": "Vue3 Components.",
+  "keywords": [
+    "Vue3",
+    "Components",
+    "UI Library"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vue-tsc && vite build"
+  },
+  "devDependencies": {
+    "@verus-ui/theme": "workspace:^"
+  }
+}

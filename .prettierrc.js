@@ -1,7 +1,7 @@
 /** @type {import("prettier").Config} */
 export default {
   plugins: ['prettier-plugin-tailwindcss'],
-  tailwindConfig: './lib/tailwind.config.ts',
+  tailwindConfig: './pkgs/verus-ui/tailwind.config.ts',
   tailwindAttributes: [
     'class',
     'enterFromClass',

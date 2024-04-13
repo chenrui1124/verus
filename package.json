@@ -1,27 +1,12 @@
 {
-  "name": "verus-ui",
-  "version": "0.8.0",
+  "private": true,
   "type": "module",
-  "description": "Vue3 Components.",
-  "files": [
-    "lib/dist"
+  "workspaces": [
+    "pkgs/*"
   ],
-  "keywords": [
-    "Vue3",
-    "Components"
-  ],
-  "license": "MIT",
-  "main": "./lib/dist/verus-ui.js",
-  "exports": {
-    ".": "./lib/dist/verus-ui.js",
-    "./style": "./lib/dist/style.css"
-  },
-  "types": "./lib/dist/verus-ui.d.ts",
   "scripts": {
-    "dev": "pnpm --filter @verus-ui/vue dev",
-    "build": "pnpm --filter @verus-ui/vue build",
-    "doc": "pnpm --filter @verus-ui/doc",
-    "lib": "pnpm --filter @verus-ui/vue"
+    "dev": "npm run dev --workspace=verus-ui",
+    "build": "npm run build --workspace=verus-ui"
   },
   "dependencies": {
     "@vueuse/core": "^10.9.0",
@@ -34,13 +19,13 @@
     "@iconify-json/solar": "^1.1.9",
     "@iconify-json/svg-spinners": "^1.1.2",
     "@iconify/tailwind": "^0.1.4",
-    "@types/node": "^20.12.6",
+    "@types/node": "^20.12.7",
     "@vitejs/plugin-vue": "^4.6.2",
     "@vitejs/plugin-vue-jsx": "^3.1.0",
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.13",
     "tailwindcss": "^3.4.3",
-    "typescript": "^5.4.4",
+    "typescript": "^5.4.5",
     "unocss": "^0.58.9",
     "vite": "^5.2.8",
     "vite-plugin-dts": "^3.8.1",
