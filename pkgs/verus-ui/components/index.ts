@@ -13,7 +13,7 @@ declare module 'vue' {
     VDialog: typeof import('@verus-ui/components').VDialog
     VRadios: typeof import('@verus-ui/components').VRadios
     VSegmentedButton: typeof import('@verus-ui/components').VSegmentedButton
-    VSkeleton: typeof import('@verus-ui/components').VSkeleton
+    VScaffold: typeof import('@verus-ui/components').VScaffold
     VSwitch: typeof import('@verus-ui/components').VSwitch
     VTextField: typeof import('@verus-ui/components').VTextField
     VTooltip: typeof import('@verus-ui/components').VTooltip

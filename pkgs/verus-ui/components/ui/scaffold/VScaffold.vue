@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import VSkeletonSidebar from './include/VSkeletonSidebar.vue'
-import VSkeletonSidebarSwitch from './include/VSkeletonSidebarSwitch.vue'
+import VScaffoldSidebar from './include/VScaffoldSidebar.vue'
+import VScaffoldSidebarSwitch from './include/VScaffoldSidebarSwitch.vue'
 
-defineOptions({ name: 'Skeleton' })
+defineOptions({ name: 'Scaffold' })
 
 const sidebarOpen = ref<-1 | 0 | 1>(-1)
 
-const skeleton = ref<HTMLElement>()
+const scaffold = ref<HTMLElement>()
 
 let toggleSidebar = () => {
   sidebarOpen.value = parseInt(
-    getComputedStyle(skeleton.value!).getPropertyValue('--sidebar-init')
+    getComputedStyle(scaffold.value!).getPropertyValue('--sidebar-init')
   ) as 0 | 1
 
   toggleSidebar = () => {
@@ -31,13 +31,13 @@ defineSlots<{
   <div
     :class="[
       'flex h-dvh w-screen bg-bsc text-sm text-on-bsc transition-colors duration-300 max-sm:overflow-x-hidden',
-      $style['v-skeleton']
+      $style['v-scaffold']
     ]"
-    ref="skeleton"
+    ref="scaffold"
   >
-    <VSkeletonSidebar v-if="$slots.sidebar" v-model="sidebarOpen">
+    <VScaffoldSidebar v-if="$slots.sidebar" v-model="sidebarOpen">
       <slot name="sidebar" />
-    </VSkeletonSidebar>
+    </VScaffoldSidebar>
 
     <div
       :class="[
@@ -48,7 +48,7 @@ defineSlots<{
         }
       ]"
     >
-      <VSkeletonSidebarSwitch
+      <VScaffoldSidebarSwitch
         v-if="$slots.sidebar"
         @click="toggleSidebar"
         :sidebar-open="sidebarOpen"
@@ -63,13 +63,13 @@ defineSlots<{
 
 <style module>
 @media (min-width: 640px) {
-  .v-skeleton {
+  .v-scaffold {
     --sidebar-init: 1;
   }
 }
 
 @media not all and (min-width: 640px) {
-  .v-skeleton {
+  .v-scaffold {
     --sidebar-init: 0;
   }
 }

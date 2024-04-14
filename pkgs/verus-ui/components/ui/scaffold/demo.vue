@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <VSkeleton>
+  <VScaffold>
     <template #sidebar> Lorem, ipsum. </template>
 
     <template #default> Lorem ipsum dolor sit amet. </template>
-  </VSkeleton>
+  </VScaffold>
 </template>
