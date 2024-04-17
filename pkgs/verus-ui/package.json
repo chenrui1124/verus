@@ -24,5 +24,8 @@
   },
   "devDependencies": {
     "@verus-ui/theme": "workspace:^"
+  },
+  "dependencies": {
+    "tailwind-merge": "^2.2.2"
   }
 }

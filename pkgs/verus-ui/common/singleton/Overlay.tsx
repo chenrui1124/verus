@@ -1,6 +1,7 @@
 import type { DefineSetupFnComponent } from 'vue'
 
 import { Transition, defineComponent, reactive } from 'vue'
+import { twMerge } from 'tailwind-merge'
 import { useRender, useVisible } from '@verus-ui/common'
 
 function useOverlayFactory() {
@@ -19,10 +20,10 @@ function useOverlayFactory() {
           {state.value && (
             <div
               {...listener}
-              class={[
+              class={twMerge(
                 'fixed inset-0 z-30 bg-black/48 backdrop-blur-sm transition duration-700 ease-out',
                 cls
-              ]}
+              )}
             />
           )}
         </Transition>
