@@ -5,6 +5,7 @@ export { VButton, type ButtonProps } from './button'
 export { VCard, type CardProps } from './card'
 export { VFloatButton, type FloatButtonProps } from './float-button'
 export { VIconButton, type IconButtonProps } from './icon-button'
+export { VModal, type ModalProps } from './modal'
 export { VDialog, type DialogProps } from './dialog'
 export { VRadios, type RadiosProps, type RadiosModel } from './radios'
 export {

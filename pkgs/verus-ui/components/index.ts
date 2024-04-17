@@ -11,6 +11,7 @@ declare module 'vue' {
     VIconButton: typeof import('@verus-ui/components').VIconButton
     VIterate: typeof import('@verus-ui/components').VIterate
     VDialog: typeof import('@verus-ui/components').VDialog
+    VModal: typeof import('@verus-ui/components').VModal
     VRadios: typeof import('@verus-ui/components').VRadios
     VSegmentedButton: typeof import('@verus-ui/components').VSegmentedButton
     VScaffold: typeof import('@verus-ui/components').VScaffold
