@@ -1,34 +1,31 @@
-import type { PropType, VNode } from 'vue'
+import type { PropType } from 'vue'
 import type { TooltipProps } from '.'
 
 import { cloneVNode, defineComponent, h } from 'vue'
-import { useTooltip } from '@verus-ui/common'
+import { getFirstVNode, useTooltip } from '@verus-ui/common'
 
 export default defineComponent({
-  name: 'Tooltip',
+  __name: 'Tooltip',
   inheritAttrs: false,
   props: {
     text: {
       type: String as PropType<TooltipProps['text']>,
       required: true
     },
-    direction: {
-      type: String as PropType<TooltipProps['direction']>,
+    position: {
+      type: String as PropType<TooltipProps['position']>,
       default: 'top'
     }
   },
-  setup({ text, direction }, { slots }) {
-    const nodes = slots.default?.()
-    if (!nodes) return () => <>{slots.default?.()}</>
+  setup({ text, position }, { slots }) {
+    const first = getFirstVNode(slots.default)
 
-    const first = nodes[0] as VNode
-    if (first && !(first.type instanceof Symbol)) {
+    if (first) {
       const attachProps = {
         'data-tooltip-text': text,
-        'data-tooltip-direction': direction
+        'data-tooltip-position': position
       }
       const newNode = cloneVNode(first, attachProps)
-
       useTooltip()
       return () => h(newNode)
     }

@@ -1,5 +1,7 @@
+import type { VerusProps } from '@verus-ui/types'
+
 import { toPlugin } from '@verus-ui/common'
-import Card from './VCard.vue'
+import Card from './Card.vue'
 
 export type CardProps = {
   /**
@@ -15,7 +17,7 @@ export type CardProps = {
   /**
    * @default 'outlined'
    */
-  variant?: 'solid' | 'outlined'
+  variant?: VerusProps.Variant<'solid' | 'outlined'>
   danger?: boolean
 }
 

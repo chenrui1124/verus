@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { ComputedRef, Ref } from 'vue'
-import type { AsReadonly } from 'mm3'
+import type { OrReadonly } from 'mm3'
 
 import { computed, ref } from 'vue'
 import { VSegmentedButton, VSwitch, VTextField } from '@verus-ui/components'
 
 const { options } = defineProps<{
-  options: AsReadonly<
+  options: OrReadonly<
     ({ name: string } & [
       { type: 'toggle'; value: string; init?: boolean },
       { type: 'boolean'; init?: boolean },

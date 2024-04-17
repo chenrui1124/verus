@@ -56,7 +56,7 @@ const custom = {
     ['before&after', ['&:before', '&:after']]
   ]
 } satisfies {
-  base: CSSInJS & { [p: string]: CSSInJS }
+  base: CSSInJS | { [p: string]: CSSInJS }
   utilities: (theme: (path: string) => string) => CSSInJS
   components: CSSInJS
   variants: [string, string[]][]

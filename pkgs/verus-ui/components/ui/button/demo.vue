@@ -18,8 +18,8 @@ const icon = 'i-ri-square-fill'
     #="{ props }"
   >
     <div class="flex gap-6">
-      <VButton v-bind="props">按钮</VButton>
-      <VButton v-bind="props">Button</VButton>
+      <VButton v-bind="props" @click="() => console.log(1)">按钮</VButton>
+      <VButton v-bind="props" href="#">Button</VButton>
     </div>
   </DisplayStand>
 </template>

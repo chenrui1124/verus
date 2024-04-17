@@ -1,5 +1,7 @@
+import type { VerusProps } from '@verus-ui/types'
+
 import { toPlugin } from '@verus-ui/common'
-import Accordion from './VAccordion.vue'
+import Accordion from './Accordion.vue'
 
 export type AccordionProps = {
   init?: boolean
@@ -12,7 +14,7 @@ export type AccordionProps = {
   /**
    * @default 'outlined'
    */
-  variant?: 'solid' | 'outlined'
+  variant?: VerusProps.Variant<'solid' | 'outlined'>
   danger?: boolean
 }
 

@@ -1,5 +1,5 @@
 import { toPlugin } from '@verus-ui/common'
-import Dialog from './VDialog.vue'
+import Dialog from './Dialog.vue'
 
 export type DialogProps = {
   title?: string

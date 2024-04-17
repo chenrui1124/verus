@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { AutoGridProps } from '.'
 
-defineOptions({ name: 'AutoGrid' })
-
 const { gap = 'md', width = 'auto', itemWidth = 'auto' } = defineProps<AutoGridProps>()
 
 defineSlots<{ default(props: void): any }>()

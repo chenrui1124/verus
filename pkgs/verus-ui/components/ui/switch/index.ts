@@ -1,5 +1,5 @@
 import { toPlugin } from '@verus-ui/common'
-import Switch from './VSwitch.vue'
+import Switch from './Switch.vue'
 
 export type SwitchProps = {
   disabled?: boolean

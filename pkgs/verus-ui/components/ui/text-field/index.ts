@@ -1,11 +1,12 @@
 import type { InputHTMLAttributes } from 'vue'
+import type { VerusProps } from '@verus-ui/types'
 
 import { toPlugin } from '@verus-ui/common'
-import TextField from './VTextField.vue'
+import TextField from './TextField.vue'
 
 export type TextFieldProps = {
   autocomplete?: InputHTMLAttributes['autocomplete']
-  disabled?: InputHTMLAttributes['disabled']
+  disabled?: boolean
   pattern?: InputHTMLAttributes['pattern']
   placeholder?: string
   icon?: string
@@ -14,7 +15,7 @@ export type TextFieldProps = {
   /**
    * @default 'outlined'
    */
-  variant?: 'solid' | 'outlined'
+  variant?: VerusProps.Variant<'solid' | 'outlined'>
   validator?: (modelValue: string | undefined) => boolean
 }
 

@@ -2,8 +2,6 @@
 import type { ObjectDirective } from 'vue'
 import type { SwitchModel, SwitchProps } from '.'
 
-defineOptions({ name: 'Switch' })
-
 defineProps<SwitchProps>()
 
 const modelValue = defineModel<SwitchModel['modelValue']>({ required: true })

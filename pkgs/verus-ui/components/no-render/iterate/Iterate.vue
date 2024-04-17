@@ -3,8 +3,6 @@ import type { IterateProps } from '.'
 
 import { computed, ref } from 'vue'
 
-defineOptions({ name: 'Iterate' })
-
 const { each, init = 0 } = defineProps<IterateProps<T>>()
 
 const index = ref<number>(init < each.length && init >= 0 ? init : 0)

@@ -3,8 +3,6 @@ import type { CardProps } from '.'
 
 import { boolAttr } from '@verus-ui/common'
 
-defineOptions({ name: 'Card' })
-
 const { width = '16rem', variant = 'outlined', danger } = defineProps<CardProps>()
 
 defineSlots<{ default(props: void): any }>()

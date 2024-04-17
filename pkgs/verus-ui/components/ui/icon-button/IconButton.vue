@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import type { IconButtonProps } from '.'
 
-import { Icon } from '@verus-ui/common'
+import { BaseIcon, boolAttr } from '@verus-ui/common'
 import { useClassName } from '@verus-ui/common'
-import { boolAttr } from '@verus-ui/common'
-
-defineOptions({ name: 'IconButton' })
 
 defineProps<IconButtonProps>()
 
@@ -27,9 +24,9 @@ function onClick(e: Event) {
     :disabled
     class="group/v-icon-button relative inline-flex size-10 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent text-pri transition duration-300 ease-braking hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline disabled:!text-dis disabled:v-disabled data-[danger]:text-err data-[danger]:hover:bg-err/8 data-[danger]:focus:bg-err/12 data-[danger]:focus-visible:v-outline-danger"
   >
-    <Icon
+    <BaseIcon
       size="lg"
-      :icon
+      :name="icon"
       :class="[
         'transition duration-inherit ease-inherit group-active/v-icon-button:scale-75',
         cls`scale-75`

@@ -2,9 +2,9 @@
 import type { TextFieldModel, TextFieldProps } from '.'
 
 import { computed } from 'vue'
-import { Icon, boolAttr } from '@verus-ui/common'
+import { BaseIcon, boolAttr } from '@verus-ui/common'
 
-defineOptions({ name: 'TextField', inheritAttrs: false })
+defineOptions({ inheritAttrs: false })
 
 const { validator, variant = 'outlined' } = defineProps<TextFieldProps>()
 
@@ -59,9 +59,9 @@ function onSubmit(e: Event) {
       ]"
     />
 
-    <Icon
-      v-if="icon"
-      :icon
+    <component
+      :is="icon && BaseIcon"
+      :name="icon"
       size="lg"
       class="absolute inset-y-0 left-2 my-auto text-on-pri-var transition-colors duration-300 peer-invalid/v-text-field:text-on-err peer-focus/v-text-field:text-pri"
     />
@@ -74,7 +74,10 @@ function onSubmit(e: Event) {
         type="button"
         class="absolute inset-y-0 right-0 inline-flex w-10 items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
       >
-        <Icon icon="i-[solar--close-circle-bold-duotone]" class="transition-colors duration-300" />
+        <BaseIcon
+          name="i-[solar--close-circle-bold-duotone]"
+          class="transition-colors duration-300"
+        />
       </button>
     </Transition>
   </form>

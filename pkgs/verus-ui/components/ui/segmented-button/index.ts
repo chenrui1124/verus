@@ -1,11 +1,12 @@
-import type { AsReadonly } from 'mm3'
+import type { OrReadonly } from 'mm3'
+import type { VerusProps } from '@verus-ui/types'
 
 import { toPlugin } from '@verus-ui/common'
-import SegmentedButton from './VSegmentedButton.vue'
+import SegmentedButton from './SegmentedButton.vue'
 
 export type SegmentedButtonProps = {
-  each: AsReadonly<(string | { icon?: string; text: string; value: string })[]>
-  direction?: 'row' | 'col'
+  each: OrReadonly<(string | { icon?: string; text: string; value: string })[]>
+  direction?: VerusProps.Direction
 }
 
 export type SegmentedButtonModel = {

@@ -10,6 +10,7 @@
       "@verus-ui/docs/*": ["./pkgs/docs/*"],
       "@verus-ui/common": ["./pkgs/verus-ui/common/index.ts"],
       "@verus-ui/components": ["./pkgs/verus-ui/components/index.ts"],
+      "@verus-ui/types": ["./pkgs/verus-ui/types/index.ts"],
       "@verus-ui/css": ["./pkgs/verus-ui/index.css"]
     },
 

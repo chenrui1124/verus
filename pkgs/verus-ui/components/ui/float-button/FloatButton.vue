@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import type { FloatButtonProps } from '.'
 
-import { Icon, useClassName } from '@verus-ui/common'
-
-defineOptions({ name: 'FloatButton' })
+import { BaseIcon, useClassName } from '@verus-ui/common'
 
 const { variant = 'tonal' } = defineProps<FloatButtonProps>()
 
@@ -35,7 +33,7 @@ defineSlots<{ default(props: void): any }>()
         }[variant]
       ]"
     >
-      <Icon v-if="icon" :icon size="xl" />
+      <BaseIcon v-if="icon" :name="icon" size="xl" />
     </button>
   </Teleport>
 </template>

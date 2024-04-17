@@ -1,5 +1,5 @@
 import { toPlugin } from '@verus-ui/common'
-import AutoGrid from './VAutoGrid.vue'
+import AutoGrid from './AutoGrid.vue'
 
 export type AutoGridProps = {
   /**

@@ -1,9 +1,11 @@
+import type { VerusProps } from '@verus-ui/types'
+
 import { toPlugin } from '@verus-ui/common'
-import Tooltip from './VTooltip'
+import Tooltip from './Tooltip'
 
 export type TooltipProps = {
   text: string
-  direction?: 'top' | 'right' | 'bottom' | 'left'
+  position: VerusProps.Position
 }
 
 export const VTooltip = toPlugin(Tooltip)

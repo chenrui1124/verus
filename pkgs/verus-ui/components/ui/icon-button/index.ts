@@ -1,11 +1,9 @@
-import type { ButtonHTMLAttributes } from 'vue'
-
 import { toPlugin } from '@verus-ui/common'
-import IconButton from './VIconButton.vue'
+import IconButton from './IconButton.vue'
 
 export type IconButtonProps = {
   icon: string
-  disabled?: ButtonHTMLAttributes['disabled']
+  disabled?: boolean
   danger?: boolean
 }
 

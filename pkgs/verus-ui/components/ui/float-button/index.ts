@@ -1,5 +1,7 @@
+import type { VerusProps } from '@verus-ui/types'
+
 import { toPlugin } from '@verus-ui/common'
-import FloatButton from './VFloatButton.vue'
+import FloatButton from './FloatButton.vue'
 
 export type FloatButtonProps = {
   icon?: string
@@ -8,7 +10,7 @@ export type FloatButtonProps = {
   /**
    * @default 'tonal'
    */
-  variant?: 'solid' | 'tonal'
+  variant?: VerusProps.Variant<'solid' | 'tonal'>
 }
 
 export const VFloatButton = toPlugin(FloatButton)

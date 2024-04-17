@@ -1,10 +1,10 @@
-import type { AsReadonly } from 'mm3'
+import type { OrReadonly } from 'mm3'
 
 import { toPlugin } from '@verus-ui/common'
-import Iterate from './VIterate.vue'
+import Iterate from './Iterate.vue'
 
 export type IterateProps<T> = {
-  each: AsReadonly<T[]>
+  each: OrReadonly<T[]>
   init?: number
 }
 

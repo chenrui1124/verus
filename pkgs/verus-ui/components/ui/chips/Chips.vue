@@ -2,9 +2,7 @@
 import type { ChipsModel, ChipsProps } from '.'
 
 import { computed } from 'vue'
-import { Icon } from '@verus-ui/common'
-
-defineOptions({ name: 'Chips' })
+import { BaseIcon } from '@verus-ui/common'
 
 const { each } = defineProps<ChipsProps>()
 
@@ -24,17 +22,17 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
       :is="selectable ? 'label' : 'span'"
       class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 border-v1 border-solid border-otl bg-bsc px-3 text-sm text-on-bsc transition duration-300 has-[:checked]:border-transparent has-[:checked]:bg-pri-var has-[:checked]:text-on-pri-var has-[:focus-visible]:v-outline"
     >
-      <input
-        v-if="selectable"
+      <component
+        :is="selectable && 'input'"
         type="checkbox"
-        v-model="modelValue"
         :value="item.value"
+        v-model="modelValue"
         class="absolute inset-0 -z-10 m-auto outline-none"
       />
 
-      <Icon
-        v-if="item.icon"
-        :icon="item.icon"
+      <component
+        :is="item.icon && BaseIcon"
+        :name="BaseIcon"
         size="sm"
         class="-ml-1 transition-colors duration-300"
       />

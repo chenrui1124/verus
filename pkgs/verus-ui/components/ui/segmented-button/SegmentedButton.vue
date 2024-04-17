@@ -2,9 +2,7 @@
 import type { SegmentedButtonModel, SegmentedButtonProps } from '.'
 
 import { computed } from 'vue'
-import { Icon } from '@verus-ui/common'
-
-defineOptions({ name: 'SegmentedButton' })
+import { BaseIcon } from '@verus-ui/common'
 
 const { each, direction = 'row' } = defineProps<SegmentedButtonProps>()
 
@@ -26,9 +24,11 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
       :class="[
         'relative cursor-pointer items-center bg-transparent px-4 text-otl transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
         {
-          row: '-mx-[0.6px] inline-flex justify-center border-v1 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit',
-          col: 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-v1 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
-        }[direction]
+          '-mx-[0.6px] inline-flex justify-center border-v1 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit':
+            direction === 'horizontal',
+          'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-v1 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit':
+            direction === 'vertical'
+        }
       ]"
     >
       <input
@@ -37,16 +37,16 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
         v-model="modelValue"
         class="pointer-events-none absolute inset-0 -z-10 m-auto opacity-0 outline-none"
       />
-      <Icon
+      <BaseIcon
         v-if="item.icon"
-        :icon="item.icon"
+        :name="item.icon"
         size="sm"
-        :class="['-ml-1 mr-2', { 'col-start-1': direction === 'col' }]"
+        :class="['-ml-1 mr-2', { 'col-start-1': direction === 'horizontal' }]"
       />
       <span
         :class="[
           'pointer-events-none h-9 select-none text-left text-sm/9',
-          { 'col-start-2': direction === 'col' }
+          { 'col-start-2': direction === 'vertical' }
         ]"
       >
         {{ item.text }}

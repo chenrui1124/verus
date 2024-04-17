@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import VScaffoldSidebar from './include/VScaffoldSidebar.vue'
-import VScaffoldSidebarSwitch from './include/VScaffoldSidebarSwitch.vue'
-
-defineOptions({ name: 'Scaffold' })
+import ScaffoldSidebar from './include/ScaffoldSidebar.vue'
+import ScaffoldSidebarSwitch from './include/ScaffoldSidebarSwitch.vue'
 
 const sidebarOpen = ref<-1 | 0 | 1>(-1)
 
@@ -35,9 +33,9 @@ defineSlots<{
     ]"
     ref="scaffold"
   >
-    <VScaffoldSidebar v-if="$slots.sidebar" v-model="sidebarOpen">
+    <ScaffoldSidebar v-if="$slots.sidebar" v-model="sidebarOpen">
       <slot name="sidebar" />
-    </VScaffoldSidebar>
+    </ScaffoldSidebar>
 
     <div
       :class="[
@@ -48,7 +46,7 @@ defineSlots<{
         }
       ]"
     >
-      <VScaffoldSidebarSwitch
+      <ScaffoldSidebarSwitch
         v-if="$slots.sidebar"
         @click="toggleSidebar"
         :sidebar-open="sidebarOpen"

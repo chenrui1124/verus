@@ -1,15 +1,15 @@
 import type { PropType } from 'vue'
 
-type IconProps = {
-  icon: string
+type BaseIconProps = {
+  name: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
-function Icon({ icon, size }: IconProps) {
+function BaseIcon({ name, size }: BaseIconProps) {
   return (
     <span
       class={[
-        icon,
+        name,
         'pointer-events-none inline-block',
         {
           sm: 'min-h-4 min-w-4',
@@ -22,15 +22,12 @@ function Icon({ icon, size }: IconProps) {
   )
 }
 
-Icon.props = {
-  icon: {
-    type: String,
-    required: true
-  },
+BaseIcon.props = {
+  name: String,
   size: {
-    type: String as PropType<IconProps['size']>,
+    type: String as PropType<BaseIconProps['size']>,
     default: 'md'
   }
 }
 
-export default Icon
+export default BaseIcon

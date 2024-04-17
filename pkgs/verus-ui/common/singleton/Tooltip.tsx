@@ -4,15 +4,15 @@ import { Transition, defineComponent, reactive } from 'vue'
 import { useRender, useVisible } from '@verus-ui/common'
 
 type SingleTooltipProps = {
-  position: { top: string; left: string }
-  direction?: 'top' | 'right' | 'bottom' | 'left'
+  coord: { top: string; left: string }
+  position?: 'top' | 'right' | 'bottom' | 'left'
   text: string
 }
 
 function useTooltipFactory() {
   const props = reactive<SingleTooltipProps>({
-    position: { top: '', left: '' },
-    direction: 'top',
+    coord: { top: '', left: '' },
+    position: 'top',
     text: ''
   })
 
@@ -26,7 +26,7 @@ function useTooltipFactory() {
         <Transition enterFromClass='opacity-0' leaveToClass='opacity-0'>
           {state.value && (
             <div
-              style={props.position}
+              style={props.coord}
               class={[
                 'fixed h-0 w-0 transition-all duration-300',
                 {
@@ -34,7 +34,7 @@ function useTooltipFactory() {
                   right: 'translate-x-2',
                   bottom: 'translate-y-2',
                   left: '-translate-x-2'
-                }[props.direction!]
+                }[props.position!]
               ]}>
               <div
                 class={[
@@ -43,18 +43,18 @@ function useTooltipFactory() {
                     'left-1/2 -translate-x-1/2 before:left-1/2 before:-translate-x-1/2': [
                       'top',
                       'bottom'
-                    ].includes(props.direction!),
+                    ].includes(props.position!),
                     'top-1/2 -translate-y-1/2 before:top-1/2 before:-translate-y-1/2': [
                       'right',
                       'left'
-                    ].includes(props.direction!)
+                    ].includes(props.position!)
                   },
                   {
                     top: 'bottom-full before:-bottom-1',
                     right: 'left-full before:-left-1',
                     bottom: 'top-full before:-top-1',
                     left: 'right-full before:-right-1'
-                  }[props.direction!]
+                  }[props.position!]
                 ]}>
                 {props.text}
               </div>
@@ -68,39 +68,39 @@ function useTooltipFactory() {
       const target = evt.target as HTMLElement
 
       const text = target.dataset.tooltipText
-      const direction = target.dataset.tooltipDirection
+      const position = target.dataset.tooltipPosition
 
-      if (text && direction) {
+      if (text && position) {
         props.text = text
-        if (['top', 'right', 'bottom', 'left'].includes(direction)) {
-          props.direction = direction as SingleTooltipProps['direction']
+        if (['top', 'right', 'bottom', 'left'].includes(position)) {
+          props.position = position as SingleTooltipProps['position']
         }
         const rect = target.getBoundingClientRect()
 
-        switch (props.direction) {
+        switch (props.position) {
           case 'top': {
-            props.position = {
+            props.coord = {
               top: `${rect.top}px`,
               left: `${(rect.right + rect.left) / 2}px`
             }
             break
           }
           case 'right': {
-            props.position = {
+            props.coord = {
               top: `${(rect.bottom + rect.top) / 2}px`,
               left: `${rect.right}px`
             }
             break
           }
           case 'bottom': {
-            props.position = {
+            props.coord = {
               top: `${rect.bottom}px`,
               left: `${(rect.right + rect.left) / 2}px`
             }
             break
           }
           case 'left': {
-            props.position = {
+            props.coord = {
               top: `${(rect.bottom + rect.top) / 2}px`,
               left: `${rect.left}px`
             }
