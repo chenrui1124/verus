@@ -4,7 +4,7 @@ import type { SegmentedButtonModel, SegmentedButtonProps } from '.'
 import { computed } from 'vue'
 import { BaseIcon } from '@verus-ui/common'
 
-const { each, direction = 'row' } = defineProps<SegmentedButtonProps>()
+const { each, direction = 'horizontal' } = defineProps<SegmentedButtonProps>()
 
 const modelValue = defineModel<SegmentedButtonModel['modelValue']>()
 
@@ -15,7 +15,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, va
   <div
     :class="[
       'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-v1 before:border-solid before:border-otl',
-      direction === 'row' ? 'inline-flex' : 'inline-grid grid-cols-1'
+      direction === 'horizontal' ? 'inline-flex' : 'inline-grid grid-cols-1'
     ]"
   >
     <label
