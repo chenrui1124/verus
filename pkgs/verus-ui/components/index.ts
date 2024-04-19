@@ -1,5 +1,23 @@
 import '@verus-ui/css'
 
+export * from './no-render'
+export * from './ui'
+export * from './use'
+export { verus } from './install'
+
+/*
+ * No Render
+ */
+declare module 'vue' {
+  interface GlobalComponents {
+    VIterate: typeof import('@verus-ui/components').VIterate
+    VThemeProvider: typeof import('@verus-ui/components').VThemeProvider
+  }
+}
+
+/*
+ * UI
+ */
 declare module 'vue' {
   interface GlobalComponents {
     VAccordion: typeof import('@verus-ui/components').VAccordion
@@ -9,7 +27,6 @@ declare module 'vue' {
     VCard: typeof import('@verus-ui/components').VCard
     VFloatButton: typeof import('@verus-ui/components').VFloatButton
     VIconButton: typeof import('@verus-ui/components').VIconButton
-    VIterate: typeof import('@verus-ui/components').VIterate
     VDialog: typeof import('@verus-ui/components').VDialog
     VModal: typeof import('@verus-ui/components').VModal
     VRadios: typeof import('@verus-ui/components').VRadios
@@ -20,9 +37,3 @@ declare module 'vue' {
     VTooltip: typeof import('@verus-ui/components').VTooltip
   }
 }
-
-export * from './no-render'
-export * from './ui'
-export * from './use'
-
-export { verus } from './install'

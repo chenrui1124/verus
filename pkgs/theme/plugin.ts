@@ -9,18 +9,22 @@ const custom = {
     '::before, ::after': {
       '--tw-content': `''`
     },
-    ':root[data-theme="light"],:root[data-theme="auto"]': Object.keys(vColors).reduce<
+    ':root,[data-theme-provider][data-theme="light"]': Object.keys(vColors).reduce<
       Record<string, string>
     >((vars, v) => {
       vars[toVar(<VColors>v)] = vColors[<VColors>v][0]
       return vars
     }, {}),
-    ':root[data-theme="dark"]': Object.keys(vColors).reduce<Record<string, string>>((vars, v) => {
+    ':root[data-theme="dark"],[data-theme-provider][data-theme="dark"]': Object.keys(
+      vColors
+    ).reduce<Record<string, string>>((vars, v) => {
       vars[toVar(<VColors>v)] = vColors[<VColors>v][1]
       return vars
     }, {}),
     '@media (prefers-color-scheme: dark)': {
-      ':root[data-theme="auto"]': Object.keys(vColors).reduce<Record<string, string>>((vars, v) => {
+      ':root[data-theme="auto"],[data-theme-provider][data-theme="auto"]': Object.keys(
+        vColors
+      ).reduce<Record<string, string>>((vars, v) => {
         vars[toVar(<VColors>v)] = vColors[<VColors>v][1]
         return vars
       }, {})

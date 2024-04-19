@@ -7,4 +7,7 @@ export namespace VerusProps {
 
   type EachDirection = 'horizontal' | 'vertical'
   export type Direction<T extends EachDirection = EachDirection> = T
+
+  type EachTheme = 'auto' | 'light' | 'dark'
+  export type Theme<T extends EachTheme = EachTheme> = T
 }
