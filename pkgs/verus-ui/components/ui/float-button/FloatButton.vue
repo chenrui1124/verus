@@ -5,7 +5,7 @@ import { BaseIcon, useClassName } from '@verus-ui/common'
 
 const { variant = 'tonal' } = defineProps<FloatButtonProps>()
 
-const emit = defineEmits<{ click: [event: Event] }>()
+const emit = defineEmits<{ click: [evt: Event] }>()
 
 const [cls, activate] = useClassName()
 
@@ -24,7 +24,7 @@ defineSlots<{ default(props: void): any }>()
       type="button"
       :disabled
       :class="[
-        'bottom-6 right-6 z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition duration-300 ease-braking focus-visible:v-outline active:scale-90 disabled:bg-dis disabled:v-disabled sm:bottom-12 sm:right-12',
+        'bottom-6 right-6 z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition duration-300 ease-braking focus-visible:v-outline active:scale-90 disabled:bg-dis disabled:text-on-bsc disabled:v-disabled sm:bottom-12 sm:right-12',
         cls`scale-90`,
         absolute ? 'absolute' : 'fixed',
         {

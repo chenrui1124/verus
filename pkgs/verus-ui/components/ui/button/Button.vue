@@ -50,7 +50,7 @@ defineSlots<{ default(props: void): string }>()
         'disabled:shadow-none': variant === 'solid',
         'disabled:!bg-dis': ['solid', 'tonal'].includes(variant)
       },
-      'disabled:text-on-bsc disabled:v-disabled'
+      'disabled:!text-on-bsc disabled:v-disabled'
     ]"
   >
     <component

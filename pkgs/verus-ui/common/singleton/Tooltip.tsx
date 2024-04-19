@@ -25,17 +25,7 @@ function useTooltipFactory() {
       return () => (
         <Transition enterFromClass='opacity-0' leaveToClass='opacity-0'>
           {state.value && (
-            <div
-              style={props.coord}
-              class={[
-                'fixed h-0 w-0 transition-all duration-300',
-                {
-                  top: '-translate-y-2',
-                  right: 'translate-x-2',
-                  bottom: 'translate-y-2',
-                  left: '-translate-x-2'
-                }[props.position!]
-              ]}>
+            <div style={props.coord} class={'fixed h-0 w-0 transition-all duration-300'}>
               <div
                 class={[
                   'pointer-events-none absolute z-30 h-8 text-nowrap rounded-v1 bg-on-bsc px-3 text-sm/8 text-bsc transition-colors duration-300 before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit',
@@ -50,10 +40,10 @@ function useTooltipFactory() {
                     ].includes(props.position!)
                   },
                   {
-                    top: 'bottom-full before:-bottom-1',
-                    right: 'left-full before:-left-1',
-                    bottom: 'top-full before:-top-1',
-                    left: 'right-full before:-right-1'
+                    top: 'bottom-2 before:-bottom-1',
+                    right: 'left-2 before:-left-1',
+                    bottom: 'top-2 before:-top-1',
+                    left: 'right-2 before:-right-1'
                   }[props.position!]
                 ]}>
                 {props.text}
@@ -72,41 +62,30 @@ function useTooltipFactory() {
 
       if (text && position) {
         props.text = text
+
         if (['top', 'right', 'bottom', 'left'].includes(position)) {
           props.position = position as SingleTooltipProps['position']
         }
         const rect = target.getBoundingClientRect()
 
-        switch (props.position) {
-          case 'top': {
-            props.coord = {
-              top: `${rect.top}px`,
-              left: `${(rect.right + rect.left) / 2}px`
-            }
-            break
+        props.coord = {
+          top: {
+            top: `${rect.top}px`,
+            left: `${(rect.right + rect.left) / 2}px`
+          },
+          right: {
+            top: `${(rect.bottom + rect.top) / 2}px`,
+            left: `${rect.right}px`
+          },
+          bottom: {
+            top: `${rect.bottom}px`,
+            left: `${(rect.right + rect.left) / 2}px`
+          },
+          left: {
+            top: `${(rect.bottom + rect.top) / 2}px`,
+            left: `${rect.left}px`
           }
-          case 'right': {
-            props.coord = {
-              top: `${(rect.bottom + rect.top) / 2}px`,
-              left: `${rect.right}px`
-            }
-            break
-          }
-          case 'bottom': {
-            props.coord = {
-              top: `${rect.bottom}px`,
-              left: `${(rect.right + rect.left) / 2}px`
-            }
-            break
-          }
-          case 'left': {
-            props.coord = {
-              top: `${(rect.bottom + rect.top) / 2}px`,
-              left: `${rect.left}px`
-            }
-            break
-          }
-        }
+        }[props.position!]
 
         show()
       }

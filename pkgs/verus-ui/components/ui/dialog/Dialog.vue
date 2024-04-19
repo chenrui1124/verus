@@ -5,16 +5,19 @@ import { boolAttr, useOverlay, useVisible } from '@verus-ui/common'
 
 const { width = '28rem', danger } = defineProps<DialogProps>()
 
-const { showOverlay, hideOverlay } = useOverlay('')
+const { showOverlay, hideOverlay } = useOverlay()
+
+const modelValue = defineModel<boolean | undefined>()
 
 const { state, show, hide, withHide } = useVisible({
+  model: modelValue,
   onBeforeShow: showOverlay,
   onBeforeClose: hideOverlay
 })
 
-const emit = defineEmits<{ close: [evt: Event] }>()
-
 defineExpose({ show, hide, withHide })
+
+defineEmits<{ close: [evt: Event] }>()
 
 defineSlots<{
   trigger(props: { show: typeof show }): any
@@ -57,9 +60,12 @@ defineSlots<{
           class="flex flex-col gap-4 overflow-y-hidden rounded-v2 p-3 text-sm transition-all duration-inherit ease-inherit *:duration-inherit *:ease-inherit"
         >
           <!--* Title *-->
-          <div v-if="title" class="p-1 text-2xl text-pri group-data-[danger]/v-dialog:text-err">
+          <component
+            :is="title && 'div'"
+            class="p-1 text-2xl text-pri group-data-[danger]/v-dialog:text-err"
+          >
             {{ title }}
-          </div>
+          </component>
           <div v-if="subtitle" class="-mt-2 px-1 text-otl">
             {{ subtitle }}
           </div>

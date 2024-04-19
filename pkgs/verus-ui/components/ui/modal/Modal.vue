@@ -13,8 +13,8 @@ const { state, show, hide } = useVisible({
 })
 
 defineSlots<{
-  trigger(props: { show: () => void }): any
-  default(props: { hide: () => void }): any
+  trigger(props: { show: typeof show }): any
+  default(props: { hide: typeof hide }): any
 }>()
 </script>
 
@@ -28,7 +28,7 @@ defineSlots<{
     enterFromClass="scale-90 opacity-0"
     leaveToClass="scale-90 opacity-0"
     :style="{ width }"
-    class="z-50 rounded-v2 border-none bg-bsc p-6 text-sm/6 transition duration-300 backdrop:hidden"
+    class="z-50 rounded-v2 border-none bg-bsc p-6 text-sm/6 text-on-bsc transition duration-300 backdrop:hidden"
   >
     <slot v-bind="{ hide }" />
   </BaseModal>

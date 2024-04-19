@@ -6,7 +6,7 @@ import { useClassName } from '@verus-ui/common'
 
 defineProps<IconButtonProps>()
 
-const emit = defineEmits<{ click: [event?: Event] }>()
+const emit = defineEmits<{ click: [evt?: Event] }>()
 
 const [cls, activate] = useClassName()
 
