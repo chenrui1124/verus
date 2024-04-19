@@ -1,18 +1,14 @@
 {
   "private": true,
   "type": "module",
-  "workspaces": [
-    "pkgs/*"
-  ],
   "scripts": {
     "dev": "pnpm --filter verus-ui dev",
     "build": "pnpm --filter verus-ui build"
   },
   "dependencies": {
-    "@vueuse/core": "^10.9.0",
+    "@verus-ui/theme": "workspace:^",
     "mm3": "^0.3.1",
-    "vue": "^3.4.23",
-    "vue-router": "^4.3.0"
+    "vue": "^3.4.23"
   },
   "devDependencies": {
     "@iconify-json/ri": "^1.1.20",
@@ -29,6 +25,7 @@
     "unocss": "^0.58.9",
     "vite": "^5.2.9",
     "vite-plugin-dts": "^3.8.3",
-    "vue-tsc": "^2.0.13"
+    "vue-tsc": "^2.0.13",
+    "vue-router": "^4.3.2"
   }
 }

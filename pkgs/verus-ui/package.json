@@ -5,12 +5,12 @@
   "files": [
     "lib"
   ],
-  "main": "./lib/verus-ui.js",
+  "main": "lib/verus-ui.js",
+  "types": "lib/verus-ui.d.ts",
   "exports": {
     ".": "./lib/verus-ui.js",
     "./style": "./lib/style.css"
   },
-  "types": "./lib/verus-ui.d.ts",
   "description": "Vue3 Components.",
   "keywords": [
     "Vue3",
@@ -21,11 +21,5 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vue-tsc && vite build"
-  },
-  "devDependencies": {
-    "@verus-ui/theme": "workspace:^"
-  },
-  "dependencies": {
-    "tailwind-merge": "^2.2.2"
   }
 }
