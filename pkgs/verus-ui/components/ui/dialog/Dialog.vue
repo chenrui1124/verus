@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogProps } from '.'
 
-import { boolAttr, useOverlay, useVisible } from '@verus-ui/common'
+import { htmlAttribute, useOverlay, useVisible } from '@verus-ui/common'
 
 const { width = '28rem', danger } = defineProps<DialogProps>()
 
@@ -45,7 +45,7 @@ defineSlots<{
         v-if="state"
         @close="$emit('close', $event)"
         @cancel="hide"
-        :data-danger="boolAttr(danger)"
+        :data-danger="htmlAttribute(danger)"
         :style="{ width }"
         style="
           max-width: calc(100vw - 8vmin);
@@ -66,26 +66,26 @@ defineSlots<{
           >
             {{ title }}
           </component>
-          <div v-if="subtitle" class="-mt-2 px-1 text-otl">
+          <component :is="subtitle && 'div'" class="-mt-2 px-1 text-otl">
             {{ subtitle }}
-          </div>
+          </component>
 
           <!--* Content *-->
-          <div
-            v-if="$slots.default"
+          <component
+            :is="$slots.default && 'div'"
             data-dialog-content
             class="overflow-y-auto p-1 leading-6 text-on-bsc"
           >
             <slot v-bind="{ hide, withHide }" />
-          </div>
+          </component>
 
           <!--* Actions *-->
-          <div
-            v-if="$slots.actions"
+          <component
+            :is="$slots.actions && 'div'"
             class="flex justify-end gap-inherit p-1 focus-visible:[&_button]:v-outline focus-visible:data-[danger]:[&_button]:v-outline-danger"
           >
             <slot name="actions" v-bind="{ hide, withHide }" />
-          </div>
+          </component>
         </div>
       </dialog>
     </Transition>

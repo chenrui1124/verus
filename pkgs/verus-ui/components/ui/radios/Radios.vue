@@ -18,7 +18,11 @@ const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
       :key="index"
       class="group/v-radio relative box-border inline-flex h-12 min-w-12 cursor-pointer select-none items-center justify-center gap-4 rounded-v2 border-v1 border-solid border-otl px-4 text-on-bsc outline-transparent transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline"
     >
-      <BaseIcon v-if="item.icon" :name="item.icon" class="-m-1 transition-colors duration-300" />
+      <component
+        :is="item.icon && BaseIcon"
+        :name="item.icon"
+        class="-m-1 transition-colors duration-300"
+      />
 
       <span class="mr-auto text-sm duration-inherit">{{ item.label }}</span>
 

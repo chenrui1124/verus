@@ -2,7 +2,7 @@
 import type { TextFieldModel, TextFieldProps } from '.'
 
 import { computed } from 'vue'
-import { BaseIcon, boolAttr } from '@verus-ui/common'
+import { BaseIcon, htmlAttribute } from '@verus-ui/common'
 import { EACH_TYPE } from '.'
 
 defineOptions({ inheritAttrs: false })
@@ -39,7 +39,7 @@ function onSubmit(e: Event) {
     <input
       @submit.prevent="onSubmit"
       :type="_type"
-      :data-invalid="boolAttr(isValid)"
+      :data-invalid="htmlAttribute(isValid)"
       :pattern
       :placeholder
       :disabled
