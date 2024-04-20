@@ -8,15 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@verus-ui/theme':
+        specifier: workspace:^
+        version: link:pkgs/theme
       mm3:
         specifier: ^0.3.1
         version: 0.3.1
+      tailwind-merge:
+        specifier: ^2.3.0
+        version: 2.3.0
       vue:
         specifier: ^3.4.23
         version: 3.4.23(typescript@5.4.5)
-      vue-router:
-        specifier: ^4.3.2
-        version: 4.3.2(vue@3.4.23(typescript@5.4.5))
     devDependencies:
       '@iconify-json/ri':
         specifier: ^1.1.20
@@ -60,6 +63,9 @@ importers:
       vite-plugin-dts:
         specifier: ^3.8.3
         version: 3.8.3(@types/node@20.12.7)(rollup@4.14.3)(typescript@5.4.5)(vite@5.2.9(@types/node@20.12.7))
+      vue-router:
+        specifier: ^4.3.2
+        version: 4.3.2(vue@3.4.23(typescript@5.4.5))
       vue-tsc:
         specifier: ^2.0.13
         version: 2.0.13(typescript@5.4.5)
@@ -68,15 +74,7 @@ importers:
 
   pkgs/theme: {}
 
-  pkgs/verus-ui:
-    dependencies:
-      tailwind-merge:
-        specifier: ^2.2.2
-        version: 2.2.2
-    devDependencies:
-      '@verus-ui/theme':
-        specifier: workspace:^
-        version: link:../theme
+  pkgs/verus-ui: {}
 
 packages:
 
@@ -1531,8 +1529,8 @@ packages:
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
 
-  tailwind-merge@2.2.2:
-    resolution: {integrity: sha512-tWANXsnmJzgw6mQ07nE3aCDkCK4QdT3ThPMCzawoYA2Pws7vSTCvz3Vrjg61jVUGfFZPJzxEP+NimbcW+EdaDw==}
+  tailwind-merge@2.3.0:
+    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
 
   tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
@@ -3163,7 +3161,7 @@ snapshots:
 
   svg-tags@1.0.0: {}
 
-  tailwind-merge@2.2.2:
+  tailwind-merge@2.3.0:
     dependencies:
       '@babel/runtime': 7.24.4
 
