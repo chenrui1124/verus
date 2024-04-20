@@ -6,7 +6,7 @@ import { BaseIcon } from '@verus-ui/common'
 
 const { each } = defineProps<ChipsProps>()
 
-const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, value: i } : i)))
+const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, value: i } : i)))
 
 const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
 </script>
@@ -37,7 +37,7 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
         class="-ml-1 transition-colors duration-300"
       />
 
-      {{ item.text }}
+      {{ item.label }}
     </component>
   </div>
 </template>

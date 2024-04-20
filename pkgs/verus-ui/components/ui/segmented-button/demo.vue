@@ -11,15 +11,15 @@ const modelValue = ref()
       {
         name: 'direction',
         type: 'literal',
-        value: ['row', 'col']
+        value: ['horizontal', 'vertical']
       }
     ]"
     #="{ props }"
   >
     <VSegmentedButton
       :each="[
-        { text: 'Windows', value: 'win', icon: 'i-ri-windows-fill' },
-        { text: 'Android', value: 'and', icon: 'i-ri-android-fill' },
+        { label: 'Windows', value: 'win', icon: 'i-ri-windows-fill' },
+        { label: 'Android', value: 'and', icon: 'i-ri-android-fill' },
         'IOS'
       ]"
       v-bind="props"

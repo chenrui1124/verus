@@ -4,8 +4,9 @@ import { toPlugin } from '@verus-ui/common'
 import Radios from './Radios.vue'
 
 export type RadiosProps = {
-  each: OrReadonly<(string | { icon?: string; text: string; value: string })[]>
+  each: OrReadonly<(string | { icon?: string; label: string; value: string })[]>
   width?: string
+  compact?: boolean
 }
 
 export type RadiosModel = {

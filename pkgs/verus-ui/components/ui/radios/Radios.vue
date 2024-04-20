@@ -6,7 +6,7 @@ import { BaseIcon } from '@verus-ui/common'
 
 const { each } = defineProps<RadiosProps>()
 
-const _each = computed(() => each.map(i => (typeof i == 'string' ? { text: i, value: i } : i)))
+const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, value: i } : i)))
 
 const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
 </script>
@@ -20,7 +20,7 @@ const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
     >
       <BaseIcon v-if="item.icon" :name="item.icon" class="-m-1 transition-colors duration-300" />
 
-      <span class="mr-auto text-sm duration-inherit">{{ item.text }}</span>
+      <span class="mr-auto text-sm duration-inherit">{{ item.label }}</span>
 
       <input
         type="radio"

@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import type { ObjectDirective } from 'vue'
 import type { SwitchModel, SwitchProps } from '.'
+
+import { onMounted, ref } from 'vue'
 
 defineProps<SwitchProps>()
 
 const modelValue = defineModel<SwitchModel['modelValue']>({ required: true })
 
 const emit = defineEmits<{ switch: [newValue: boolean] }>()
-
-const vInit: ObjectDirective = {
-  beforeMount(el: HTMLInputElement) {
-    el.checked = !!modelValue.value
-  }
-}
 
 function onChange(e: Event) {
   const t = e.target as HTMLInputElement
@@ -22,6 +17,10 @@ function onChange(e: Event) {
     emit('switch', modelValue.value!)
   })
 }
+
+const checkbox = ref<HTMLInputElement>()
+
+onMounted(() => (checkbox.value!.checked = !!modelValue.value))
 </script>
 
 <template>
@@ -39,10 +38,10 @@ function onChange(e: Event) {
     ]"
   >
     <input
-      @change="onChange"
+      ref="checkbox"
       type="checkbox"
       :disabled
-      v-init
+      @change="onChange"
       class="pointer-events-none absolute inset-y-1 left-1 m-0 size-5 appearance-none rounded-inherit outline-none transition duration-inherit ease-braking group-active/v-switch:scale-125"
       :class="{
         'translate-x-5 bg-on-pri disabled:bg-bsc': modelValue,

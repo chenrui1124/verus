@@ -5,7 +5,7 @@ import { toPlugin } from '@verus-ui/common'
 import Button from './Button.vue'
 
 export type ButtonProps = {
-  text?: string
+  label?: string
   icon?: string
   appendIcon?: string
   loading?: boolean

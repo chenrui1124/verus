@@ -9,15 +9,10 @@ const { variant = 'solid', loading, href } = defineProps<ButtonProps>()
 const emit = defineEmits<{ click: [evt: MouseEvent] }>()
 
 const listener = computed(() => {
-  if (href) return {}
-  return {
-    click: (evt: MouseEvent) => {
-      loading || emit('click', evt)
-    }
-  }
+  return href ? {} : { click: (evt: MouseEvent) => void (loading || emit('click', evt)) }
 })
 
-defineSlots<{ default(props: void): string }>()
+defineSlots<{ default(): string }>()
 </script>
 
 <template>
@@ -61,7 +56,7 @@ defineSlots<{ default(props: void): string }>()
 
     <span :class="['pointer-events-none', { 'text-transparent': !disabled && loading }]">
       <slot>
-        {{ text }}
+        {{ label }}
       </slot>
     </span>
 

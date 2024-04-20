@@ -20,8 +20,8 @@ let toggleSidebar = () => {
 }
 
 defineSlots<{
-  sidebar(props: void): any
-  default(props: void): any
+  sidebar(): any
+  default(): any
 }>()
 </script>
 

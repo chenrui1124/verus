@@ -15,7 +15,7 @@ export const vColors = {
   'pri-ctr': ['236, 247, 255', '35, 40, 55'] /* primary container */,
   'err-ctr': ['255, 243, 246', '59, 31, 43'] /* error container */,
 
-  otl: ['148, 143, 153', '122, 117, 127'] /* border */,
+  otl: ['130, 125, 135', '140, 135, 145'] /* border */,
   dis: ['200, 200, 200', '80, 80, 80'] /* disabled */
 }
 

@@ -5,7 +5,7 @@ import { toPlugin } from '@verus-ui/common'
 import SegmentedButton from './SegmentedButton.vue'
 
 export type SegmentedButtonProps = {
-  each: OrReadonly<(string | { icon?: string; text: string; value: string })[]>
+  each: OrReadonly<(string | { icon?: string; label: string; value: string })[]>
   direction?: VerusProps.Direction
 }
 

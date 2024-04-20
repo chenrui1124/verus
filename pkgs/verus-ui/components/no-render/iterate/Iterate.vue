@@ -18,7 +18,9 @@ function next() {
   })
 }
 
-defineSlots<{ default(props: { item: T; index: number; next: () => void }): any }>()
+defineSlots<{
+  default(props: { item: T; index: number; next: typeof next }): any
+}>()
 </script>
 
 <template>

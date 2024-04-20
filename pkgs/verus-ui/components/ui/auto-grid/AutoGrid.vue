@@ -3,7 +3,7 @@ import type { AutoGridProps } from '.'
 
 const { gap = 'md', width = 'auto', itemWidth = 'auto' } = defineProps<AutoGridProps>()
 
-defineSlots<{ default(props: void): any }>()
+defineSlots<{ default(): any }>()
 </script>
 
 <template>

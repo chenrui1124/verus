@@ -4,13 +4,15 @@ import { toPlugin } from '@verus-ui/common'
 import FloatButton from './FloatButton.vue'
 
 export type FloatButtonProps = {
-  icon?: string
+  icon: string
   absolute?: boolean
   disabled?: boolean
   /**
    * @default 'tonal'
    */
   variant?: VerusProps.Variant<'solid' | 'tonal'>
+  right?: string
+  bottom?: string
 }
 
 export const VFloatButton = toPlugin(FloatButton)

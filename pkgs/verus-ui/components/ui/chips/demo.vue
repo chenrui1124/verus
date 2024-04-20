@@ -9,9 +9,9 @@ const modelValue = ref([])
   <DisplayStand :options="[{ name: 'selectable', type: 'boolean' }]" #="{ props }">
     <VChips
       :each="[
-        { icon: 'i-ri-windows-fill', text: 'Windows', value: 'windows' },
-        { icon: 'i-ri-android-fill', text: 'Android', value: 'android' },
-        { icon: 'i-ri-apple-fill', text: 'IOS', value: 'ios' }
+        { icon: 'i-ri-windows-fill', label: 'Windows', value: 'windows' },
+        { icon: 'i-ri-android-fill', label: 'Android', value: 'android' },
+        { icon: 'i-ri-apple-fill', label: 'IOS', value: 'ios' }
       ]"
       v-model="modelValue"
       v-bind="props"

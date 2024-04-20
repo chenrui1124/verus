@@ -5,7 +5,7 @@ import { boolAttr } from '@verus-ui/common'
 
 const { width = '16rem', variant = 'outlined', danger } = defineProps<CardProps>()
 
-defineSlots<{ default(props: void): any }>()
+defineSlots<{ default(): any }>()
 </script>
 
 <template>

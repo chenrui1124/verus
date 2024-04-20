@@ -12,7 +12,7 @@ import { DisplayStand } from '@verus-ui/common'
     ]"
     #="{ props }"
   >
-    <VAccordion title="折叠面板" v-bind="props">
+    <VAccordion title="折叠面板" v-bind="props" #="">
       {{ lorem('sc') }}
     </VAccordion>
   </DisplayStand>
