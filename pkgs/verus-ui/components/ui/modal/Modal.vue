@@ -28,7 +28,7 @@ defineSlots<{
     enterFromClass="scale-90 opacity-0"
     leaveToClass="scale-90 opacity-0"
     :style="{ width }"
-    class="fixed inset-0 z-50 m-auto rounded-v2 border-none bg-bsc p-6 text-sm/6 text-on-bsc transition duration-300 backdrop:hidden"
+    class="fixed inset-0 z-50 m-auto rounded-v2 border-none bg-bsc p-6 text-sm/6 text-on-bsc transition duration-300"
   >
     <slot v-bind="{ hide }" />
   </BaseModal>

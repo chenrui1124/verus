@@ -75,13 +75,8 @@ function onSubmit(e: Event) {
         v-show="modelValue"
         @click="clear"
         type="button"
-        class="absolute inset-y-0 right-0 inline-flex w-10 cursor-pointer items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
-      >
-        <BaseIcon
-          name="i-[solar--close-circle-bold-duotone]"
-          class="transition-colors duration-300"
-        />
-      </button>
+        class="absolute inset-y-0 right-0 inline-flex w-10 cursor-pointer items-center justify-center rounded-inherit border-none bg-transparent transition duration-300 before:i-[solar--close-circle-bold-duotone] before:min-h-5 before:min-w-5 before:text-otl before:transition-colors before:duration-300 hover:before:text-err focus:before:text-err focus-visible:v-outline"
+      ></button>
     </Transition>
   </form>
 </template>

@@ -25,16 +25,12 @@ defineSlots<{ default(): any }>()
     <div
       @click="toggle"
       :class="[
-        'inline-flex cursor-pointer items-center gap-4 rounded-inherit px-6 text-base text-pri transition-colors duration-300 group-data-[danger]/v-accordion:text-err',
-        variant === 'solid' ? 'hover:bg-pri/8' : 'hover:bg-pri-ctr data-[danger]:hover:bg-err-ctr'
+        'inline-flex cursor-pointer select-none items-center gap-4 rounded-inherit px-6 text-base text-pri transition-colors duration-300 after:i-[solar--alt-arrow-right-linear] after:-mr-1 after:ml-auto after:min-h-5 after:min-w-5 after:transition after:duration-300 group-data-[danger]/v-accordion:text-err',
+        variant === 'solid' ? 'hover:bg-pri/8' : 'hover:bg-pri-ctr data-[danger]:hover:bg-err-ctr',
+        { 'after:rotate-90': state }
       ]"
     >
-      <component :is="icon && BaseIcon" :name="icon" class="-ml-1" />
-      <span class="pointer-events-none mb-0.5 select-none">{{ title }}</span>
-      <BaseIcon
-        name="i-[solar--alt-arrow-right-linear]"
-        :class="['-mr-1 ml-auto transition duration-300', { 'rotate-90': state }]"
-      />
+      <component :is="icon && BaseIcon" :name="icon" class="-ml-1" />{{ title }}
     </div>
 
     <div

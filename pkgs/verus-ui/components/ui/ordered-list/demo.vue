@@ -1,15 +1,13 @@
 <script setup lang="ts">
+import { lorem } from 'mm3'
+
 import { VOrderedList } from '.'
 </script>
 
 <template>
-  <VOrderedList class="w-60">
-    <li>Lorem ipsum dolor sit amet.</li>
-    <li>Lorem ipsum dolor sit amet.</li>
-    <li>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. In, quod distinctio error nihil
-      voluptate modi corrupti fugit consequatur illo cumque!
-    </li>
-    <li>Lorem ipsum dolor sit amet.</li>
+  <VOrderedList class="w-96">
+    <li v-for="_ in 3">Lorem ipsum dolor sit amet.</li>
+    <li>{{ lorem() }}</li>
+    <li>{{ lorem('sc') }}</li>
   </VOrderedList>
 </template>

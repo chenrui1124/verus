@@ -26,7 +26,7 @@ onUnmounted(() => unwatch?.())
 
 const slots = defineSlots<{ default(props: void): any }>()
 
-function Render() {
+function DefaultSlot() {
   if (tag) {
     return h(tag, { 'data-theme-provider': '', 'data-theme': _theme.value }, slots.default?.())
   } else {
@@ -36,5 +36,5 @@ function Render() {
 </script>
 
 <template>
-  <Render />
+  <DefaultSlot />
 </template>
