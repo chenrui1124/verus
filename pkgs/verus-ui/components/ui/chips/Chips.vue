@@ -32,7 +32,7 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
 
       <component
         :is="item.icon && BaseIcon"
-        :name="BaseIcon"
+        :name="item.icon"
         size="sm"
         class="-ml-1 transition-colors duration-300"
       />
