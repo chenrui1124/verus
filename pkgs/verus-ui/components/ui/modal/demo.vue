@@ -10,7 +10,7 @@ import { VModal } from '.'
     </template>
 
     <template #default="{ hide }">
-      <p>{{ lorem('sc') }}</p>
+      <p class="m-0">{{ lorem('sc') }}</p>
       <VButton @click="hide">CLOSE</VButton>
     </template>
   </VModal>
