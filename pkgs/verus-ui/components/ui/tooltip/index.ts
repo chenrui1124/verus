@@ -5,7 +5,7 @@ import Tooltip from './Tooltip'
 
 export type TooltipProps = {
   text: string
-  position: VerusProps.Position
+  position?: VerusProps.Position
 }
 
 export const VTooltip = toPlugin(Tooltip)

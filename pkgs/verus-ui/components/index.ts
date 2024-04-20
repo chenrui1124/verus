@@ -1,39 +1,31 @@
 import '@verus-ui/css'
 
+import * as noRender from './no-render'
+import * as ui from './ui'
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    VIterate: typeof noRender.VIterate
+    VThemeProvider: typeof noRender.VThemeProvider
+    VAccordion: typeof ui.VAccordion
+    VAutoGrid: typeof ui.VAutoGrid
+    VChips: typeof ui.VChips
+    VButton: typeof ui.VButton
+    VCard: typeof ui.VCard
+    VFloatButton: typeof ui.VFloatButton
+    VIconButton: typeof ui.VIconButton
+    VDialog: typeof ui.VDialog
+    VModal: typeof ui.VModal
+    VRadios: typeof ui.VRadios
+    VSegmentedButton: typeof ui.VSegmentedButton
+    VScaffold: typeof ui.VScaffold
+    VSwitch: typeof ui.VSwitch
+    VTextField: typeof ui.VTextField
+    VTooltip: typeof ui.VTooltip
+  }
+}
+
 export * from './no-render'
 export * from './ui'
 export * from './use'
 export { verus } from './install'
-
-/*
- * No Render
- */
-declare module 'vue' {
-  interface GlobalComponents {
-    VIterate: typeof import('@verus-ui/components').VIterate
-    VThemeProvider: typeof import('@verus-ui/components').VThemeProvider
-  }
-}
-
-/*
- * UI
- */
-declare module 'vue' {
-  interface GlobalComponents {
-    VAccordion: typeof import('@verus-ui/components').VAccordion
-    VAutoGrid: typeof import('@verus-ui/components').VAutoGrid
-    VChips: typeof import('@verus-ui/components').VChips
-    VButton: typeof import('@verus-ui/components').VButton
-    VCard: typeof import('@verus-ui/components').VCard
-    VFloatButton: typeof import('@verus-ui/components').VFloatButton
-    VIconButton: typeof import('@verus-ui/components').VIconButton
-    VDialog: typeof import('@verus-ui/components').VDialog
-    VModal: typeof import('@verus-ui/components').VModal
-    VRadios: typeof import('@verus-ui/components').VRadios
-    VSegmentedButton: typeof import('@verus-ui/components').VSegmentedButton
-    VScaffold: typeof import('@verus-ui/components').VScaffold
-    VSwitch: typeof import('@verus-ui/components').VSwitch
-    VTextField: typeof import('@verus-ui/components').VTextField
-    VTooltip: typeof import('@verus-ui/components').VTooltip
-  }
-}
