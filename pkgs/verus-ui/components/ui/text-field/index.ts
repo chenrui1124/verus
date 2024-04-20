@@ -4,13 +4,15 @@ import type { VerusProps } from '@verus-ui/types'
 import { toPlugin } from '@verus-ui/common'
 import TextField from './TextField.vue'
 
+export const EACH_TYPE = ['text', 'password', 'email', 'tel', 'url'] as const
+
 export type TextFieldProps = {
   autocomplete?: InputHTMLAttributes['autocomplete']
   disabled?: boolean
   pattern?: InputHTMLAttributes['pattern']
   placeholder?: string
+  type?: (typeof EACH_TYPE)[number]
   icon?: string
-  secret?: boolean
   clearable?: boolean
   /**
    * @default 'outlined'

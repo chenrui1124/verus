@@ -3,10 +3,13 @@ import type { TextFieldModel, TextFieldProps } from '.'
 
 import { computed } from 'vue'
 import { BaseIcon, boolAttr } from '@verus-ui/common'
+import { EACH_TYPE } from '.'
 
 defineOptions({ inheritAttrs: false })
 
-const { validator, variant = 'outlined' } = defineProps<TextFieldProps>()
+const { type = 'text', variant = 'outlined', validator } = defineProps<TextFieldProps>()
+
+const _type = computed(() => (EACH_TYPE.includes(type) ? type : 'text'))
 
 const modelValue = defineModel<TextFieldModel['modelValue']>({ required: true })
 
@@ -35,7 +38,7 @@ function onSubmit(e: Event) {
   <form class="relative inline-block rounded-v1">
     <input
       @submit.prevent="onSubmit"
-      :type="secret ? 'password' : 'text'"
+      :type="_type"
       :data-invalid="boolAttr(isValid)"
       :pattern
       :placeholder
@@ -72,7 +75,7 @@ function onSubmit(e: Event) {
         v-show="modelValue"
         @click="clear"
         type="button"
-        class="absolute inset-y-0 right-0 inline-flex w-10 items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
+        class="absolute inset-y-0 right-0 inline-flex w-10 cursor-pointer items-center justify-center rounded-inherit border-none bg-transparent text-otl transition duration-300 hover:text-err focus:text-err focus-visible:v-outline"
       >
         <BaseIcon
           name="i-[solar--close-circle-bold-duotone]"
