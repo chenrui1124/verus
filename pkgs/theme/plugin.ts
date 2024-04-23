@@ -1,7 +1,6 @@
 import type { CSSInJS } from 'mm3'
-import type { VColors } from './colors'
 
-import { vColors, toVar } from './colors'
+import { VERUS_COLOR, extractRGBValue, withColorPrefix } from './colors'
 import plugin from 'tailwindcss/plugin'
 
 const custom = {
@@ -9,35 +8,41 @@ const custom = {
     '::before, ::after': {
       '--tw-content': `''`
     },
-    ':root,[data-theme-provider][data-theme="light"]': Object.keys(vColors).reduce<
+
+    ':root, [data-theme-provider][data-theme="light"]': Object.entries(VERUS_COLOR).reduce<
       Record<string, string>
-    >((vars, v) => {
-      vars[toVar(<VColors>v)] = vColors[<VColors>v][0]
-      return vars
+    >((previous, current) => {
+      const [name, { lt }] = current
+      previous[withColorPrefix(name)] = extractRGBValue(lt)
+      return previous
     }, {}),
-    ':root[data-theme="dark"],[data-theme-provider][data-theme="dark"]': Object.keys(
-      vColors
-    ).reduce<Record<string, string>>((vars, v) => {
-      vars[toVar(<VColors>v)] = vColors[<VColors>v][1]
-      return vars
+
+    ':root[data-theme="dark"], [data-theme-provider][data-theme="dark"]': Object.entries(
+      VERUS_COLOR
+    ).reduce<Record<string, string>>((previous, current) => {
+      const [name, { dk }] = current
+      previous[withColorPrefix(name)] = extractRGBValue(dk)
+      return previous
     }, {}),
+
     '@media (prefers-color-scheme: dark)': {
-      ':root[data-theme="auto"],[data-theme-provider][data-theme="auto"]': Object.keys(
-        vColors
-      ).reduce<Record<string, string>>((vars, v) => {
-        vars[toVar(<VColors>v)] = vColors[<VColors>v][1]
-        return vars
+      ':root[data-theme="auto"], [data-theme-provider][data-theme="auto"]': Object.entries(
+        VERUS_COLOR
+      ).reduce<Record<string, string>>((previous, current) => {
+        const [name, { dk }] = current
+        previous[withColorPrefix(name)] = extractRGBValue(dk)
+        return previous
       }, {})
     }
   },
 
   utilities: theme => ({
     '.v-outline': {
-      outline: `2.8px solid rgba(var(${toVar('pri')}), ${theme('opacity.48')})`,
+      outline: `2.8px solid rgba(var(${withColorPrefix('pri')}), ${theme('opacity.48')})`,
       outlineOffset: '1.2px'
     },
     '.v-outline-danger': {
-      outline: `2.8px solid rgba(var(${toVar('err')}), ${theme('opacity.48')})`,
+      outline: `2.8px solid rgba(var(${withColorPrefix('err')}), ${theme('opacity.48')})`,
       outlineOffset: '1.2px'
     },
     '.v-disabled': {
@@ -53,24 +58,17 @@ const custom = {
       pointerEvents: 'none',
       borderRadius: 'inherit'
     }
-  },
-
-  variants: [
-    ['hover&focus', ['&:hover', '&:focus']],
-    ['before&after', ['&:before', '&:after']]
-  ]
+  }
 } satisfies {
   base: CSSInJS | { [p: string]: CSSInJS }
   utilities: (theme: (path: string) => string) => CSSInJS
   components: CSSInJS
-  variants: [string, string[]][]
 }
 
 export default function () {
-  return plugin(({ theme, addBase, addUtilities, addComponents, addVariant }) => {
+  return plugin(({ theme, addBase, addUtilities, addComponents }) => {
     addBase(custom.base)
     addUtilities(custom.utilities(theme))
     addComponents(custom.components)
-    custom.variants.forEach(arg => addVariant(...arg))
   })
 }
