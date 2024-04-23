@@ -7,6 +7,7 @@ export { VFloatButton, type FloatButtonProps } from './float-button'
 export { VIconButton, type IconButtonProps } from './icon-button'
 export { VModal, type ModalProps } from './modal'
 export { VDialog, type DialogProps } from './dialog'
+export { VOrderedList, type OrderedListProps } from './ordered-list'
 export { VRadios, type RadiosProps, type RadiosModel } from './radios'
 export {
   VSegmentedButton,

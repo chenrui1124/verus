@@ -38,7 +38,7 @@ defineSlots<{
     enterToClass="grid-rows-[1fr]"
     leaveFromClass="grid-rows-[1fr]"
     leaveToClass="-translate-y-[44vh] grid-rows-[0fr] py-0 *:py-0"
-    enterActiveClass="select-none [&_[data-dialog-content]]:!overflow-y-hidden"
+    enterActiveClass="select-none duration-700 [&_[data-dialog-content]]:!overflow-y-hidden"
     leaveActiveClass="select-none [&_[data-dialog-content]]:!overflow-y-hidden"
     :style="{ width }"
     style="
@@ -46,7 +46,7 @@ defineSlots<{
       max-height: calc(100vh - 8vmin);
       max-height: calc(100dvh - 8vmin);
     "
-    class="group/v-dialog fixed inset-0 z-30 m-auto grid grid-cols-1 rounded-v3 border-none bg-pri-ctr p-2 transition-all duration-700 ease-braking data-[danger]:bg-err-ctr"
+    class="group/v-dialog fixed inset-0 z-30 m-auto grid grid-cols-1 rounded-v3 border-none bg-pri-ctr p-2 transition-all duration-500 ease-braking data-[danger]:bg-err-ctr"
   >
     <div
       style="max-height: calc(100dvh - 3rem - 8vmin)"

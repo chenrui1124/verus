@@ -1,8 +1,10 @@
-import type { PropType } from 'vue'
+import type { HTMLAttributes, PropType } from 'vue'
 
 type BaseIconProps = {
   name: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
+  style?: HTMLAttributes['style']
+  class?: HTMLAttributes['class']
 }
 
 function BaseIcon({ name, size }: BaseIconProps) {

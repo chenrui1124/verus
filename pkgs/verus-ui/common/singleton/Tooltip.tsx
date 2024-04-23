@@ -28,7 +28,7 @@ function useTooltipFactory() {
             <div style={props.coord} class={'fixed h-0 w-0 transition-all duration-300'}>
               <div
                 class={[
-                  'pointer-events-none absolute z-30 h-8 text-nowrap rounded-v1 bg-on-bsc px-3 text-sm/8 text-bsc transition-colors duration-300 before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit',
+                  'pointer-events-none absolute z-30 h-8 text-nowrap rounded-v1 bg-on-bsc px-3 text-sm/8 text-bsc shadow shadow-on-bsc/32 transition-colors duration-300 before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit',
                   {
                     'left-1/2 -translate-x-1/2 before:left-1/2 before:-translate-x-1/2': [
                       'top',
@@ -68,24 +68,13 @@ function useTooltipFactory() {
         }
         const rect = target.getBoundingClientRect()
 
-        props.coord = {
-          top: {
-            top: `${rect.top}px`,
-            left: `${(rect.right + rect.left) / 2}px`
-          },
-          right: {
-            top: `${(rect.bottom + rect.top) / 2}px`,
-            left: `${rect.right}px`
-          },
-          bottom: {
-            top: `${rect.bottom}px`,
-            left: `${(rect.right + rect.left) / 2}px`
-          },
-          left: {
-            top: `${(rect.bottom + rect.top) / 2}px`,
-            left: `${rect.left}px`
-          }
-        }[props.position!]
+        props.coord.top = ['right', 'left'].includes(props.position!)
+          ? `${(rect.bottom + rect.top) / 2}px`
+          : `${rect[props.position!]}px`
+
+        props.coord.left = ['top', 'bottom'].includes(props.position!)
+          ? `${(rect.right + rect.left) / 2}px`
+          : `${rect[props.position!]}px`
 
         show()
       }

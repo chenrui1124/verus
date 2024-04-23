@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { lorem } from 'mm3'
-
-import { VOrderedList } from '.'
 </script>
 
 <template>

@@ -16,6 +16,7 @@ declare module 'vue' {
     VIconButton: typeof ui.VIconButton
     VDialog: typeof ui.VDialog
     VModal: typeof ui.VModal
+    VOrderedList: typeof ui.VOrderedList
     VRadios: typeof ui.VRadios
     VSegmentedButton: typeof ui.VSegmentedButton
     VScaffold: typeof ui.VScaffold
