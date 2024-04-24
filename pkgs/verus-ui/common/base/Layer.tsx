@@ -1,8 +1,9 @@
-import type { HTMLAttributes, SetupContext, TransitionProps } from 'vue'
+import type { FunctionalComponent, HTMLAttributes, TransitionProps } from 'vue'
 
 import { Teleport, Transition } from 'vue'
+import { twMerge } from 'tailwind-merge'
 
-type BaseModalProps = {
+type BaseLayerProps = {
   state: boolean | undefined
   disableTopLayer?: boolean
 } & Pick<
@@ -20,8 +21,9 @@ type BaseModalProps = {
     style?: HTMLAttributes['style']
   }
 
-function BaseModal(props: BaseModalProps, { attrs, slots }: SetupContext) {
+const BaseLayer: FunctionalComponent<BaseLayerProps> = (props, { attrs, slots }) => {
   const { state, disableTopLayer, ...transitionProps } = props
+  const { class: className, ...others } = attrs
 
   function onEnter(el: Element) {
     if (disableTopLayer) {
@@ -38,7 +40,10 @@ function BaseModal(props: BaseModalProps, { attrs, slots }: SetupContext) {
   const Dialog = (
     <Transition onEnter={onEnter} onAfterLeave={onAfterLeave} {...transitionProps}>
       {state && (
-        <dialog {...attrs} tabindex='-1' class='outline-none backdrop:hidden'>
+        <dialog
+          {...others}
+          tabindex='-1'
+          class={twMerge('outline-none backdrop:hidden', className as HTMLAttributes['class'])}>
           {slots.default?.()}
         </dialog>
       )}
@@ -48,10 +53,9 @@ function BaseModal(props: BaseModalProps, { attrs, slots }: SetupContext) {
   return disableTopLayer ? <>{Dialog}</> : <Teleport to='body'>{Dialog}</Teleport>
 }
 
-BaseModal.props = {
+BaseLayer.props = {
   state: Boolean,
   disableTopLayer: Boolean,
-  onClickBackdrop: Function,
   enterActiveClass: String,
   enterFromClass: String,
   enterToClass: String,
@@ -60,6 +64,6 @@ BaseModal.props = {
   leaveToClass: String
 }
 
-BaseModal.inheritAttrs = false
+BaseLayer.inheritAttrs = false
 
-export default BaseModal
+export default BaseLayer

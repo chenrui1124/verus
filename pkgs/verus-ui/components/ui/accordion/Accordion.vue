@@ -4,7 +4,7 @@ import type { AccordionProps } from '.'
 import { ref } from 'vue'
 import { BaseIcon, htmlAttribute, useVisible } from '@verus-ui/common'
 
-const { width = 'auto', variant = 'outlined', init } = defineProps<AccordionProps>()
+const { width, variant = 'outlined', init } = defineProps<AccordionProps>()
 
 const { state, toggle } = useVisible({ model: ref(init) })
 

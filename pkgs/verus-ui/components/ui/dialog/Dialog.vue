@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogProps } from '.'
 
-import { BaseModal, htmlAttribute, useOverlay, useVisible } from '@verus-ui/common'
+import { BaseLayer, htmlAttribute, useOverlay, useVisible } from '@verus-ui/common'
 
 const { width = '28rem', danger } = defineProps<DialogProps>()
 
@@ -29,7 +29,7 @@ defineSlots<{
 <template>
   <slot name="trigger" v-bind="{ show }" />
 
-  <BaseModal
+  <BaseLayer
     :state
     @cancel="hide"
     @close="$emit('close', $event)"
@@ -80,5 +80,5 @@ defineSlots<{
         <slot name="actions" v-bind="{ hide, withHide }" />
       </component>
     </div>
-  </BaseModal>
+  </BaseLayer>
 </template>

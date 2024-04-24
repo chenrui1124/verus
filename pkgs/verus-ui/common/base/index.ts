@@ -1,2 +1,2 @@
 export { default as BaseIcon } from './Icon'
-export { default as BaseModal } from './Modal'
+export { default as BaseLayer } from './Layer'
