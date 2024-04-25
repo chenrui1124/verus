@@ -3,6 +3,7 @@ import type { DefineSetupFnComponent } from 'vue'
 import { Transition, defineComponent, reactive } from 'vue'
 import { useRender, useVisible } from '@verus-ui/common'
 
+
 type SingleTooltipProps = {
   coord: { top: string; left: string }
   position?: 'top' | 'right' | 'bottom' | 'left'
@@ -55,18 +56,17 @@ function useTooltipFactory() {
     })
 
     document.body.addEventListener('mouseover', (evt: Event) => {
-      const target = evt.target as HTMLElement
+      const el = evt.target as HTMLElement
 
-      const text = target.dataset.tooltipText
-      const position = target.dataset.tooltipPosition
+      const { tooltipLabel: label, tooltipPosition: position } = el.dataset
 
-      if (text && position) {
-        props.text = text
+      if (label && position) {
+        props.text = label
 
         if (['top', 'right', 'bottom', 'left'].includes(position)) {
           props.position = position as SingleTooltipProps['position']
         }
-        const rect = target.getBoundingClientRect()
+        const rect = el.getBoundingClientRect()
 
         props.coord.top = ['right', 'left'].includes(props.position!)
           ? `${(rect.bottom + rect.top) / 2}px`

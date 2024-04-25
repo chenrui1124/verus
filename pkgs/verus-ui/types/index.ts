@@ -1,1 +1,2 @@
-export type { VerusProps } from './props'
+export type * from './props'
+export * from './props'

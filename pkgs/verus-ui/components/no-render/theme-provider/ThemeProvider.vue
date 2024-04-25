@@ -3,7 +3,7 @@ import type { WatchStopHandle } from 'vue'
 import type { ThemeProviderProps } from '.'
 
 import { Fragment, computed, h, onMounted, onUnmounted, watchEffect } from 'vue'
-import { EACH_THEME } from '.'
+import { EACH_THEME } from '@verus-ui/types'
 
 const { theme = 'auto', tag, global } = defineProps<ThemeProviderProps>()
 

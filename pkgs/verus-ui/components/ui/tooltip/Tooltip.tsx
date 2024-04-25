@@ -8,21 +8,24 @@ export default defineComponent({
   __name: 'Tooltip',
   inheritAttrs: false,
   props: {
-    text: {
+    label: {
       type: String as PropType<TooltipProps['text']>,
       required: true
     },
     position: {
       type: String as PropType<TooltipProps['position']>,
-      default: 'top'
+      default: 'top',
+      validator: (prop: TooltipProps['position']) => {
+        return ['top', 'right', 'bottom', 'left'].includes(prop!)
+      }
     }
   },
-  setup({ text, position }, { slots }) {
+  setup({ label, position }, { slots }) {
     const first = getFirstVNode(slots.default)
 
     if (first) {
       const attachProps = {
-        'data-tooltip-text': text,
+        'data-tooltip-label': label,
         'data-tooltip-position': position
       }
       const newNode = cloneVNode(first, attachProps)

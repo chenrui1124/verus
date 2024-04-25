@@ -19,7 +19,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
     ]"
   >
     <label
-      v-for="(item, index) in _each"
+      v-for="({ value, icon, label }, index) in _each"
       :key="index"
       :class="[
         'relative cursor-pointer items-center bg-transparent px-4 text-otl transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
@@ -30,13 +30,13 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
     >
       <input
         type="radio"
-        :value="item.value"
+        :value="value"
         v-model="modelValue"
         class="pointer-events-none absolute inset-0 -z-10 m-auto opacity-0 outline-none"
       />
       <component
-        :is="item.icon ? BaseIcon : void 0"
-        :name="item.icon"
+        :is="icon ? BaseIcon : void 0"
+        :name="icon"
         size="sm"
         :class="['-ml-1 mr-2', { 'col-start-1': direction === 'vertical' }]"
       />
@@ -46,7 +46,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
           { 'col-start-2': direction === 'vertical' }
         ]"
       >
-        {{ item.label }}
+        {{ label }}
       </span>
     </label>
   </div>

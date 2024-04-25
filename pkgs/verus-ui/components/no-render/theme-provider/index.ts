@@ -9,6 +9,4 @@ export type ThemeProviderProps = {
   theme?: VerusProps.Theme
 }
 
-export const EACH_THEME: ThemeProviderProps['theme'][] = ['auto', 'light', 'dark'] as const
-
 export const VThemeProvider = toPlugin(ThemeProvider)

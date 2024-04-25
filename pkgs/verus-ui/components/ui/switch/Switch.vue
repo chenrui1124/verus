@@ -25,8 +25,8 @@ onMounted(() => (checkbox.value!.checked = !!modelValue.value))
 
 <template>
   <label
-    class="group/v-switch relative inline-block h-7 w-12 cursor-pointer rounded-full transition duration-300 has-[:focus-visible]:v-outline has-[:disabled]:v-disabled"
     :class="[
+      'group/v-switch relative inline-block h-7 w-12 cursor-pointer rounded-full transition duration-300 has-[:focus-visible]:v-outline has-[:disabled]:v-disabled',
       'before:v-shade before:border-v1 before:border-solid before:transition-colors before:duration-inherit',
       'after:pointer-events-none after:absolute after:inset-y-1 after:left-1 after:-m-2 after:size-9 after:rounded-inherit after:transition after:duration-inherit after:ease-braking',
       {
