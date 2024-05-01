@@ -33,7 +33,7 @@ defineSlots<{ default(): string }>()
       'before:v-shade before:transition before:duration-300',
       'focus-visible:v-outline data-[danger]:focus-visible:v-outline-danger',
       {
-        'bg-pri text-on-pri hover:before:bg-bsc/8 focus:text-on-pri/72 focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
+        'bg-pri text-on-pri before:border-v1 before:border-solid before:border-white/32 before:border-b-black/32 hover:before:bg-bsc/8 focus:text-on-pri/72 focus:before:border-transparent focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
           _variant === 'solid',
         'bg-pri-var text-on-pri-var hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12 data-[danger]:bg-err-var data-[danger]:text-on-err-var':
           _variant === 'tonal',

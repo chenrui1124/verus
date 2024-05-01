@@ -17,4 +17,4 @@ export {
 export { VScaffold } from './scaffold'
 export { VSwitch, type SwitchProps, type SwitchModel } from './switch'
 export { VTextField, type TextFieldProps, type TextFieldModel } from './text-field'
-export { VTooltip, type TooltipProps as TooltipProps } from './tooltip'
+export { VTooltip, type TooltipProps } from './tooltip'

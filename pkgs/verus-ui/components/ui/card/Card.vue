@@ -3,14 +3,14 @@ import type { CardProps } from '.'
 
 import { htmlAttribute } from '@verus-ui/common'
 
-const { width = '16rem', variant = 'outlined', danger } = defineProps<CardProps>()
+const { variant = 'solid', danger } = defineProps<CardProps>()
 
 defineSlots<{ default(): any }>()
 </script>
 
 <template>
   <div
-    :style="{ width }"
+    :style="{ width: ui?.width ?? '16rem' }"
     :data-danger="htmlAttribute(danger)"
     :class="[
       'group/v-card relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300 *:duration-inherit',

@@ -9,7 +9,7 @@ export default defineComponent({
   inheritAttrs: false,
   props: {
     label: {
-      type: String as PropType<TooltipProps['text']>,
+      type: String as PropType<TooltipProps['label']>,
       required: true
     },
     position: {

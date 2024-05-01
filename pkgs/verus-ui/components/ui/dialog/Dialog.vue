@@ -69,15 +69,15 @@ defineSlots<{
         data-dialog-content
         class="overflow-y-auto p-1 leading-6 text-on-bsc"
       >
-        <slot v-bind="{ hide, withHide }" />
+        <slot v-bind="{ hide, withHide }"></slot>
       </component>
 
       <!--* Actions *-->
       <component
         :is="$slots.actions && 'div'"
-        class="flex justify-end gap-inherit p-1 focus-visible:[&_button]:v-outline focus-visible:data-[danger]:[&_button]:v-outline-danger"
+        class="flex flex-row-reverse gap-inherit p-1 focus:[&_button]:v-outline focus:data-[danger]:[&_button]:v-outline-danger"
       >
-        <slot name="actions" v-bind="{ hide, withHide }" />
+        <slot name="actions" v-bind="{ hide, withHide }"></slot>
       </component>
     </div>
   </BaseLayer>

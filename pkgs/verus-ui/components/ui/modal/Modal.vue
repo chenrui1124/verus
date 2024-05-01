@@ -25,8 +25,10 @@ defineSlots<{
     :state
     @cancel="hide"
     disableTopLayer
-    enterFromClass="scale-90 opacity-0"
-    leaveToClass="scale-90 opacity-0"
+    enterFromClass="scale-110 opacity-0"
+    leaveToClass="scale-110 opacity-0"
+    enterActiveClass="ease-braking"
+    leaveActiveClass="ease-braking"
     :style="{ width }"
     class="fixed inset-0 z-50 m-auto rounded-v2 border-none bg-bsc p-6 text-sm/6 text-on-bsc transition duration-300"
   >
