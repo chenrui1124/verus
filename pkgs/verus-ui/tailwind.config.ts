@@ -1,11 +1,8 @@
 import type { Config } from 'tailwindcss'
 
-import { addDynamicIconSelectors } from '@iconify/tailwind'
-import { verus } from '@verus-ui/theme'
+import preset from '@verus-ui/theme'
 
 export default {
   content: ['**/*.{vue,ts,tsx}'],
-  theme: verus.theme,
-  plugins: [addDynamicIconSelectors({ prefix: 'i' }), verus.plugin()],
-  corePlugins: { preflight: false }
+  presets: [preset]
 } satisfies Config

@@ -18,7 +18,6 @@ export default {
     'leave-to-class'
   ],
   bracketSameLine: false,
-  jsxBracketSameLine: true,
   jsxSingleQuote: true,
   printWidth: 100,
   semi: false,

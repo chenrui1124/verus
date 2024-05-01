@@ -1,8 +1,8 @@
-export function htmlAttribute(value: string | undefined, condition: boolean): string | undefined
+export function htmlAttribute<T extends string>(value: T | undefined, condition: any): T | undefined
 
 export function htmlAttribute(value: boolean | undefined): '' | undefined
 
-export function htmlAttribute(value: string | boolean | undefined, condition?: boolean) {
+export function htmlAttribute(value: string | boolean | undefined, condition?: any) {
   if (typeof value == 'string') {
     return condition ? value : void 0
   }
