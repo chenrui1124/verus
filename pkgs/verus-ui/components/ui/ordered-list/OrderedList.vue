@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import type { VNode } from 'vue'
-import type { OrderedListProps } from '.'
+import type { OrderedListProps, OrderedListSlots } from '.'
+
+import { withPrefix } from '@verus-ui/common'
+
+defineOptions({ name: withPrefix('OrderedList') })
 
 const { marker = 'arabic' } = defineProps<OrderedListProps>()
 
-const slots = defineSlots<{ default(): any }>()
+const slots = defineSlots<OrderedListSlots>()
 
 function DefaultSlot() {
   if (slots.default?.()) {
@@ -23,9 +27,9 @@ function DefaultSlot() {
 
 <template>
   <ol
+    data-name="OrderedList"
     :style="{ width }"
     :class="[
-      $style['v-list'],
       'm-0 ml-10 list-none space-y-4 p-0 text-sm/6 text-on-bsc',
       '*:mt-1 *:transition-colors *:duration-300',
       '*:before:-my-1 *:before:-ml-9 *:before:mr-3 *:before:inline-block *:before:size-6 *:before:rounded-full *:before:bg-on-bsc *:before:py-1 *:before:text-center *:before:text-xs/6 *:before:text-bsc *:before:transition-colors *:before:duration-300',
@@ -38,12 +42,12 @@ function DefaultSlot() {
   </ol>
 </template>
 
-<style module>
-.v-list {
+<style>
+[data-name='OrderedList'] {
   counter-reset: marker;
-}
 
-.v-list > * {
-  counter-increment: marker;
+  & > * {
+    counter-increment: marker;
+  }
 }
 </style>

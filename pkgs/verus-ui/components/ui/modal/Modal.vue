@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import type { ModalProps } from '.'
+import type { ModalProps, ModalSlots } from '.'
 
-import { BaseLayer, useOverlay, useVisible } from '@verus-ui/common'
+import { BaseModal, useOverlay, useVisible, withPrefix } from '@verus-ui/common'
+
+defineOptions({ name: withPrefix('Modal') })
 
 const { width = '24rem' } = defineProps<ModalProps>()
 
@@ -12,19 +14,15 @@ const { state, show, hide } = useVisible({
   onBeforeClose: hideOverlay
 })
 
-defineSlots<{
-  trigger(props: { show: typeof show }): any
-  default(props: { hide: typeof hide }): any
-}>()
+defineSlots<ModalSlots>()
 </script>
 
 <template>
   <slot name="trigger" v-bind="{ show }" />
 
-  <BaseLayer
+  <BaseModal
     :state
     @cancel="hide"
-    disableTopLayer
     enterFromClass="scale-110 opacity-0"
     leaveToClass="scale-110 opacity-0"
     enterActiveClass="ease-braking"
@@ -33,5 +31,5 @@ defineSlots<{
     class="fixed inset-0 z-50 m-auto rounded-v2 border-none bg-bsc p-6 text-sm/6 text-on-bsc transition duration-300"
   >
     <slot v-bind="{ hide }" />
-  </BaseLayer>
+  </BaseModal>
 </template>

@@ -2,10 +2,10 @@
 import type { TextFieldModel, TextFieldProps } from '.'
 
 import { computed } from 'vue'
-import { BaseIcon, htmlAttribute } from '@verus-ui/common'
+import { BaseIcon, htmlAttribute, withPrefix } from '@verus-ui/common'
 import { EACH_TYPE } from '.'
 
-defineOptions({ inheritAttrs: false })
+defineOptions({ name: withPrefix('TextField'), inheritAttrs: false })
 
 const { type = 'text', variant = 'outlined', validator } = defineProps<TextFieldProps>()
 
@@ -26,11 +26,11 @@ const isValid = validator
     })
   : true
 
-const emit = defineEmits<{ submit: [e: Event] }>()
+const emit = defineEmits<{ submit: [payload: Event] }>()
 
-function onSubmit(e: Event) {
+function onSubmit(evt: Event) {
   if (typeof isValid == 'object' && (!isValid.value || !modelValue.value)) return
-  emit('submit', e)
+  emit('submit', evt)
 }
 </script>
 
@@ -40,14 +40,10 @@ function onSubmit(e: Event) {
       @submit.prevent="onSubmit"
       :type="_type"
       :data-invalid="htmlAttribute(isValid)"
-      :pattern
-      :placeholder
-      :disabled
-      :autocomplete
       v-bind="$attrs"
       v-model="modelValue"
       :class="[
-        'peer/v-text-field box-border h-10 w-full rounded-inherit border-v1 border-solid text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
+        'peer/text-field box-border h-10 w-full rounded-inherit border-1.2 border-solid text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
         {
           [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]:
             variant === 'solid',
@@ -66,7 +62,7 @@ function onSubmit(e: Event) {
       :is="icon && BaseIcon"
       :name="icon"
       size="lg"
-      class="absolute inset-y-0 left-2 my-auto text-on-pri-var transition-colors duration-300 peer-invalid/v-text-field:text-on-err peer-focus/v-text-field:text-pri"
+      class="absolute inset-y-0 left-2 my-auto text-on-pri-var transition-colors duration-300 peer-invalid/text-field:text-on-err peer-focus/text-field:text-pri"
     />
 
     <Transition enterFromClass="scale-0" leaveToClass="scale-0">

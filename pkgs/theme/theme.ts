@@ -48,7 +48,8 @@ export default {
       inherit: 'inherit'
     },
     borderWidth: {
-      v1: '1.2px'
+      1.2: '1.2px',
+      1.6: '1.6px'
     },
     keyframes: {
       loading: {

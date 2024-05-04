@@ -1,4 +1,4 @@
-export function htmlAttribute<T extends string>(value: T | undefined, condition: any): T | undefined
+export function htmlAttribute<T>(value: T, condition: any): T | undefined
 
 export function htmlAttribute(value: boolean | undefined): '' | undefined
 

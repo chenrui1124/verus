@@ -1,6 +1,6 @@
 import type { OrReadonly } from 'mm3'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import Iterate from './Iterate.vue'
 
 export type IterateProps<T> = {
@@ -8,4 +8,4 @@ export type IterateProps<T> = {
   init?: number
 }
 
-export const VIterate = toPlugin(Iterate)
+export const VIterate = useInstall(Iterate)

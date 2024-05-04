@@ -1,18 +1,23 @@
-import type { VerusProps } from '@verus-ui/types'
+import type { Variant } from '@verus-ui/ts'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import FloatButton from './FloatButton.vue'
 
-export type FloatButtonProps = {
+export interface FloatButtonProps {
   icon: string
   absolute?: boolean
   disabled?: boolean
   /**
    * @default 'tonal'
    */
-  variant?: VerusProps.Variant<'solid' | 'tonal'>
+  variant?: Variant<'solid' | 'tonal'>
   right?: string
   bottom?: string
 }
 
-export const VFloatButton = toPlugin(FloatButton)
+export const VFloatButton = useInstall(
+  FloatButton as unknown as new () => {
+    $props: FloatButtonProps
+    $emit: (name: 'click', payload?: MouseEvent) => void
+  }
+)

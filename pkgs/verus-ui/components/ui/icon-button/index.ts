@@ -1,10 +1,15 @@
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import IconButton from './IconButton.vue'
 
-export type IconButtonProps = {
+export interface IconButtonProps {
   icon: string
   disabled?: boolean
   danger?: boolean
 }
 
-export const VIconButton = toPlugin(IconButton)
+export const VIconButton = useInstall(
+  IconButton as unknown as new () => {
+    $props: IconButtonProps
+    $emit: (name: 'click', payload?: MouseEvent) => void
+  }
+)

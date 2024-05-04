@@ -5,24 +5,24 @@ import { twMerge } from 'tailwind-merge'
 import { useRender, useVisible } from '@verus-ui/common'
 
 function useOverlayFactory() {
-  const { state, show, hide } = useVisible()
-
   let SingleOverlay: DefineSetupFnComponent<any>
-
-  let cls: string | undefined
-
-  const listener = reactive<{ onClick?: (evt: MouseEvent) => void }>({ onClick: void 0 })
+  let useVisibleReturn: ReturnType<typeof useVisible>
+  let props: { classes?: string; onClick?: (evt: MouseEvent) => void }
 
   function initOverlay() {
     SingleOverlay = defineComponent(function () {
+      props = reactive({})
+      useVisibleReturn = useVisible()
+      const { state } = useVisibleReturn
+
       return () => (
         <Transition enterFromClass='opacity-0' leaveToClass='opacity-0'>
           {state.value && (
             <div
-              {...listener}
+              onClick={props.onClick}
               class={twMerge(
                 'fixed inset-0 z-30 bg-black/48 backdrop-blur-sm transition duration-700 ease-out',
-                cls
+                props.classes
               )}
             />
           )}
@@ -36,19 +36,19 @@ function useOverlayFactory() {
     if (!SingleOverlay) initOverlay()
 
     function showOverlay() {
-      cls = loadedCls
-      show()
+      props.classes = loadedCls
+      useVisibleReturn.show()
     }
 
     function showOverlayWithListener(callback: (evt: MouseEvent) => void) {
-      listener.onClick = callback
+      props.onClick = callback
       showOverlay()
     }
 
     function hideOverlay() {
-      hide()
-      listener.onClick = void 0
-      cls = undefined
+      useVisibleReturn.hide()
+      props.onClick = void 0
+      props.classes = void 0
     }
 
     return { showOverlay, showOverlayWithListener, hideOverlay }

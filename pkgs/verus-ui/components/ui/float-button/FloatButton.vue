@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import type { FloatButtonProps } from '.'
 
-import { BaseIcon, useClassName } from '@verus-ui/common'
+import { BaseIcon, useClassName, withPrefix } from '@verus-ui/common'
+
+defineOptions({ name: withPrefix('FloatButton') })
 
 const { variant = 'tonal', right = '1.5rem', bottom = '1.5rem' } = defineProps<FloatButtonProps>()
 
-const emit = defineEmits<{ click: [evt: Event] }>()
+const emit = defineEmits<{ click: [payload?: MouseEvent] }>()
 
 const [cls, activate] = useClassName()
 
-function onClick(event: Event) {
+function onClick(event: MouseEvent) {
   activate(150)
   emit('click', event)
 }

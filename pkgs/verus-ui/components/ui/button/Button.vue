@@ -1,53 +1,60 @@
 <script setup lang="ts">
-import type { ButtonProps } from '.'
+import type { ButtonProps, ButtonSlots } from '.'
 
-import { computed } from 'vue'
-import { BaseIcon, htmlAttribute } from '@verus-ui/common'
+import { computed, useAttrs } from 'vue'
+import { BaseIcon, cm, htmlAttribute, withPrefix } from '@verus-ui/common'
 
-const { variant = 'tonal', loading, href } = defineProps<ButtonProps>()
+defineOptions({ name: withPrefix('Button') })
 
-const _variant = computed(() =>
-  ['solid', 'outlined', 'tonal', 'clean'].includes(variant) ? variant : 'tonal'
-)
+const { variant = 'tonal', loading } = defineProps<ButtonProps>()
 
-const emit = defineEmits<{ click: [evt: MouseEvent] }>()
+const emit = defineEmits<{ click: [payload?: MouseEvent] }>()
 
 const listener = computed(() => {
-  return href ? {} : { click: (evt: MouseEvent) => void (loading || emit('click', evt)) }
+  return href ? {} : { click: (payload: MouseEvent) => void (loading || emit('click', payload)) }
 })
 
-defineSlots<{ default(): string }>()
+const { href, ...others } = useAttrs()
+
+defineSlots<ButtonSlots>()
 </script>
 
 <template>
   <component
     @="listener"
+    :="others"
     :is="href ? 'a' : 'button'"
+    :disabled="disabled"
     :type="htmlAttribute('button', !href)"
-    :disabled
     :tabindex="htmlAttribute('-1', loading)"
     :href="htmlAttribute(href, !!href)"
     :data-danger="htmlAttribute(danger)"
     :class="[
+      'group/v-button',
       'relative inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none bg-on-bsc px-4 text-sm/9 tracking-wide text-bsc transition duration-300',
       'before:v-shade before:transition before:duration-300',
       'focus-visible:v-outline data-[danger]:focus-visible:v-outline-danger',
-      {
-        'bg-pri text-on-pri before:border-v1 before:border-solid before:border-white/32 before:border-b-black/32 hover:before:bg-bsc/8 focus:text-on-pri/72 focus:before:border-transparent focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
-          _variant === 'solid',
+      'disabled:!text-on-bsc disabled:v-disabled',
+      cm({
+        'bg-pri text-on-pri before:border-1.2 before:border-solid before:border-white/32 before:border-b-black/32 hover:before:bg-bsc/8 focus:text-on-pri/72 focus:before:border-transparent focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
+          'solid',
         'bg-pri-var text-on-pri-var hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12 data-[danger]:bg-err-var data-[danger]:text-on-err-var':
-          _variant === 'tonal',
-        'before:border-v1 before:border-solid before:border-otl focus:before:border-current':
-          _variant === 'outlined',
+          'tonal',
+        'before:border-1.2 before:border-solid before:border-otl focus:before:border-current':
+          'outlined',
         'bg-transparent text-pri hover:before:bg-pri/8 focus:before:bg-pri/12 data-[danger]:text-err data-[danger]:hover:before:bg-err/8 data-[danger]:focus:before:bg-err/12':
-          ['outlined', 'clean'].includes(_variant),
-        uppercase,
-        'pointer-events-none': loading,
+          ['outlined', 'clean'],
+        'disabled:!bg-dis': ['solid', 'tonal']
+      })
+        .rollback('tonal')
+        .match(variant),
+      {
         'no-underline': href,
-        'disabled:shadow-none': _variant === 'solid',
-        'disabled:!bg-dis': ['solid', 'tonal'].includes(_variant)
-      },
-      'disabled:!text-on-bsc disabled:v-disabled'
+        'pointer-events-none': loading,
+        capitalize: textTransform === 'capitalize',
+        uppercase: textTransform === 'uppercase',
+        lowercase: textTransform === 'lowercase'
+      }
     ]"
   >
     <component

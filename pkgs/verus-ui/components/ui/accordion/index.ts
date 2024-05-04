@@ -1,18 +1,30 @@
-import type { VerusProps } from '@verus-ui/types'
+import type { Status, Variant } from '@verus-ui/ts'
 
-import { toPlugin } from '@verus-ui/common'
-import Accordion from './Accordion.vue'
+import { useInstall } from '@verus-ui/common'
+import Accordion from './Accordion'
 
-export type AccordionProps = {
+export interface AccordionProps {
   init?: boolean
   icon?: string
   title?: string
   width?: string
   /**
-   * @default 'outlined'
+   * @default 'normal'
    */
-  variant?: VerusProps.Variant<'solid' | 'outlined'>
-  danger?: boolean
+  status?: Status<'normal' | 'error'>
+  /**
+   * @default 'solid'
+   */
+  variant?: Variant<'solid' | 'outlined'>
 }
 
-export const VAccordion = toPlugin(Accordion)
+export interface AccordionSlots {
+  default: void
+}
+
+export const VAccordion = useInstall(
+  Accordion as unknown as new () => {
+    $props: AccordionProps
+    $slots: AccordionSlots
+  }
+)

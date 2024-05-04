@@ -1,10 +1,10 @@
-import type { HTMLAttributes, PropType, SetupContext } from 'vue'
-import type { TagProps } from '.'
+import type { FunctionalComponent, HTMLAttributes } from 'vue'
+import type { TagProps, TagSlots } from '.'
 
 import { twMerge } from 'tailwind-merge'
-import { BaseIcon } from '@verus-ui/common'
+import { BaseIcon, useLiteralsProp, withPrefix } from '@verus-ui/common'
 
-function Tag({ icon, status }: TagProps, { slots, attrs }: SetupContext) {
+const Tag: FunctionalComponent<TagProps, {}, TagSlots> = ({ icon, status }, { slots, attrs }) => {
   const { class: className, ...others } = attrs
 
   return (
@@ -22,7 +22,8 @@ function Tag({ icon, status }: TagProps, { slots, attrs }: SetupContext) {
           error: 'bg-err-ctr text-err'
         }[status!],
         className as HTMLAttributes['class']
-      )}>
+      )}
+    >
       {icon && <BaseIcon name={icon} size='sm' class='-ml-1' />}
       {slots.default?.()}
     </span>
@@ -31,11 +32,13 @@ function Tag({ icon, status }: TagProps, { slots, attrs }: SetupContext) {
 
 Tag.props = {
   icon: String,
-  status: {
-    type: String as PropType<TagProps['status']>,
-    default: 'default'
-  }
+  status: useLiteralsProp<TagProps['status']>({
+    default: 'default',
+    optional: ['default', 'primary', 'success', 'warning', 'error']
+  })
 }
+
+Tag.displayName = withPrefix('Tag')
 
 Tag.inheritAttrs = false
 

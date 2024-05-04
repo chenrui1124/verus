@@ -2,12 +2,9 @@ import type { FunctionalComponent, HTMLAttributes, PropType } from 'vue'
 
 import { twMerge } from 'tailwind-merge'
 
-type BaseIconProps = {
+interface BaseIconProps extends HTMLAttributes {
   name: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
-} & {
-  style?: HTMLAttributes['style']
-  class?: HTMLAttributes['class']
 }
 
 const BaseIcon: FunctionalComponent<BaseIconProps> = ({ name, size }, { attrs }) => {
@@ -19,10 +16,8 @@ const BaseIcon: FunctionalComponent<BaseIconProps> = ({ name, size }, { attrs })
       class={twMerge(
         name,
         'pointer-events-none inline-block',
-        // size === 'sm'
-        'min-h-4 min-w-4',
         {
-          sm: '',
+          sm: 'min-h-4 min-w-4',
           md: 'min-h-5 min-w-5',
           lg: 'min-h-6 min-w-6',
           xl: 'min-h-7 min-w-7'

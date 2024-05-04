@@ -1,7 +1,10 @@
 <script setup lang="ts" generic="T">
 import type { IterateProps } from '.'
 
+import { withPrefix } from '@verus-ui/common'
 import { computed, ref } from 'vue'
+
+defineOptions({ name: withPrefix('Iterate') })
 
 const { each, init = 0 } = defineProps<IterateProps<T>>()
 
@@ -24,5 +27,5 @@ defineSlots<{
 </script>
 
 <template>
-  <slot v-bind="{ index, item, next }" />
+  <slot v-bind="{ index, item, next }"></slot>
 </template>

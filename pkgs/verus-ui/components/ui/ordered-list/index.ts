@@ -1,9 +1,18 @@
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import OrderedList from './OrderedList.vue'
 
-export type OrderedListProps = {
+export interface OrderedListProps {
   width?: string
   marker?: 'arabic' | 'roman'
 }
 
-export const VOrderedList = toPlugin(OrderedList)
+export interface OrderedListSlots {
+  default(): any
+}
+
+export const VOrderedList = useInstall(
+  OrderedList as unknown as new () => {
+    $props: OrderedListProps
+    $slots: OrderedListSlots
+  }
+)

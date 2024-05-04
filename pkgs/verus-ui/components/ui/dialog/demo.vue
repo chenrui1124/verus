@@ -12,8 +12,8 @@ import { lorem } from 'mm3'
       {{ lorem('sc').repeat(7) }}
 
       <template #actions="{ hide }">
-        <VButton @click="hide" variant="solid" uppercase>取消</VButton>
         <VButton @click="hide" variant="tonal" uppercase>确认</VButton>
+        <VButton @click="hide" variant="solid" uppercase autofocus>取消</VButton>
       </template>
     </VDialog>
 
@@ -25,8 +25,8 @@ import { lorem } from 'mm3'
       {{ lorem('sc') }}
 
       <template #actions="{ hide }">
-        <VButton @click="hide" danger variant="solid" uppercase>取消</VButton>
         <VButton @click="hide" danger variant="tonal" uppercase>确认</VButton>
+        <VButton @click="hide" danger variant="solid" uppercase autofocus>取消</VButton>
       </template>
     </VDialog>
   </div>

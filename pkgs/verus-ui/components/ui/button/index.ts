@@ -1,23 +1,33 @@
-import type { AnchorHTMLAttributes } from 'vue'
-import type { VerusProps } from '@verus-ui/types'
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'vue'
+import type { Either } from 'mm3'
+import type { Variant } from '@verus-ui/ts'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import Button from './Button.vue'
 
-export type ButtonProps = {
+export interface ButtonProps {
   label?: string
   icon?: string
   appendIcon?: string
   loading?: boolean
   /**
-   * @default 'solid'
+   * @default 'tonal'
    */
-  variant?: VerusProps.Variant
+  variant?: Variant
   danger?: boolean
-  uppercase?: boolean
   disabled?: boolean
-  href?: AnchorHTMLAttributes['href']
-  target?: AnchorHTMLAttributes['target']
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize'
 }
 
-export const VButton = toPlugin(Button)
+export interface ButtonSlots {
+  default: void
+}
+
+export const VButton = useInstall(
+  Button as unknown as new () => {
+    $props: ButtonProps &
+      Either<Pick<AnchorHTMLAttributes, 'href' | 'target'>, Pick<ButtonHTMLAttributes, 'disabled'>>
+    $emit: (name: 'click', payload?: MouseEvent) => void
+    $slots: ButtonSlots
+  }
+)

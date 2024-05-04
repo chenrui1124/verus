@@ -1,12 +1,20 @@
-import type { VerusProps } from '@verus-ui/types'
+import type { Position } from '@verus-ui/ts'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import Tooltip from './Tooltip'
 
-export type TooltipProps = {
+export interface TooltipProps {
   label: string
-  position?: VerusProps.Position
-  labelTransform?: VerusProps.TextTransform
+  position?: Position
 }
 
-export const VTooltip = toPlugin(Tooltip)
+export interface TooltipSlots {
+  default(): void
+}
+
+export const VTooltip = useInstall(
+  Tooltip as unknown as new () => {
+    $props: TooltipProps
+    $slots: TooltipSlots
+  }
+)

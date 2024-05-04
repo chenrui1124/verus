@@ -1,16 +1,21 @@
 import type { OrReadonly } from 'mm3'
-import type { VerusProps } from '@verus-ui/types'
+import type { Direction } from '@verus-ui/ts'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import SegmentedButton from './SegmentedButton.vue'
 
-export type SegmentedButtonProps = {
+export interface SegmentedButtonProps {
   each: OrReadonly<(string | { icon?: string; label: string; value: string })[]>
-  direction?: VerusProps.Direction
+  direction?: Direction
 }
 
-export type SegmentedButtonModel = {
-  modelValue: string
+export interface SegmentedButtonModel {
+  modelValue: string | undefined
 }
 
-export const VSegmentedButton = toPlugin(SegmentedButton)
+export const VSegmentedButton = useInstall(
+  SegmentedButton as new () => {
+    $props: SegmentedButtonProps & SegmentedButtonModel
+    $emit: (name: 'update:modelValue', modelValue: SegmentedButtonModel['modelValue']) => void
+  }
+)

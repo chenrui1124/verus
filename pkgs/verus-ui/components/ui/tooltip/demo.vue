@@ -3,13 +3,9 @@ const position = ['top', 'right', 'bottom', 'left'] as const
 </script>
 
 <template>
-  <div class="flex gap-2">
-    <VTooltip v-for="i in position" :label="i.toLocaleUpperCase()" :position="i">
-      <VButton> {{ i.toLocaleUpperCase() }} </VButton>
+  <VIterate :each="position" #="{ item, next }">
+    <VTooltip label="It's Tooltip" :position="item">
+      <VButton @click="next" uppercase>{{ item }}</VButton>
     </VTooltip>
-  </div>
-
-  <v-tooltip position="123" label="lorem">
-    <v-button>HELLO</v-button>
-  </v-tooltip>
+  </VIterate>
 </template>

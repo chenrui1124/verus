@@ -1,6 +1,6 @@
 import type { Slot, VNode } from 'vue'
 
-export function getFirstVNode(slot: Slot | undefined): VNode | null {
+export function useFirstVNode(slot: Slot | ((...arg: any[]) => any) | undefined): VNode | null {
   if (!slot) {
     return null
   }

@@ -10,6 +10,6 @@ import { DisplayStand } from '@verus-ui/common'
     ]"
     #="{ props }"
   >
-    <VIconButton v-bind="props" icon="i-ri-delete-back-2-fill" />
+    <VIconButton v-bind="props" @click="() => void 0" icon="i-ri-delete-back-2-fill" />
   </DisplayStand>
 </template>

@@ -1,29 +1,37 @@
 import type { InputHTMLAttributes } from 'vue'
-import type { VerusProps } from '@verus-ui/types'
+import type { Variant } from '@verus-ui/ts'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import TextField from './TextField.vue'
 
 export const EACH_TYPE = ['text', 'password', 'email', 'tel', 'url'] as const
 
-export type TextFieldProps = {
-  autocomplete?: InputHTMLAttributes['autocomplete']
+export interface TextFieldProps {
   disabled?: boolean
-  pattern?: InputHTMLAttributes['pattern']
-  placeholder?: string
   type?: (typeof EACH_TYPE)[number]
   icon?: string
   clearable?: boolean
   /**
    * @default 'outlined'
    */
-  variant?: VerusProps.Variant<'solid' | 'outlined'>
+  variant?: Variant<'solid' | 'outlined'>
   validator?: (modelValue: string | undefined) => boolean
 }
 
-export type TextFieldModel = {
+export interface TextFieldModel {
   modelValue: string | undefined
   valid: boolean | undefined
 }
 
-export const VTextField = toPlugin(TextField)
+export const VTextField = useInstall(
+  TextField as unknown as new () => {
+    $props: TextFieldProps &
+      TextFieldModel &
+      Pick<InputHTMLAttributes, 'autocomplete' | 'pattern' | 'placeholder'>
+    $emit: {
+      (name: 'update:modelValue', modelValue: TextFieldModel['modelValue']): void
+      (name: 'update:valid', modelValue: TextFieldModel['valid']): void
+      (name: 'submit', payload?: Event): void
+    }
+  }
+)

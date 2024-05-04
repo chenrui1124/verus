@@ -1,7 +1,11 @@
 <script setup lang="ts">
+import type { ScaffoldSlots } from '.'
+
 import { ref } from 'vue'
-import ScaffoldSidebar from './include/ScaffoldSidebar.vue'
-import ScaffoldSidebarSwitch from './include/ScaffoldSidebarSwitch.vue'
+import { withPrefix } from '@verus-ui/common'
+import { ScaffoldSidebar, ScaffoldSidebarSwitch } from './include'
+
+defineOptions({ name: withPrefix('Scaffold') })
 
 const sidebarOpen = ref<-1 | 0 | 1>(-1)
 
@@ -19,22 +23,17 @@ let toggleSidebar = () => {
   toggleSidebar()
 }
 
-defineSlots<{
-  sidebar(): any
-  default(): any
-}>()
+defineSlots<ScaffoldSlots>()
 </script>
 
 <template>
   <div
-    :class="[
-      'flex h-dvh w-screen bg-bsc text-sm text-on-bsc transition-colors duration-300 max-sm:overflow-x-hidden',
-      $style['v-scaffold']
-    ]"
+    data-name="Scaffold"
     ref="scaffold"
+    class="flex h-dvh w-screen bg-bsc text-sm text-on-bsc transition-colors duration-300 max-sm:overflow-x-hidden"
   >
     <ScaffoldSidebar v-if="$slots.sidebar" v-model="sidebarOpen">
-      <slot name="sidebar" />
+      <slot name="sidebar"></slot>
     </ScaffoldSidebar>
 
     <div
@@ -53,21 +52,21 @@ defineSlots<{
       />
 
       <main class="p-4">
-        <slot />
+        <slot></slot>
       </main>
     </div>
   </div>
 </template>
 
-<style module>
+<style>
 @media (min-width: 640px) {
-  .v-scaffold {
+  [data-name='Scaffold'] {
     --sidebar-init: 1;
   }
 }
 
 @media not all and (min-width: 640px) {
-  .v-scaffold {
+  [data-name='Scaffold'] {
     --sidebar-init: 0;
   }
 }

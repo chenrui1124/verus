@@ -1,3 +1,7 @@
 export { useClassName } from './useClassName'
+export { useFirstVNode } from './useFirstVNode'
+export { useInstall } from './useInstall'
+export { useLiteralsProp } from './useLiteralsProp'
 export { useRender } from './useRender'
 export { useVisible } from './useVisible'
+export { useOverlay } from './useOverlay'

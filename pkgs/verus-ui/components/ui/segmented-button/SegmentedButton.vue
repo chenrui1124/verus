@@ -2,7 +2,9 @@
 import type { SegmentedButtonModel, SegmentedButtonProps } from '.'
 
 import { computed } from 'vue'
-import { BaseIcon } from '@verus-ui/common'
+import { BaseIcon, withPrefix } from '@verus-ui/common'
+
+defineOptions({ name: withPrefix('SegmentedButton') })
 
 const { each, direction = 'horizontal' } = defineProps<SegmentedButtonProps>()
 
@@ -14,7 +16,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
 <template>
   <div
     :class="[
-      'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-v1 before:border-solid before:border-otl',
+      'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-1.2 before:border-solid before:border-otl',
       direction === 'vertical' ? 'inline-grid grid-cols-1' : 'inline-flex'
     ]"
   >
@@ -24,8 +26,8 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
       :class="[
         'relative cursor-pointer items-center bg-transparent px-4 text-otl transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
         direction === 'vertical'
-          ? 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-v1 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
-          : '-mx-[0.6px] inline-flex justify-center border-v1 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit'
+          ? 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-1.2 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
+          : '-mx-[0.6px] inline-flex justify-center border-1.2 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit'
       ]"
     >
       <input

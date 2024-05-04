@@ -45,13 +45,13 @@ defineSlots<{ default(props: { props: any }): any }>()
 </script>
 
 <template>
-  <div class="flex flex-col rounded-v3 border-v1 border-solid border-otl *:p-6">
+  <div class="flex flex-col rounded-v3 border-solid border-otl *:p-6">
     <div class="relative flex items-center justify-center">
       <slot v-bind="{ props }" />
     </div>
 
     <div
-      class="grid grid-cols-[auto_1fr] items-center gap-4 border-0 border-t-v1 border-solid border-inherit"
+      class="grid grid-cols-[auto_1fr] items-center gap-4 border-0 border-t-[1.2px] border-solid border-inherit"
     >
       <template v-for="option in each">
         <span class="select-none text-sm text-pri transition-colors duration-300">

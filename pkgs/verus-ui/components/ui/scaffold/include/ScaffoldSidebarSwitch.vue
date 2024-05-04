@@ -18,5 +18,5 @@ defineEmits<{ click: [] }>()
           sidebarOpen == -1
       }
     ]"
-  />
+  ></button>
 </template>

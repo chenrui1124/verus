@@ -1,16 +1,21 @@
 import type { OrReadonly } from 'mm3'
 
-import { toPlugin } from '@verus-ui/common'
+import { useInstall } from '@verus-ui/common'
 import Radios from './Radios.vue'
 
-export type RadiosProps = {
+export interface RadiosProps {
   each: OrReadonly<(string | { icon?: string; label: string; value: string })[]>
   width?: string
   compact?: boolean
 }
 
-export type RadiosModel = {
+export interface RadiosModel {
   modelValue: string | undefined
 }
 
-export const VRadios = toPlugin(Radios)
+export const VRadios = useInstall(
+  Radios as unknown as new () => {
+    $props: RadiosProps & RadiosModel
+    $emit: (name: 'update:modelValue', modelValue: RadiosModel['modelValue']) => void
+  }
+)
