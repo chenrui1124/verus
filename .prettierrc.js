@@ -2,6 +2,7 @@
 export default {
   plugins: ['prettier-plugin-tailwindcss'],
   tailwindConfig: './pkgs/verus-ui/tailwind.config.ts',
+  tailwindFunctions: ['clsx', 'twMerge'],
   bracketSameLine: false,
   jsxSingleQuote: true,
   printWidth: 100,
