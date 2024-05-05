@@ -15,16 +15,23 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
 
 <template>
   <div
+    :style="{
+      gridTemplateColumns:
+        direction === 'vertical'
+          ? void 0
+          : `repeat(${each.length}, ${uniformWidth ? '1fr' : 'auto'})`
+    }"
     :class="[
       'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-1.2 before:border-solid before:border-otl',
-      direction === 'vertical' ? 'inline-grid grid-cols-1' : 'inline-flex'
+      direction === 'vertical' ? 'inline-grid grid-cols-1' : 'inline-grid grid-rows-1'
     ]"
   >
     <label
       v-for="({ value, icon, label }, index) in _each"
       :key="index"
       :class="[
-        'relative cursor-pointer items-center bg-transparent px-4 text-otl transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
+        'relative box-border h-9 cursor-pointer items-center border-otl bg-transparent px-4 text-on-bsc transition duration-300 hover:bg-pri/8',
+        'has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
         direction === 'vertical'
           ? 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-1.2 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
           : '-mx-[0.6px] inline-flex justify-center border-1.2 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit'
@@ -32,19 +39,19 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
     >
       <input
         type="radio"
-        :value="value"
+        :value
         v-model="modelValue"
-        class="pointer-events-none absolute inset-0 -z-10 m-auto opacity-0 outline-none"
+        class="pointer-events-none absolute m-0 size-0 appearance-none p-0 opacity-0 outline-none"
       />
       <component
         :is="icon ? BaseIcon : void 0"
         :name="icon"
         size="sm"
-        :class="['-ml-1 mr-2', { 'col-start-1': direction === 'vertical' }]"
+        :class="['-ml-0.5 mr-3', { 'col-start-1': direction === 'vertical' }]"
       />
       <span
         :class="[
-          'pointer-events-none h-9 select-none text-left text-sm/9',
+          'pointer-events-none mb-px select-none text-left text-sm',
           { 'col-start-2': direction === 'vertical' }
         ]"
       >

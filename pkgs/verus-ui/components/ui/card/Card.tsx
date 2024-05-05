@@ -11,7 +11,7 @@ const Card: FunctionalComponent<CardProps, {}, CardSlots> = (
     style={{ width }}
     data-danger={danger}
     class={[
-      'group/card relative flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300 *:duration-inherit',
+      'group/card relative box-border flex flex-col gap-4 rounded-v3 p-6 transition-colors duration-300 *:duration-inherit',
       variant === 'solid'
         ? 'bg-pri-ctr data-[danger]:bg-err-ctr'
         : 'bg-bsc before:v-shade before:border-1.2 before:border-solid before:border-pri data-[danger]:before:border-err'

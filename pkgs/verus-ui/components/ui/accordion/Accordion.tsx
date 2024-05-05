@@ -14,7 +14,7 @@ const Accordion = defineComponent<AccordionProps>(
           data-status={status}
           style={{ width }}
           class={[
-            'group/accordion relative rounded-v2 border-1.2 duration-500 ease-braking',
+            'group/accordion relative box-border rounded-v2 border-1.2 duration-500 ease-braking',
             variant === 'solid'
               ? 'bg-pri-ctr data-[status=error]:bg-err-ctr'
               : 'bg-bsc before:v-shade before:border-1.2 before:border-solid before:border-pri before:transition-colors before:duration-inherit before:ease-inherit data-[status=error]:before:border-err',

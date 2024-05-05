@@ -32,10 +32,10 @@ function DefaultSlot() {
     :class="[
       'm-0 ml-10 list-none space-y-4 p-0 text-sm/6 text-on-bsc',
       '*:mt-1 *:transition-colors *:duration-300',
-      '*:before:-my-1 *:before:-ml-9 *:before:mr-3 *:before:inline-block *:before:size-6 *:before:rounded-full *:before:bg-on-bsc *:before:py-1 *:before:text-center *:before:text-xs/6 *:before:text-bsc *:before:transition-colors *:before:duration-300',
+      '*:before:-my-1 *:before:-ml-9 *:before:mr-3 *:before:inline-block *:before:size-6 *:before:rounded-full *:before:bg-on-bsc *:before:py-1 *:before:text-center *:before:text-sm/6 *:before:text-bsc *:before:transition-colors *:before:duration-300',
       marker === 'roman'
         ? '*:before:content-[counter(marker,upper-roman)]'
-        : '*:before:font-semibold *:before:content-[counter(marker)]'
+        : '*:before:content-[counter(marker)]'
     ]"
   >
     <DefaultSlot />

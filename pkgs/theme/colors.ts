@@ -11,8 +11,8 @@ export const VERUS_COLOR = {
   },
   /* basic variant */
   'bsc-var': {
-    lt: 'rgb(245, 246, 247)',
-    dk: 'rgb(31, 32, 33)'
+    lt: 'rgb(235, 236, 237)',
+    dk: 'rgb(41, 42, 43)'
   },
   /* primary */
   pri: {

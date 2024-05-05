@@ -7,6 +7,7 @@ import SegmentedButton from './SegmentedButton.vue'
 export interface SegmentedButtonProps {
   each: OrReadonly<(string | { icon?: string; label: string; value: string })[]>
   direction?: Direction
+  uniformWidth?: boolean
 }
 
 export interface SegmentedButtonModel {

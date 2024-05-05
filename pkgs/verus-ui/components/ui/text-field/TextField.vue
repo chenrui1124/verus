@@ -39,11 +39,12 @@ function onSubmit(evt: Event) {
     <input
       @submit.prevent="onSubmit"
       :type="_type"
+      :disabled
       :data-invalid="htmlAttribute(isValid)"
       v-bind="$attrs"
       v-model="modelValue"
       :class="[
-        'peer/text-field box-border h-10 w-full rounded-inherit border-1.2 border-solid text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
+        'peer/text-field box-border h-10 w-full rounded-inherit border-1.2 border-solid pb-px text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
         {
           [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]:
             variant === 'solid',
@@ -62,7 +63,7 @@ function onSubmit(evt: Event) {
       :is="icon && BaseIcon"
       :name="icon"
       size="lg"
-      class="absolute inset-y-0 left-2 my-auto text-on-pri-var transition-colors duration-300 peer-invalid/text-field:text-on-err peer-focus/text-field:text-pri"
+      class="absolute inset-y-2 left-2 text-on-pri-var transition-colors duration-300 peer-invalid/text-field:text-on-err peer-focus/text-field:text-pri"
     />
 
     <Transition enterFromClass="scale-0" leaveToClass="scale-0">

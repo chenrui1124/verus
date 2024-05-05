@@ -27,7 +27,7 @@ export const VTextField = useInstall(
   TextField as unknown as new () => {
     $props: TextFieldProps &
       TextFieldModel &
-      Pick<InputHTMLAttributes, 'autocomplete' | 'pattern' | 'placeholder'>
+      Pick<InputHTMLAttributes, 'autocomplete' | 'pattern' | 'placeholder' | 'autofocus'>
     $emit: {
       (name: 'update:modelValue', modelValue: TextFieldModel['modelValue']): void
       (name: 'update:valid', modelValue: TextFieldModel['valid']): void

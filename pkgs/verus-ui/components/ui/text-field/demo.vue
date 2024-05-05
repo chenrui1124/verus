@@ -16,6 +16,6 @@ const modelValue = ref()
     ]"
     #="{ props }"
   >
-    <VTextField v-model="modelValue" v-bind="props" />
+    <VTextField v-model="modelValue" v-bind="props" @submit="console.log(1)" />
   </DisplayStand>
 </template>

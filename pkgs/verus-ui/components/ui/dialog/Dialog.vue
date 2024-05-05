@@ -45,7 +45,7 @@ defineSlots<DialogSlots>()
       max-height: calc(100vh - 8vmin);
       max-height: calc(100dvh - 8vmin);
     "
-    class="group/dialog fixed inset-0 z-30 m-auto grid grid-cols-1 rounded-v3 border-none bg-pri-ctr p-2 transition-all duration-500 ease-braking data-[danger]:bg-err-ctr"
+    class="group/dialog fixed inset-0 z-40 m-auto grid grid-cols-1 rounded-v3 border-none bg-pri-ctr p-2 transition-all duration-500 ease-braking data-[danger]:bg-err-ctr"
   >
     <div
       style="max-height: calc(100dvh - 3rem - 8vmin)"

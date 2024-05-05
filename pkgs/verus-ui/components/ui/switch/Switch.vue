@@ -24,8 +24,8 @@ function onChange(e: Event) {
 <template>
   <label
     :class="[
-      'group/switch relative inline-block h-7 w-12 cursor-pointer rounded-full transition-colors duration-300 has-[:focus-visible]:v-outline has-[:disabled]:v-disabled',
-      'before:v-shade before:border-1.6 before:border-solid before:transition-colors before:duration-inherit',
+      'group/switch relative box-border inline-block h-7 w-12 cursor-pointer rounded-full transition-colors duration-300 has-[:focus-visible]:v-outline has-[:disabled]:v-disabled',
+      'before:v-shade before:border-1.2 before:border-solid before:transition-colors before:duration-inherit',
       'after:pointer-events-none after:absolute after:inset-y-1 after:left-1 after:-m-2 after:size-9 after:rounded-inherit after:transition after:duration-inherit after:ease-braking',
       modelValue
         ? 'bg-pri before:border-transparent after:translate-x-5 focus-within:after:bg-pri/12 hover:after:bg-pri/8 has-[:disabled]:bg-dis'

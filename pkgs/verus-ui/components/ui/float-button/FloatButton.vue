@@ -25,7 +25,7 @@ function onClick(event: MouseEvent) {
       :disabled
       :style="{ right, bottom }"
       :class="[
-        'z-20 flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition duration-300 ease-braking focus-visible:v-outline active:scale-90 disabled:bg-dis disabled:text-on-bsc disabled:v-disabled sm:bottom-12 sm:right-12',
+        'z-20 box-border flex size-14 cursor-pointer items-center justify-center rounded-v2 border-none drop-shadow-xl transition duration-300 ease-braking focus-visible:v-outline active:scale-90 disabled:bg-dis disabled:text-on-bsc disabled:v-disabled sm:bottom-12 sm:right-12',
         cls`scale-90`,
         absolute ? 'absolute' : 'fixed',
         variant === 'tonal' ? 'bg-pri text-on-pri' : 'bg-pri-var text-on-pri-var'

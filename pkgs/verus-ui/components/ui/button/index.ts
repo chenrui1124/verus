@@ -16,6 +16,7 @@ export interface ButtonProps {
   variant?: Variant
   danger?: boolean
   disabled?: boolean
+  fontWeight?: 'normal' | 'medium' | 'semibold' | 'bold'
   textTransform?: 'uppercase' | 'lowercase' | 'capitalize'
 }
 
@@ -26,6 +27,7 @@ export interface ButtonSlots {
 export const VButton = useInstall(
   Button as unknown as new () => {
     $props: ButtonProps &
+      Pick<ButtonHTMLAttributes, 'autofocus'> &
       Either<Pick<AnchorHTMLAttributes, 'href' | 'target'>, Pick<ButtonHTMLAttributes, 'disabled'>>
     $emit: (name: 'click', payload?: MouseEvent) => void
     $slots: ButtonSlots

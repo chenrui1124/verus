@@ -6,7 +6,7 @@ import { BaseIcon, cm, htmlAttribute, withPrefix } from '@verus-ui/common'
 
 defineOptions({ name: withPrefix('Button') })
 
-const { variant = 'tonal', loading } = defineProps<ButtonProps>()
+const { variant = 'tonal', fontWeight = 'medium', loading } = defineProps<ButtonProps>()
 
 const emit = defineEmits<{ click: [payload?: MouseEvent] }>()
 
@@ -30,8 +30,7 @@ defineSlots<ButtonSlots>()
     :href="htmlAttribute(href, !!href)"
     :data-danger="htmlAttribute(danger)"
     :class="[
-      'group/v-button',
-      'relative inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none bg-on-bsc px-4 text-sm/9 tracking-wide text-bsc transition duration-300',
+      'font relative box-border inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none bg-on-bsc px-5 text-sm/9 tracking-wide text-bsc transition duration-300',
       'before:v-shade before:transition before:duration-300',
       'focus-visible:v-outline data-[danger]:focus-visible:v-outline-danger',
       'disabled:!text-on-bsc disabled:v-disabled',
@@ -53,7 +52,10 @@ defineSlots<ButtonSlots>()
         'pointer-events-none': loading,
         capitalize: textTransform === 'capitalize',
         uppercase: textTransform === 'uppercase',
-        lowercase: textTransform === 'lowercase'
+        lowercase: textTransform === 'lowercase',
+        'font-normal': fontWeight === 'normal',
+        'font-semibold': fontWeight === 'semibold',
+        'font-bold': fontWeight === 'bold'
       }
     ]"
   >

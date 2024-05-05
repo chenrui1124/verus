@@ -22,7 +22,7 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
       v-for="({ value, icon, label }, index) in _each"
       :key="index"
       :is="selectable ? 'label' : 'span'"
-      class="relative inline-flex h-7 items-center justify-center gap-2 rounded-v1 border-1.2 border-solid border-otl bg-bsc px-3 text-sm text-on-bsc transition duration-300 has-[:checked]:border-transparent has-[:checked]:bg-pri-var has-[:checked]:text-on-pri-var has-[:focus-visible]:v-outline"
+      class="relative box-border inline-flex h-8 items-center justify-center rounded-v1 border-1.2 border-solid border-otl bg-bsc px-4 text-sm text-on-bsc transition duration-300 has-[:checked]:border-transparent has-[:checked]:bg-pri-var has-[:checked]:text-on-pri-var has-[:focus-visible]:v-outline"
     >
       <component
         :is="selectable && 'input'"
@@ -36,7 +36,7 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
         :is="icon && BaseIcon"
         :name="icon"
         size="sm"
-        class="-ml-1 transition-colors duration-300"
+        class="-ml-0.5 mr-2 transition-colors duration-300"
       />
 
       {{ label }}
