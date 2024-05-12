@@ -1,16 +1,19 @@
 import type { Theme } from '@verus-ui/ts'
 
 import { useInstall } from '@verus-ui/common'
-import ThemeProvider from './ThemeProvider.vue'
+import ThemeProvider from './ThemeProvider'
 
 export type ThemeProviderProps = {
-  global?: boolean
   tag?: string
-  theme?: Theme
+  persist?: boolean
 }
 
 export interface ThemeProviderSlots {
   default(): any
+}
+
+export interface ThemeProviderModel {
+  theme: Theme | undefined
 }
 
 export const EACH_THEME: Theme[] = ['auto', 'dark', 'light'] as const
@@ -18,7 +21,7 @@ export const EACH_THEME: Theme[] = ['auto', 'dark', 'light'] as const
 export const VThemeProvider = useInstall(
   ThemeProvider as unknown as new () => {
     $props: ThemeProviderProps
-    $emit: (name: 'change', newThemeValue: ThemeProviderProps['theme']) => void
+    $emit: (name: 'update:theme', newThemeValue: ThemeProviderModel['theme']) => void
     $slots: ThemeProviderSlots
   }
 )

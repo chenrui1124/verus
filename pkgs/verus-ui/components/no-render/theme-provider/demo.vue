@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { ThemeProviderProps } from '@verus-ui/components'
+import type { ThemeProviderModel } from '.'
 
 import { ref } from 'vue'
 
-const theme = ref<ThemeProviderProps['theme']>('auto')
+const theme = ref<ThemeProviderModel['theme']>('auto')
 </script>
 
 <template>
-  <VThemeProvider :theme="theme">
+  <VThemeProvider v-model:theme="theme" tag="div">
     <VSegmentedButton :each="['auto', 'light', 'dark']" v-model="theme" />
   </VThemeProvider>
 </template>
