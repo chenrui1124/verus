@@ -48,7 +48,7 @@ defineSlots<ButtonSlots>()
           ['outlined', 'clean'],
         'disabled:!bg-dis': ['solid', 'tonal']
       })
-        .rollback(DEFAULT_VARIANT)
+        .rollback(DEFAULT_VARIANT!)
         .match(variant),
       {
         'no-underline': href,

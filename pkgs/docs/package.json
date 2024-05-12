@@ -1,5 +1,8 @@
 {
   "name": "@verus-ui/docs",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "verus-ui": "workspace:^"
+  }
 }

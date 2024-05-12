@@ -51,7 +51,7 @@ function onSubmit(evt: Event) {
           [`bg-bsc invalid:border-err ${isValid ? 'border-otl' : 'border-err text-err'}`]:
             'outlined'
         })
-          .rollback(DEFAULT_VARIANT)
+          .rollback(DEFAULT_VARIANT!)
           .match(variant),
         variant === 'solid'
           ? [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]
