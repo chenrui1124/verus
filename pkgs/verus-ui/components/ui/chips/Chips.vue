@@ -2,7 +2,7 @@
 import type { ChipsModel, ChipsProps } from '.'
 
 import { computed } from 'vue'
-import { BaseIcon, withPrefix } from '@verus-ui/common'
+import { BasicIcon, withPrefix } from '@verus-ui/common'
 
 defineOptions({ name: withPrefix('Chips') })
 
@@ -33,7 +33,7 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
       />
 
       <component
-        :is="icon && BaseIcon"
+        :is="icon && BasicIcon"
         :name="icon"
         size="sm"
         class="-ml-0.5 mr-2 transition-colors duration-300"

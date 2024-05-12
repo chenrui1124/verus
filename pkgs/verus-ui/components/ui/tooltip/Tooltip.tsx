@@ -12,7 +12,14 @@ import {
   reactive
 } from 'vue'
 import { clsx } from 'clsx'
-import { onListener, useFirstVNode, useRender, useVisible, withPrefix } from '@verus-ui/common'
+import {
+  onListener,
+  useFirstVNode,
+  useRender,
+  useVisible,
+  withPrefix,
+  withRollback
+} from '@verus-ui/common'
 
 interface SingleTooltipProps {
   position?: 'top' | 'right' | 'bottom' | 'left'
@@ -85,7 +92,7 @@ const useTooltip = (() => {
             <div style={props.coord} class='fixed z-30 h-0 w-0 transition-all duration-300'>
               <div
                 class={[
-                  'pointer-events-none absolute h-8 text-nowrap rounded-v1 bg-on-bsc px-3 text-sm/8 text-bsc shadow shadow-on-bsc/32 transition-colors duration-300 before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit',
+                  'pointer-events-none absolute h-8 text-nowrap rounded-v1 bg-on-bsc px-3 text-sm/8 tracking-wide text-bsc shadow shadow-on-bsc/32 transition-colors duration-300 before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit',
                   {
                     'left-1/2 -translate-x-1/2 before:left-1/2 before:-translate-x-1/2': [
                       'top',
@@ -129,7 +136,7 @@ const Tooltip: FunctionalComponent<TooltipProps, {}, TooltipSlots> = (
   if (first) {
     const attachProps = {
       'data-tooltip-label': label,
-      'data-tooltip-position': position
+      'data-tooltip-position': withRollback(position, ['top', 'right', 'bottom', 'left'])
     }
     const newNode = cloneVNode(first, attachProps)
     useTooltip()

@@ -27,7 +27,7 @@ export const VERUS_COLOR = {
   /* primary container */
   'pri-ctr': {
     lt: 'rgb(236, 247, 255)',
-    dk: 'rgb(32, 38, 55)'
+    dk: 'rgb(29, 33, 42)'
   },
   /* primary variant */
   'pri-var': {

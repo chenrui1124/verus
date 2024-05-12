@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DialogProps, DialogSlots } from '.'
 
-import { BaseModal, htmlAttribute, useOverlay, useVisible, withPrefix } from '@verus-ui/common'
+import { BasicModal, htmlAttribute, useOverlay, useVisible, withPrefix } from '@verus-ui/common'
 
 defineOptions({ name: withPrefix('Dialog') })
 
@@ -27,7 +27,7 @@ defineSlots<DialogSlots>()
 <template>
   <slot name="trigger" v-bind="{ show }" />
 
-  <BaseModal
+  <BasicModal
     :state
     @cancel="hide"
     @close="$emit('close', $event)"
@@ -79,5 +79,5 @@ defineSlots<DialogSlots>()
         <slot name="actions" v-bind="{ hide, withHide }"></slot>
       </component>
     </div>
-  </BaseModal>
+  </BasicModal>
 </template>

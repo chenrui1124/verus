@@ -12,3 +12,9 @@ export type Variant<T extends EachVariant = EachVariant> = T
 
 type EachStatus = 'normal' | 'primary' | 'success' | 'warning' | 'error'
 export type Status<T extends EachStatus = EachStatus> = T
+
+type EachTextTransform = 'uppercase' | 'lowercase' | 'capitalize'
+export type TextTransform<T extends EachTextTransform = EachTextTransform> = T
+
+type EachFontWeight = 'normal' | 'medium' | 'semibold' | 'bold'
+export type FontWeight<T extends EachFontWeight = EachFontWeight> = T

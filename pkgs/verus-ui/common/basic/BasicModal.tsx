@@ -8,7 +8,7 @@ import type {
 import { Teleport, Transition } from 'vue'
 import { twMerge } from 'tailwind-merge'
 
-interface BaseModalProps
+interface BasicModalProps
   extends Partial<
     DialogHTMLAttributes &
       Pick<
@@ -25,7 +25,7 @@ interface BaseModalProps
   layer?: boolean
 }
 
-const BaseModal: FunctionalComponent<BaseModalProps, {}, { default: void }> = (
+const BasicModal: FunctionalComponent<BasicModalProps, {}, { default: void }> = (
   props,
   { attrs, slots }
 ) => {
@@ -61,7 +61,7 @@ const BaseModal: FunctionalComponent<BaseModalProps, {}, { default: void }> = (
   return layer ? <>{Dialog}</> : <Teleport to='body'>{Dialog}</Teleport>
 }
 
-BaseModal.props = {
+BasicModal.props = {
   state: Boolean,
   layer: Boolean,
   enterActiveClass: String,
@@ -72,6 +72,6 @@ BaseModal.props = {
   leaveToClass: String
 }
 
-BaseModal.inheritAttrs = false
+BasicModal.inheritAttrs = false
 
-export default BaseModal
+export default BasicModal

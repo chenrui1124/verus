@@ -10,17 +10,11 @@ const { marker = 'arabic' } = defineProps<OrderedListProps>()
 
 const slots = defineSlots<OrderedListSlots>()
 
-function DefaultSlot() {
-  if (slots.default?.()) {
-    const defaultSlots = slots.default() as VNode[]
-
-    for (const node of defaultSlots) {
-      if (typeof node.children == 'string') {
-        node.children = node.children.trim()
-      }
+if (slots.default) {
+  for (const node of slots.default() as VNode[]) {
+    if (typeof node.children == 'string') {
+      node.children = node.children.trim()
     }
-
-    return defaultSlots
   }
 }
 </script>
@@ -38,7 +32,7 @@ function DefaultSlot() {
         : '*:before:content-[counter(marker)]'
     ]"
   >
-    <DefaultSlot />
+    <component :is="slots.default" />
   </ol>
 </template>
 

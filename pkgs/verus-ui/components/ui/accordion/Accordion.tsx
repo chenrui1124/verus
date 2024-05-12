@@ -1,7 +1,7 @@
 import type { AccordionProps } from '.'
 
 import { defineComponent } from 'vue'
-import { BaseIcon, useLiteralsProp, withPrefix } from '@verus-ui/common'
+import { BasicIcon, useLiteralsProp, withPrefix } from '@verus-ui/common'
 import { AccordionBody, AccordionTitle, AccordionWrapper } from './include'
 
 const Accordion = defineComponent<AccordionProps>(
@@ -26,11 +26,11 @@ const Accordion = defineComponent<AccordionProps>(
             class={[
               'flex h-12 cursor-pointer select-none items-center gap-4 rounded-inherit px-6 text-base text-pri transition-all duration-300 after:i-[solar--alt-arrow-right-linear] after:-mr-1 after:ml-auto after:min-h-5 after:min-w-5 after:transition after:duration-300 has-[:checked]:h-14 has-[:checked]:after:rotate-90 group-data-[status=error]/accordion:text-err',
               variant === 'solid'
-                ? 'hover:bg-pri/8 group-data-[status=error]/accordion:hover:bg-err'
+                ? 'hover:bg-pri/8 group-data-[status=error]/accordion:hover:bg-err/8'
                 : 'hover:bg-pri-ctr group-data-[status=error]/accordion:hover:bg-err-ctr'
             ]}
           >
-            {icon && <BaseIcon name={icon} class='-ml-1' />}
+            {icon && <BasicIcon name={icon} class='-ml-1' />}
             {title}
           </AccordionTitle>
 

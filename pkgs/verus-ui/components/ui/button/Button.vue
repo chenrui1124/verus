@@ -2,11 +2,13 @@
 import type { ButtonProps, ButtonSlots } from '.'
 
 import { computed, useAttrs } from 'vue'
-import { BaseIcon, cm, htmlAttribute, withPrefix } from '@verus-ui/common'
+import { BasicIcon, cm, htmlAttribute, withPrefix } from '@verus-ui/common'
 
 defineOptions({ name: withPrefix('Button') })
 
-const { variant = 'tonal', fontWeight = 'medium', loading } = defineProps<ButtonProps>()
+const DEFAULT_VARIANT: ButtonProps['variant'] = 'tonal'
+
+const { variant = DEFAULT_VARIANT, fontWeight = 'medium', loading } = defineProps<ButtonProps>()
 
 const emit = defineEmits<{ click: [payload?: MouseEvent] }>()
 
@@ -30,12 +32,13 @@ defineSlots<ButtonSlots>()
     :href="htmlAttribute(href, !!href)"
     :data-danger="htmlAttribute(danger)"
     :class="[
-      'font relative box-border inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none bg-on-bsc px-5 text-sm/9 tracking-wide text-bsc transition duration-300',
+      block ? 'flex' : 'inline-flex',
+      'font relative box-border h-9 cursor-pointer items-center justify-center gap-2 rounded-v1 border-none bg-on-bsc px-5 text-sm/9 tracking-wide text-bsc transition duration-300',
       'before:v-shade before:transition before:duration-300',
       'focus-visible:v-outline data-[danger]:focus-visible:v-outline-danger',
       'disabled:!text-on-bsc disabled:v-disabled',
       cm({
-        'bg-pri text-on-pri before:border-1.2 before:border-solid before:border-white/32 before:border-b-black/32 hover:before:bg-bsc/8 focus:text-on-pri/72 focus:before:border-transparent focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
+        'bg-pri text-on-pri before:border-1.2 before:border-solid before:border-white/16 before:border-b-black/16 hover:before:bg-bsc/8 focus:text-on-pri/72 focus:before:border-transparent focus:before:bg-on-bsc/12 data-[danger]:bg-err data-[danger]:text-on-err':
           'solid',
         'bg-pri-var text-on-pri-var hover:before:bg-on-bsc/8 focus:before:bg-on-bsc/12 data-[danger]:bg-err-var data-[danger]:text-on-err-var':
           'tonal',
@@ -45,7 +48,7 @@ defineSlots<ButtonSlots>()
           ['outlined', 'clean'],
         'disabled:!bg-dis': ['solid', 'tonal']
       })
-        .rollback('tonal')
+        .rollback(DEFAULT_VARIANT)
         .match(variant),
       {
         'no-underline': href,
@@ -60,26 +63,31 @@ defineSlots<ButtonSlots>()
     ]"
   >
     <component
-      :is="icon && BaseIcon"
+      :is="icon && BasicIcon"
       :name="icon"
-      :class="['-ml-1', { 'text-transparent': !disabled && loading }]"
+      :class="['-ml-1', { 'text-transparent transition duration-300': !disabled && loading }]"
     />
 
-    <span :class="['pointer-events-none', { 'text-transparent': !disabled && loading }]">
+    <span
+      :class="[
+        'pointer-events-none',
+        { 'text-transparent transition duration-300': !disabled && loading }
+      ]"
+    >
       <slot>
         {{ label }}
       </slot>
     </span>
 
     <component
-      :is="appendIcon && BaseIcon"
+      :is="appendIcon && BasicIcon"
       :name="appendIcon"
-      :class="['-mr-1', { 'text-transparent': !disabled && loading }]"
+      :class="['-mr-1', { 'text-transparent transition duration-300': !disabled && loading }]"
     />
 
     <Transition enterFromClass="opacity-0" leaveToClass="opacity-0">
       <component
-        :is="!disabled && loading && BaseIcon"
+        :is="!disabled && loading && BasicIcon"
         name="i-[svg-spinners--ring-resize]"
         class="absolute inset-0 m-auto transition duration-300"
       />

@@ -2,7 +2,7 @@
 import type { SegmentedButtonModel, SegmentedButtonProps } from '.'
 
 import { computed } from 'vue'
-import { BaseIcon, withPrefix } from '@verus-ui/common'
+import { BasicIcon, withPrefix } from '@verus-ui/common'
 
 defineOptions({ name: withPrefix('SegmentedButton') })
 
@@ -22,7 +22,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
           : `repeat(${each.length}, ${uniformWidth ? '1fr' : 'auto'})`
     }"
     :class="[
-      'relative rounded-v1 transition-colors duration-300 before:v-shade before:border-1.2 before:border-solid before:border-otl',
+      'relative rounded-v1 bg-bsc transition-colors duration-300 before:v-shade before:border-1.2 before:border-solid before:border-otl',
       direction === 'vertical' ? 'inline-grid grid-cols-1' : 'inline-grid grid-rows-1'
     ]"
   >
@@ -41,10 +41,10 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
         type="radio"
         :value
         v-model="modelValue"
-        class="pointer-events-none absolute m-0 size-0 appearance-none p-0 opacity-0 outline-none"
+        class="pointer-events-none absolute m-auto size-0 appearance-none p-0 opacity-0 outline-none"
       />
       <component
-        :is="icon ? BaseIcon : void 0"
+        :is="icon ? BasicIcon : void 0"
         :name="icon"
         size="sm"
         :class="['-ml-0.5 mr-3', { 'col-start-1': direction === 'vertical' }]"

@@ -2,12 +2,12 @@ import type { FunctionalComponent, HTMLAttributes, PropType } from 'vue'
 
 import { twMerge } from 'tailwind-merge'
 
-interface BaseIconProps extends HTMLAttributes {
+interface BasicIconProps extends HTMLAttributes {
   name: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
 }
 
-const BaseIcon: FunctionalComponent<BaseIconProps> = ({ name, size }, { attrs }) => {
+const BasicIcon: FunctionalComponent<BasicIconProps> = ({ name, size }, { attrs }) => {
   const { class: className, ...others } = attrs
 
   return (
@@ -28,17 +28,17 @@ const BaseIcon: FunctionalComponent<BaseIconProps> = ({ name, size }, { attrs })
   )
 }
 
-BaseIcon.props = {
+BasicIcon.props = {
   name: {
     type: String,
     required: true
   },
   size: {
-    type: String as PropType<BaseIconProps['size']>,
+    type: String as PropType<BasicIconProps['size']>,
     default: 'md'
   }
 }
 
-BaseIcon.inheritAttrs = false
+BasicIcon.inheritAttrs = false
 
-export default BaseIcon
+export default BasicIcon

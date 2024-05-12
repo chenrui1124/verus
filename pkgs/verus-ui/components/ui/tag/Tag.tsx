@@ -2,7 +2,7 @@ import type { FunctionalComponent, HTMLAttributes } from 'vue'
 import type { TagProps, TagSlots } from '.'
 
 import { twMerge } from 'tailwind-merge'
-import { BaseIcon, useLiteralsProp, withPrefix } from '@verus-ui/common'
+import { BasicIcon, useLiteralsProp, withPrefix, withRollback } from '@verus-ui/common'
 
 const Tag: FunctionalComponent<TagProps, {}, TagSlots> = ({ icon, status }, { slots, attrs }) => {
   const { class: className, ...others } = attrs
@@ -12,19 +12,17 @@ const Tag: FunctionalComponent<TagProps, {}, TagSlots> = ({ icon, status }, { sl
       {...others}
       class={twMerge(
         'box-border inline-flex h-7 items-center justify-center gap-2 rounded-v1 px-3 align-middle text-xs/7 transition-colors duration-300',
-        // default
-        'bg-bsc-var text-on-bsc',
         {
-          default: '',
+          default: 'bg-bsc-var text-on-bsc',
           primary: 'bg-pri-ctr text-pri',
           success: 'bg-suc-ctr text-on-suc-ctr',
           warning: 'bg-wan-ctr text-on-wan-ctr',
           error: 'bg-err-ctr text-err'
-        }[status!],
+        }[withRollback(status!, ['default', 'primary', 'success', 'warning', 'error'])],
         className as HTMLAttributes['class']
       )}
     >
-      {icon && <BaseIcon name={icon} size='sm' class='-ml-1' />}
+      {icon && <BasicIcon name={icon} size='sm' class='-ml-1' />}
       {slots.default?.()}
     </span>
   )
