@@ -22,6 +22,7 @@ declare module 'vue' {
     VScaffold: typeof ui.VScaffold
     VSwitch: typeof ui.VSwitch
     VTextField: typeof ui.VTextField
+    VToggle: typeof ui.VToggle
     VTooltip: typeof ui.VTooltip
   }
 }
