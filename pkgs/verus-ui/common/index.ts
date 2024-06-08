@@ -1,4 +1,5 @@
 export * from './basic'
 export * from './composable'
 export * from './directives'
+export * from './provide'
 export * from './utils'

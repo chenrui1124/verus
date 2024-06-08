@@ -1,4 +1,5 @@
 export { useClassName } from './useClassName'
+export { useDragListener } from './useDragListener'
 export { useFirstVNode } from './useFirstVNode'
 export { useInstall } from './useInstall'
 export { useLiteralsProp } from './useLiteralsProp'
