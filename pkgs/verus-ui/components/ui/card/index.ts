@@ -1,4 +1,4 @@
-import type { Variant } from '@verus-ui/ts'
+import type { VariantProp } from '@verus-ui/ts'
 
 import { useInstall } from '@verus-ui/common'
 import Card from './Card'
@@ -13,7 +13,7 @@ export interface CardProps {
   /**
    * @default 'solid'
    */
-  variant?: Variant<'solid' | 'outlined'>
+  variant?: VariantProp<'solid' | 'outlined'>
   danger?: boolean
   /**
    * @default '16rem'

@@ -3,10 +3,11 @@ import type { VNode } from 'vue'
 import type { OrderedListProps, OrderedListSlots } from '.'
 
 import { withPrefix } from '@verus-ui/common'
+import { Marker } from '@verus-ui/ts'
 
 defineOptions({ name: withPrefix('OrderedList') })
 
-const { marker = 'arabic' } = defineProps<OrderedListProps>()
+const { marker = Marker.Arabic } = defineProps<OrderedListProps>()
 
 const slots = defineSlots<OrderedListSlots>()
 
@@ -27,12 +28,13 @@ if (slots.default) {
       'm-0 ml-10 list-none space-y-4 p-0 text-sm/6 text-on-bsc',
       '*:mt-1 *:transition-colors *:duration-300',
       '*:before:-my-1 *:before:-ml-9 *:before:mr-3 *:before:inline-block *:before:size-6 *:before:rounded-full *:before:bg-on-bsc *:before:py-1 *:before:text-center *:before:text-sm/6 *:before:text-bsc *:before:transition-colors *:before:duration-300',
-      marker === 'roman'
+      marker === Marker.Roman
         ? '*:before:content-[counter(marker,upper-roman)]'
         : '*:before:content-[counter(marker)]'
     ]"
   >
-    <component :is="slots.default" />
+    <slot></slot>
+    <!-- <component :is="slots.default" /> -->
   </ol>
 </template>
 

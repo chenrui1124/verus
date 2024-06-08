@@ -1,4 +1,4 @@
-import type { Variant } from '@verus-ui/ts'
+import type { VariantProp } from '@verus-ui/ts'
 
 import { useInstall } from '@verus-ui/common'
 import FloatButton from './FloatButton.vue'
@@ -10,7 +10,7 @@ export interface FloatButtonProps {
   /**
    * @default 'tonal'
    */
-  variant?: Variant<'solid' | 'tonal'>
+  variant?: VariantProp<'solid' | 'tonal'>
   right?: string
   bottom?: string
 }

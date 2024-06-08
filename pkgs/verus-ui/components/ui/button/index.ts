@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'vue'
 import type { Either } from 'mm3'
-import type { FontWeight, TextTransform, Variant } from '@verus-ui/ts'
+import type { FontWeightProp, TextTransformProp, VariantProp } from '@verus-ui/ts'
 
 import { useInstall } from '@verus-ui/common'
 import Button from './Button.vue'
@@ -13,12 +13,12 @@ export interface ButtonProps {
   /**
    * @default 'tonal'
    */
-  variant?: Variant
+  variant?: VariantProp
   danger?: boolean
   disabled?: boolean
   block?: boolean
-  fontWeight?: FontWeight
-  textTransform?: TextTransform
+  fontWeight?: FontWeightProp
+  textTransform?: TextTransformProp
 }
 
 export interface ButtonSlots {

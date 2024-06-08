@@ -6,7 +6,7 @@ export interface SwitchProps {
 }
 
 export interface SwitchModel {
-  modelValue: boolean | undefined
+  modelValue?: boolean | undefined
 }
 
 export const VSwitch = useInstall(

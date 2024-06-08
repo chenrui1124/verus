@@ -1,4 +1,4 @@
-import type { Status, Variant } from '@verus-ui/ts'
+import type { StatusProp, VariantProp } from '@verus-ui/ts'
 
 import { useInstall } from '@verus-ui/common'
 import Accordion from './Accordion'
@@ -7,15 +7,15 @@ export interface AccordionProps {
   init?: boolean
   icon?: string
   title?: string
-  width?: string
   /**
    * @default 'normal'
    */
-  status?: Status<'normal' | 'error'>
+  status?: StatusProp<'normal' | 'error'>
   /**
    * @default 'solid'
    */
-  variant?: Variant<'solid' | 'outlined'>
+  variant?: VariantProp<'solid' | 'outlined'>
+  width?: string
 }
 
 export interface AccordionSlots {

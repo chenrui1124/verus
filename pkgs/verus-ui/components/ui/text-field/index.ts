@@ -19,8 +19,8 @@ export interface TextFieldProps {
 }
 
 export interface TextFieldModel {
-  modelValue: string | undefined
-  valid: boolean | undefined
+  modelValue?: string
+  valid?: boolean
 }
 
 export const VTextField = useInstall(

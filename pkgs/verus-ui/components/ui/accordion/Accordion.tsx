@@ -17,8 +17,7 @@ const Accordion = defineComponent<AccordionProps>(
             'group/accordion relative box-border rounded-v2 border-1.2 duration-500 ease-braking',
             variant === 'solid'
               ? 'bg-pri-ctr data-[status=error]:bg-err-ctr'
-              : 'bg-bsc before:v-shade before:border-1.2 before:border-solid before:border-pri before:transition-colors before:duration-inherit before:ease-inherit data-[status=error]:before:border-err',
-            status === 'error' ? '' : ''
+              : 'bg-bsc before:v-shade before:border-1.2 before:border-solid before:border-pri before:transition-colors before:duration-inherit before:ease-inherit data-[status=error]:before:border-err'
           ]}
         >
           <AccordionTitle
@@ -55,7 +54,6 @@ const Accordion = defineComponent<AccordionProps>(
       init: Boolean,
       icon: String,
       title: String,
-      width: String,
       status: useLiteralsProp<AccordionProps['status']>({
         default: 'normal',
         optional: ['normal', 'error']
@@ -63,7 +61,8 @@ const Accordion = defineComponent<AccordionProps>(
       variant: useLiteralsProp<AccordionProps['variant']>({
         default: 'solid',
         optional: ['solid', 'outlined']
-      })
+      }),
+      width: String
     }
   }
 )

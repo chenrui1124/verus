@@ -4,7 +4,7 @@ import type { AutoGridProps, AutoGridSlots } from '.'
 import { withPrefix } from '@verus-ui/common'
 
 const AutoGrid: FunctionalComponent<AutoGridProps, {}, AutoGridSlots> = (
-  { width, itemWidth, gap },
+  { gap, itemWidth, width },
   { slots }
 ) => (
   <div
@@ -13,19 +13,19 @@ const AutoGrid: FunctionalComponent<AutoGridProps, {}, AutoGridSlots> = (
       gap,
       gridTemplateColumns: `repeat(auto-fill, minmax(${itemWidth ?? 'min-content'}, 1fr))`
     }}
-    class='grid'
+    class='grid items-center justify-items-center'
   >
     {slots.default?.()}
   </div>
 )
 
 AutoGrid.props = {
-  width: String,
-  itemWidth: String,
   gap: {
     type: String,
     default: '1rem'
-  }
+  },
+  itemWidth: String,
+  width: String
 }
 
 AutoGrid.displayName = withPrefix('AutoGrid')

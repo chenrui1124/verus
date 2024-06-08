@@ -2,12 +2,12 @@ import { useInstall } from '@verus-ui/common'
 import AutoGrid from './AutoGrid'
 
 export interface AutoGridProps {
-  width?: string
-  itemWidth?: string
   /**
    * @default 1rem
    */
   gap?: string
+  itemWidth?: string
+  width?: string
 }
 
 export interface AutoGridSlots {

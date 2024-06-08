@@ -1,5 +1,6 @@
 import type { DefineSetupFnComponent, FunctionalComponent, PropType } from 'vue'
 import type { TooltipProps, TooltipSlots } from '.'
+import type { PositionProp } from '@verus-ui/ts'
 
 import {
   Transition,
@@ -20,9 +21,10 @@ import {
   withPrefix,
   withRollback
 } from '@verus-ui/common'
+import { Position } from '@verus-ui/ts'
 
 interface SingleTooltipProps {
-  position?: 'top' | 'right' | 'bottom' | 'left'
+  position?: PositionProp
   coord?: { top: string; left: string }
   label?: string
 }
@@ -153,9 +155,8 @@ Tooltip.props = {
   },
   position: {
     type: String as PropType<TooltipProps['position']>,
-    default: 'top',
-    validator: (value: TooltipProps['position']) =>
-      ['top', 'right', 'bottom', 'left'].includes(value!)
+    default: Position.Top,
+    validator: (value: TooltipProps['position']) => Object.keys(Position).includes(value!)
   }
 }
 

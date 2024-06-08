@@ -3,12 +3,17 @@ import type { ButtonProps, ButtonSlots } from '.'
 
 import { computed, useAttrs } from 'vue'
 import { BasicIcon, cm, htmlAttribute, withPrefix } from '@verus-ui/common'
+import { FontWeight, Variant } from '@verus-ui/ts'
 
 defineOptions({ name: withPrefix('Button') })
 
-const DEFAULT_VARIANT: ButtonProps['variant'] = 'tonal'
+const DEFAULT_VARIANT = Variant.Tonal
 
-const { variant = DEFAULT_VARIANT, fontWeight = 'medium', loading } = defineProps<ButtonProps>()
+const {
+  variant = Variant.Tonal,
+  fontWeight = FontWeight.Medium,
+  loading
+} = defineProps<ButtonProps>()
 
 const emit = defineEmits<{ click: [payload?: MouseEvent] }>()
 

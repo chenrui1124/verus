@@ -11,7 +11,7 @@ export interface SegmentedButtonProps {
 }
 
 export interface SegmentedButtonModel {
-  modelValue: string | undefined
+  modelValue?: string
 }
 
 export const VSegmentedButton = useInstall(

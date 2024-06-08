@@ -1,9 +1,11 @@
+import type { MarkerProp } from '@verus-ui/ts'
+
 import { useInstall } from '@verus-ui/common'
 import OrderedList from './OrderedList.vue'
 
 export interface OrderedListProps {
   width?: string
-  marker?: 'arabic' | 'roman'
+  marker?: MarkerProp
 }
 
 export interface OrderedListSlots {

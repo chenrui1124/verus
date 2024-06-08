@@ -9,7 +9,7 @@ export interface ChipsProps {
 }
 
 export interface ChipsModel {
-  modelValue: string[] | undefined
+  modelValue?: string[]
 }
 
 export const VChips = useInstall(

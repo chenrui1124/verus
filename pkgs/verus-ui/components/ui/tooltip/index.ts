@@ -1,11 +1,11 @@
-import type { Position } from '@verus-ui/ts'
+import type { PositionProp } from '@verus-ui/ts'
 
 import { useInstall } from '@verus-ui/common'
 import Tooltip from './Tooltip'
 
 export interface TooltipProps {
   label: string
-  position?: Position
+  position?: PositionProp
 }
 
 export interface TooltipSlots {

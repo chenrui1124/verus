@@ -10,7 +10,7 @@ export interface RadiosProps {
 }
 
 export interface RadiosModel {
-  modelValue: string | undefined
+  modelValue?: string
 }
 
 export const VRadios = useInstall(
