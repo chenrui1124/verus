@@ -19,7 +19,7 @@ import { presetIcons } from 'unocss'
 
 export default defineConfig({
   plugins: [
-    vue({ script: { propsDestructure: true } }),
+    vue(),
     jsx({ optimize: true }),
     uno({ presets: [presetIcons()] }),
     dts({

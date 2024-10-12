@@ -5,15 +5,17 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
+
     "baseUrl": ".",
     "paths": {
-      "@verus-ui/docs/*": ["./pkgs/docs/*"],
-      "@verus-ui/common": ["./pkgs/verus-ui/common/index.ts"],
-      "@verus-ui/components": ["./pkgs/verus-ui/components/index.ts"],
-      "@verus-ui/ts": ["./pkgs/verus-ui/ts/index.ts"],
-      "@verus-ui/css": ["./pkgs/verus-ui/index.css"]
+      "@verus-ui/docs/*": ["./packages/docs/*"],
+      "@verus-ui/common": ["./packages/ui/common/index.ts"],
+      "@verus-ui/components": ["./packages/ui/components/index.ts"],
+      "@verus-ui/ts": ["./packages/ui/ts/index.ts"],
+      "@verus-ui/css": ["./packages/ui/index.css"]
     },
 
+    "moduleDetection": "force",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -30,6 +32,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
+
   "include": ["**/*.vue", "**/*.tsx", "**/*.ts"],
   "exclude": ["lib"],
   "references": [{ "path": "./tsconfig.node.json" }]
