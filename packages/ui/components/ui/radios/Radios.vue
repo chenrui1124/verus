@@ -20,7 +20,7 @@ const modelValue = defineModel<RadiosModel['modelValue']>({ required: true })
       :key="index"
       class="group/radio relative box-border inline-flex h-12 min-w-12 cursor-pointer select-none items-center justify-center gap-4 rounded-v2 border-1.2 border-solid border-otl px-4 text-sm text-on-bsc outline-transparent transition duration-300 hover:bg-pri/8 has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline"
     >
-      <component :is="icon && BasicIcon" :name="icon" class="-m-1" />
+      <BasicIcon v-if="icon" :name="icon" class="-m-1" />
 
       {{ label }}
 

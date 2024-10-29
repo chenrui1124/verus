@@ -12,7 +12,7 @@ setTimeout(() => (variant.value = 'outlined'), 1000)
   <DisplayStand
     :options="[
       { name: 'variant', type: 'literal', value: ['solid', 'outlined'] },
-      { name: 'status', type: 'literal', value: ['normal', 'error'] },
+      { name: 'danger', type: 'boolean' },
       { name: 'width', type: 'string', init: '24rem' }
     ]"
     #="{ props }"

@@ -32,8 +32,8 @@ const modelValue = defineModel<ChipsModel['modelValue']>({ default: undefined })
         class="absolute inset-0 -z-10 m-auto outline-none"
       />
 
-      <component
-        :is="icon && BasicIcon"
+      <BasicIcon
+        v-if="icon"
         :name="icon"
         size="sm"
         class="-ml-0.5 mr-2 transition-colors duration-300"

@@ -1,43 +1,32 @@
 import type { CSSInJS } from 'mm3'
 
 import plugin from 'tailwindcss/plugin'
-import { VERUS_COLOR, extractRGBValue, withColorPrefix } from './colors'
+import { COLORS, COLORS_WHEN_DANGER, extractRGBValueReducer, withColorPrefix } from './colors'
 
 export default function () {
-  const { lt, dk } = (() => {
-    return Object.entries(VERUS_COLOR).reduce<{
-      lt: Record<string, string>
-      dk: Record<string, string>
-    }>(
-      (previous, current) => {
-        const [name, { lt, dk }] = current
-        previous.lt[withColorPrefix(name)] = extractRGBValue(lt)
-        previous.dk[withColorPrefix(name)] = extractRGBValue(dk)
-        return previous
-      },
-      { lt: {}, dk: {} }
-    )
-  })()
+  const colors = extractRGBValueReducer(COLORS)
+
+  const colorsWhenDanger = extractRGBValueReducer(COLORS_WHEN_DANGER)
 
   const { base, utilities, components } = {
     base: {
-      '::before, ::after': {
-        '--tw-content': `''`
-      },
-      ':root, [data-theme-provider][data-theme="light"]': lt,
-      ':root[data-theme="dark"], [data-theme-provider][data-theme="dark"]': dk,
+      '::before, ::after': { '--tw-content': `''` },
+      ':root, [data-theme-provider][data-theme="light"]': colors.light,
+      ':is(:root, [data-theme-provider])[data-theme="dark"]': colors.dark,
+      ':is(:root, [data-theme-provider][data-theme="light"]) :is([data-danger=""], [data-danger="true"])':
+        colorsWhenDanger.light,
+      ':is(:root, [data-theme-provider])[data-theme="dark"] :is([data-danger=""], [data-danger="true"])':
+        colorsWhenDanger.dark,
       '@media (prefers-color-scheme: dark)': {
-        ':root[data-theme="auto"], [data-theme-provider][data-theme="auto"]': dk
+        ':is(:root, [data-theme-provider])[data-theme="auto"]': colors.dark,
+        ':is(:root, [data-theme-provider])[data-theme="auto"] :is([data-danger=""], [data-danger="true"])':
+          colorsWhenDanger.dark
       }
     },
 
     utilities: theme => ({
       '.v-outline': {
         outline: `2.8px solid rgba(var(${withColorPrefix('pri')}), ${theme('opacity.48')})`,
-        outlineOffset: '1.2px'
-      },
-      '.v-outline-danger': {
-        outline: `2.8px solid rgba(var(${withColorPrefix('err')}), ${theme('opacity.48')})`,
         outlineOffset: '1.2px'
       },
       '.v-disabled': {

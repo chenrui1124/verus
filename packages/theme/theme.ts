@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 import { themeReducer } from 'mm3'
-import { VERUS_COLOR, withColorPrefix } from './colors'
+import { COLORS, withColorPrefix } from './colors'
 
 export default {
   opacity: {
@@ -29,7 +29,7 @@ export default {
     current: colors.current,
     transparent: colors.transparent,
     ...themeReducer(
-      Object.keys(VERUS_COLOR),
+      Object.keys(COLORS),
       name => `rgba(var(${withColorPrefix(name)}), <alpha-value>)`
     )
   }),

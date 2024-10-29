@@ -43,8 +43,8 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
         v-model="modelValue"
         class="pointer-events-none absolute m-auto size-0 appearance-none p-0 opacity-0 outline-none"
       />
-      <component
-        :is="icon ? BasicIcon : void 0"
+      <BasicIcon
+        v-if="icon"
         :name="icon"
         size="sm"
         :class="['-ml-0.5 mr-3', { 'col-start-1': direction === 'vertical' }]"
