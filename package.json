@@ -7,26 +7,27 @@
     "format": "pnpm dlx prettier --write packages"
   },
   "devDependencies": {
-    "@iconify-json/ri": "^1.2.1",
+    "@iconify-json/ri": "^1.2.3",
     "@iconify-json/solar": "^1.2.1",
     "@iconify-json/svg-spinners": "^1.2.1",
     "@iconify/tailwind": "^1.1.3",
-    "@types/node": "^22.7.5",
+    "@types/node": "^22.8.5",
     "@verus-ui/theme": "workspace:^",
+    "@verus-ui/ts": "workspace:^",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "clsx": "^2.1.1",
     "mm3": "^0.3.1",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwind-merge": "^2.5.3",
-    "tailwindcss": "^3.4.13",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3",
-    "unocss": "^0.63.4",
-    "vite": "^5.4.8",
-    "vite-plugin-dts": "^4.2.4",
+    "unocss": "^0.63.6",
+    "vite": "^5.4.10",
+    "vite-plugin-dts": "^4.3.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
-    "vue-tsc": "^2.1.6"
+    "vue-tsc": "^2.1.10"
   }
 }

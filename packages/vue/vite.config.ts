@@ -35,7 +35,6 @@ export default defineConfig({
     alias: {
       '@verus-ui/common': fileURLToPath(new URL('./common/index.ts', import.meta.url)),
       '@verus-ui/components': fileURLToPath(new URL('./components/index.ts', import.meta.url)),
-      '@verus-ui/ts': fileURLToPath(new URL('./ts/index.ts', import.meta.url)),
       '@verus-ui/css': fileURLToPath(new URL('./index.css', import.meta.url))
     }
   },

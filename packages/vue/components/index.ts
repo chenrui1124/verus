@@ -29,5 +29,4 @@ declare module 'vue' {
 
 export * from './no-render'
 export * from './ui'
-export * from './use'
 export { verus } from './install'

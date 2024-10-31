@@ -1,0 +1,6 @@
+{
+  "name": "@verus-ui/ts",
+  "private": true,
+  "type": "module",
+  "main": "index.ts"
+}

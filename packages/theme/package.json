@@ -2,5 +2,5 @@
   "name": "@verus-ui/theme",
   "private": true,
   "type": "module",
-  "main": "index.ts"
+  "main": "tailwind.config.ts"
 }

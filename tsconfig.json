@@ -9,10 +9,9 @@
     "baseUrl": ".",
     "paths": {
       "@verus-ui/docs/*": ["./packages/docs/*"],
-      "@verus-ui/common": ["./packages/ui/common/index.ts"],
-      "@verus-ui/components": ["./packages/ui/components/index.ts"],
-      "@verus-ui/ts": ["./packages/ui/ts/index.ts"],
-      "@verus-ui/css": ["./packages/ui/index.css"]
+      "@verus-ui/common": ["./packages/vue/common/index.ts"],
+      "@verus-ui/components": ["./packages/vue/components/index.ts"],
+      "@verus-ui/css": ["./packages/vue/index.css"]
     },
 
     "moduleDetection": "force",

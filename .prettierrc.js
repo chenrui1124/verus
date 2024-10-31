@@ -1,7 +1,7 @@
 /** @type {import("prettier").Config} */
 export default {
   plugins: ['prettier-plugin-tailwindcss'],
-  tailwindConfig: './packages/ui/tailwind.config.ts',
+  tailwindConfig: './packages/theme/tailwind.config.ts',
   tailwindFunctions: ['clsx', 'twMerge'],
   bracketSameLine: false,
   jsxSingleQuote: true,
