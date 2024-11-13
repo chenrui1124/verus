@@ -2,12 +2,12 @@ import type { Ref } from 'vue'
 
 import { computed, ref } from 'vue'
 
-export function useVisible(options?: {
-  model?: Ref<boolean | undefined>
-  onBeforeShow?: () => void
-  onBeforeClose?: () => void
+export function useToggle(options?: {
+  modelValue?: Ref<boolean | undefined>
+  afterSetFalse?: Function
+  beforeSetTrue?: Function
 }) {
-  const _state = options?.model ?? ref()
+  const _state = options?.modelValue ?? ref()
 
   const state = computed<boolean | undefined>({
     get() {
@@ -15,29 +15,29 @@ export function useVisible(options?: {
     },
     set(newValue: boolean | undefined) {
       if (newValue) {
-        options?.onBeforeShow?.()
+        options?.beforeSetTrue?.()
         requestAnimationFrame(() => void (_state.value = true))
       } else {
-        options?.onBeforeClose?.()
         requestAnimationFrame(() => void (_state.value = false))
+        options?.afterSetFalse?.()
       }
     }
   })
 
   return {
     state,
-    show() {
-      state.value = true
+    on() {
+      state.value || (state.value = true)
     },
-    hide() {
-      state.value = false
+    off() {
+      state.value && (state.value = false)
     },
     toggle() {
       state.value = !state.value
     },
-    async withHide(callback?: Function) {
+    async withOff(callback?: Function) {
+      this.off()
       await callback?.()
-      state.value = false
     }
   }
 }

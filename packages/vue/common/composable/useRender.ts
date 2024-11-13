@@ -1,28 +1,39 @@
-import type { DefineSetupFnComponent, FunctionalComponent, ShallowReactive } from 'vue'
+import type { App, Component } from 'vue'
 
-import { Fragment, defineComponent, h, render, shallowReactive } from 'vue'
+import { createApp } from 'vue'
 
-type RenderedComponent = DefineSetupFnComponent<any> | FunctionalComponent
+export function useRender(comp: Component) {
+  let app: App | null = null,
+    root: HTMLDivElement | null = null,
+    timer: number | undefined
 
-export function useRenderFactory() {
-  let components: ShallowReactive<RenderedComponent[]>
-
-  function initRender() {
-    components = shallowReactive<RenderedComponent[]>([])
-    const SingleComponents = defineComponent(() => {
-      return () =>
-        h(
-          Fragment,
-          components.map(comp => h(comp))
-        )
-    })
-    render(h(SingleComponents), document.body)
-  }
-
-  return function (comp: RenderedComponent) {
-    if (!components) initRender()
-    components.push(comp)
-  }
+  return [
+    function mount() {
+      if (timer) {
+        clearTimeout(timer)
+        timer = void 0
+      }
+      if (app) return
+      app = createApp(comp)
+      root = document.createElement('div')
+      document.body.appendChild(root)
+      app.mount(root)
+    },
+    function unmount(options?: {
+      /**
+       * Unit: ms.
+       */
+      delay?: number
+    }) {
+      if (!app || timer) return
+      requestIdleCallback(() => {
+        timer = window.setTimeout(() => {
+          app?.unmount()
+          root?.remove()
+          app = root = null
+          timer = void 0
+        }, options?.delay)
+      })
+    }
+  ]
 }
-
-export const useRender = useRenderFactory()

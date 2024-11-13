@@ -1,22 +1,6 @@
 import { useInstall } from '@verus-ui/common'
-import AutoGrid from './AutoGrid'
+import AutoGrid from './AutoGrid.vue'
 
-export interface AutoGridProps {
-  /**
-   * @default 1rem
-   */
-  gap?: string
-  itemWidth?: string
-  width?: string
-}
+export type * from './AutoGrid.vue'
 
-export interface AutoGridSlots {
-  default: void
-}
-
-export const VAutoGrid = useInstall(
-  AutoGrid as unknown as new () => {
-    $props: AutoGridProps
-    $slots: AutoGridSlots
-  }
-)
+export const VAutoGrid = useInstall(AutoGrid)

@@ -1,17 +1,39 @@
+<script lang="ts">
+import type { VariantProp } from '@verus-ui/ts'
+
+import { computed, type InputHTMLAttributes } from 'vue'
+import { clsx } from 'clsx'
+import { Variant } from '@verus-ui/ts'
+import { Icon, htmlAttribute, withPrefix } from '@verus-ui/common'
+
+export interface TextFieldProps {
+  clearable?: boolean
+  disabled?: boolean
+  icon?: string
+  pattern?: InputHTMLAttributes['pattern']
+  /**
+   * @default 'text'
+   */
+  type?: 'text' | 'password' | 'email' | 'tel' | 'url'
+  validator?: (modelValue: string | undefined) => boolean
+  /**
+   * @default 'outlined'
+   */
+  variant?: VariantProp<'solid' | 'outlined'>
+}
+
+export interface TextFieldModel {
+  modelValue?: string
+  valid?: boolean
+}
+</script>
+
 <script setup lang="ts">
-import type { TextFieldModel, TextFieldProps } from '.'
+defineOptions({ inheritAttrs: false, name: withPrefix('TextField') })
 
-import { computed } from 'vue'
-import { BasicIcon, cm, htmlAttribute, withPrefix, withRollback } from '@verus-ui/common'
-import { EACH_TYPE } from '.'
+const { type = 'text', validator, variant = Variant.Solid } = defineProps<TextFieldProps>()
 
-defineOptions({ name: withPrefix('TextField'), inheritAttrs: false })
-
-const DEFAULT_VARIANT: TextFieldProps['variant'] = 'outlined'
-
-const { type = 'text', variant = DEFAULT_VARIANT, validator } = defineProps<TextFieldProps>()
-
-const modelValue = defineModel<TextFieldModel['modelValue']>({ required: true })
+const modelValue = defineModel<TextFieldModel['modelValue']>()
 
 const valid = defineModel<TextFieldModel['valid']>('valid')
 
@@ -26,7 +48,7 @@ const isValid = validator
     })
   : true
 
-const emit = defineEmits<{ submit: [payload: Event] }>()
+const emit = defineEmits<{ submit: [evt: Event] }>()
 
 function onSubmit(evt: Event) {
   if (typeof isValid == 'object' && (!isValid.value || !modelValue.value)) return
@@ -38,24 +60,24 @@ function onSubmit(evt: Event) {
   <form class="relative inline-block rounded-v1">
     <input
       @submit.prevent="onSubmit"
-      :type="withRollback(type, EACH_TYPE)"
-      :disabled
-      :data-invalid="htmlAttribute(isValid)"
-      v-bind="$attrs"
       v-model="modelValue"
+      :data-invalid="htmlAttribute(isValid)"
+      :="$attrs"
+      :disabled
+      :pattern
+      :type
       :class="[
-        'peer/text-field box-border h-10 w-full rounded-inherit border-1.2 border-solid pb-px text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc invalid:focus:border-err invalid:focus-visible:v-outline-danger disabled:bg-dis disabled:v-disabled',
-        cm({
-          [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]:
-            'solid',
-          [`bg-bsc invalid:border-err ${isValid ? 'border-otl' : 'border-err text-err'}`]:
-            'outlined'
-        })
-          .rollback(DEFAULT_VARIANT!)
-          .match(variant),
-        variant === 'solid'
-          ? [`border-transparent invalid:bg-err-ctr ${isValid ? 'bg-pri-ctr' : 'bg-err-ctr'}`]
-          : [`bg-bsc invalid:border-err ${isValid ? 'border-otl' : 'border-err text-err'}`],
+        'peer/text-field invalid:focus:border-err invalid:focus-visible:v-outline-danger box-border h-10 w-full rounded-inherit border-1.2 border-solid pb-px text-sm text-on-bsc transition duration-300 placeholder:text-on-bsc disabled:pointer-events-none disabled:bg-dis disabled:opacity-48',
+        {
+          [Variant.Solid]: clsx(
+            'border-transparent invalid:bg-err-ctr',
+            isValid ? 'bg-pri-ctr' : 'bg-err-ctr'
+          ),
+          [Variant.Outlined]: clsx(
+            'invalid:border-err bg-bsc',
+            isValid ? 'border-otl' : 'border-err text-err'
+          )
+        }[variant],
         clearable ? 'pr-10' : 'pr-3',
         icon ? 'pl-10' : 'pl-3',
         isValid
@@ -64,11 +86,11 @@ function onSubmit(evt: Event) {
       ]"
     />
 
-    <component
-      :is="icon && BasicIcon"
+    <Icon
+      v-if="icon"
       :name="icon"
       size="lg"
-      class="absolute inset-y-2 left-2 text-on-pri-var transition-colors duration-300 peer-invalid/text-field:text-on-err peer-focus/text-field:text-pri"
+      class="peer-invalid/text-field:text-on-err absolute inset-y-2 left-2 text-on-pri-var transition-colors duration-300 peer-focus/text-field:text-pri"
     />
 
     <Transition enterFromClass="scale-0" leaveToClass="scale-0">
@@ -77,7 +99,7 @@ function onSubmit(evt: Event) {
         v-show="modelValue"
         @click="clear"
         type="button"
-        class="absolute inset-y-0 right-0 inline-flex w-10 cursor-pointer items-center justify-center rounded-inherit border-none bg-transparent transition duration-300 before:i-[solar--close-circle-bold-duotone] before:min-h-5 before:min-w-5 before:text-otl before:transition-colors before:duration-300 hover:before:text-err focus:before:text-err focus-visible:v-outline"
+        class="hover:before:text-err focus:before:text-err absolute inset-y-0 right-0 inline-flex w-10 cursor-pointer items-center justify-center rounded-inherit border-none bg-transparent transition duration-300 before:i-[solar--close-circle-bold-duotone] before:min-h-5 before:min-w-5 before:text-otl before:transition-colors before:duration-300 focus-visible:v-outline"
       ></button>
     </Transition>
   </form>

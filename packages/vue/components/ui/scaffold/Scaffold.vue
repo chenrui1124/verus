@@ -1,10 +1,20 @@
-<script setup lang="ts">
-import type { ScaffoldProps, ScaffoldSlots } from '.'
-
+<script lang="ts">
 import { provide, reactive, ref } from 'vue'
 import { scaffoldKey, withPrefix } from '@verus-ui/common'
 import { ScaffoldSidebarResizer } from './include'
 
+export interface ScaffoldProps {
+  resizable?: boolean
+}
+
+export type ScaffoldSlots = {
+  header(props: { toggleSidebar: (newValueOrNone?: boolean | Event) => void }): any
+  sidebar(props: { toggleSidebar: (newValueOrNone?: boolean | Event) => void }): any
+  default(props: { toggleSidebar: (newValueOrNone?: boolean | Event) => void }): any
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ name: withPrefix('Scaffold') })
 
 defineProps<ScaffoldProps>()
@@ -81,7 +91,7 @@ defineSlots<ScaffoldSlots>()
             }
           ]"
         >
-          <slot name="header" v-bind="{ toggleSidebar }"></slot>
+          <slot name="header" :="{ toggleSidebar }"></slot>
         </header>
 
         <div
@@ -101,7 +111,7 @@ defineSlots<ScaffoldSlots>()
               { 'max-sm:-translate-x-full': sidebar.active === 0 || sidebar.active === -1 }
             ]"
           >
-            <slot name="sidebar" v-bind="{ toggleSidebar }"></slot>
+            <slot name="sidebar" :="{ toggleSidebar }"></slot>
           </aside>
         </div>
 
@@ -119,7 +129,7 @@ defineSlots<ScaffoldSlots>()
             }
           ]"
         >
-          <slot v-bind="{ toggleSidebar }"></slot>
+          <slot :="{ toggleSidebar }"></slot>
         </main>
       </div>
     </div>

@@ -1,13 +1,19 @@
+<script lang="ts">
+import { Icon, htmlAttribute, useClassName, withPrefix } from '@verus-ui/common'
+
+export interface IconButtonProps {
+  danger?: boolean
+  disabled?: boolean
+  icon?: string
+}
+</script>
+
 <script setup lang="ts">
-import type { IconButtonProps } from '.'
-
-import { BasicIcon, htmlAttribute, useClassName, withPrefix } from '@verus-ui/common'
-
 defineOptions({ name: withPrefix('IconButton') })
 
 defineProps<IconButtonProps>()
 
-const emit = defineEmits<{ click: [payload?: Event] }>()
+const emit = defineEmits<{ click: [evt: Event] }>()
 
 const [cls, activate] = useClassName()
 
@@ -23,9 +29,10 @@ function onClick(e: Event) {
     type="button"
     :data-danger="htmlAttribute(danger)"
     :disabled
-    class="group/icon-button relative box-border inline-flex size-9 min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent p-0 text-pri transition duration-300 ease-braking hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline disabled:!text-dis disabled:v-disabled"
+    class="group/icon-button relative box-border inline-flex size-9 min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-v1 border-none bg-transparent p-0 text-pri transition duration-300 ease-braking hover:bg-pri/8 focus:bg-pri/12 focus-visible:v-outline disabled:pointer-events-none disabled:text-dis disabled:opacity-48"
   >
-    <BasicIcon
+    <Icon
+      v-if="icon"
       :name="icon"
       size="lg"
       :class="[

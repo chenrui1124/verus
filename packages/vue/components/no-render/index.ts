@@ -1,2 +1,2 @@
-export { VIterate, type IterateProps } from './iterate'
-export { VThemeProvider, type ThemeProviderProps, type ThemeProviderModel } from './theme-provider'
+export * from './iterate'
+export * from './theme-provider'

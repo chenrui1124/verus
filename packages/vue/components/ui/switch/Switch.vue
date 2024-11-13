@@ -1,19 +1,28 @@
-<script setup lang="ts">
-import type { SwitchModel, SwitchProps } from '.'
-
+<script lang="ts">
 import { withPrefix } from '@verus-ui/common'
 
+export interface SwitchProps {
+  disabled?: boolean
+}
+
+export interface SwitchModel {
+  modelValue?: boolean | undefined
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ name: withPrefix('Switch') })
 
-defineProps<SwitchProps>()
+const { disabled } = defineProps<SwitchProps>()
 
 const modelValue = defineModel<SwitchModel['modelValue']>({ required: true })
 
-const emit = defineEmits<{ change: [newValue?: boolean] }>()
+const emit = defineEmits<{ change: [newValue: boolean] }>()
 
-function onChange(e: Event) {
-  const el = e.target as HTMLInputElement
+function onChange(evt: Event) {
+  if (disabled) return
 
+  const el = evt.target as HTMLInputElement
   requestAnimationFrame(() => {
     modelValue.value = el.checked
     emit('change', modelValue.value)
@@ -24,7 +33,7 @@ function onChange(e: Event) {
 <template>
   <label
     :class="[
-      'group/switch relative box-border inline-block h-7 w-12 cursor-pointer rounded-full transition-colors duration-300 has-[:focus-visible]:v-outline has-[:disabled]:v-disabled',
+      'group/switch relative box-border inline-block h-7 w-12 cursor-pointer rounded-full transition-colors duration-300 has-[:disabled]:pointer-events-none has-[:disabled]:opacity-48 has-[:focus-visible]:v-outline',
       'before:v-shade before:border-1.2 before:border-solid before:transition-colors before:duration-inherit',
       'after:pointer-events-none after:absolute after:inset-y-1 after:left-1 after:-m-2 after:size-9 after:rounded-inherit after:transition after:duration-inherit after:ease-braking',
       modelValue

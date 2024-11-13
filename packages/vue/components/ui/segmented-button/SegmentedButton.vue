@@ -1,12 +1,39 @@
-<script setup lang="ts">
-import type { SegmentedButtonModel, SegmentedButtonProps } from '.'
+<script lang="ts">
+import type { OrReadonly } from 'mm3'
+import type { DirectionProp } from '@verus-ui/ts'
 
 import { computed } from 'vue'
-import { BasicIcon, withPrefix } from '@verus-ui/common'
+import { Direction } from '@verus-ui/ts'
+import { Icon, withPrefix } from '@verus-ui/common'
 
+export interface SegmentedButtonProps {
+  direction?: DirectionProp
+  /**
+   * @example
+   *
+   * // simple:
+   * ['Windows', 'Linux', 'MacOS']
+   *
+   * // with icon:
+   * [
+   *  { label: 'Android', icon: 'i-ri:android-fill', value: 'android' },
+   *  { label: 'iOS', icon: 'i-ri:apple-fill', value: 'ios' },
+   *  { label: 'Windows Phone', icon: 'i-ri:windows-fill', value: 'windows-phone' }
+   * ]
+   */
+  each: OrReadonly<(string | { icon?: string; label: string; value: string })[]>
+  uniformWidth?: boolean
+}
+
+export interface SegmentedButtonModel {
+  modelValue?: string
+}
+</script>
+
+<script setup lang="ts">
 defineOptions({ name: withPrefix('SegmentedButton') })
 
-const { each, direction = 'horizontal' } = defineProps<SegmentedButtonProps>()
+const { each, direction = Direction.Horizontal } = defineProps<SegmentedButtonProps>()
 
 const modelValue = defineModel<SegmentedButtonModel['modelValue']>()
 
@@ -17,13 +44,13 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
   <div
     :style="{
       gridTemplateColumns:
-        direction === 'vertical'
+        direction === Direction.Vertical
           ? void 0
           : `repeat(${each.length}, ${uniformWidth ? '1fr' : 'auto'})`
     }"
     :class="[
       'relative rounded-v1 bg-bsc transition-colors duration-300 before:v-shade before:border-1.2 before:border-solid before:border-otl',
-      direction === 'vertical' ? 'inline-grid grid-cols-1' : 'inline-grid grid-rows-1'
+      direction === Direction.Vertical ? 'inline-grid grid-cols-1' : 'inline-grid grid-rows-1'
     ]"
   >
     <label
@@ -43,16 +70,16 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
         v-model="modelValue"
         class="pointer-events-none absolute m-auto size-0 appearance-none p-0 opacity-0 outline-none"
       />
-      <BasicIcon
+      <Icon
         v-if="icon"
         :name="icon"
         size="sm"
-        :class="['-ml-0.5 mr-3', { 'col-start-1': direction === 'vertical' }]"
+        :class="['-ml-0.5 mr-3', { 'col-start-1': direction === Direction.Vertical }]"
       />
       <span
         :class="[
           'pointer-events-none mb-px select-none text-left text-sm',
-          { 'col-start-2': direction === 'vertical' }
+          { 'col-start-2': direction === Direction.Vertical }
         ]"
       >
         {{ label }}

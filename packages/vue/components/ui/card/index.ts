@@ -1,33 +1,6 @@
-import type { VariantProp } from '@verus-ui/ts'
-
 import { useInstall } from '@verus-ui/common'
-import Card from './Card'
+import Card from './Card.vue'
 
-export interface CardProps {
-  /**
-   * img src
-   */
-  image?: string
-  title?: string
-  subtitle?: string
-  /**
-   * @default 'solid'
-   */
-  variant?: VariantProp<'solid' | 'outlined'>
-  danger?: boolean
-  /**
-   * @default '16rem'
-   */
-  width?: string
-}
+export type * from './Card.vue'
 
-export interface CardSlots {
-  default: void
-}
-
-export const VCard = useInstall(
-  Card as unknown as new () => {
-    $props: CardProps
-    $slots: CardSlots
-  }
-)
+export const VCard = useInstall(Card)
