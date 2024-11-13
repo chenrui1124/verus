@@ -1,165 +1,124 @@
-import type { DefineSetupFnComponent, FunctionalComponent, PropType } from 'vue'
-import type { TooltipProps, TooltipSlots } from '.'
+import type { PropType } from 'vue'
 import type { PositionProp } from '@verus-ui/ts'
 
-import {
-  Transition,
-  cloneVNode,
-  computed,
-  defineComponent,
-  h,
-  onMounted,
-  onUnmounted,
-  reactive
-} from 'vue'
-import { clsx } from 'clsx'
-import {
-  onListener,
-  useFirstVNode,
-  useRender,
-  useVisible,
-  withPrefix,
-  withRollback
-} from '@verus-ui/common'
-import { Position } from '@verus-ui/ts'
+import { defineComponent, onUnmounted, reactive } from 'vue'
+import { eachPosition, Position } from '@verus-ui/ts'
+import { addListenerToBody, useRender, useToggle, withFallback, withPrefix } from '@verus-ui/common'
+import { TooltipContent, TooltipTransition } from './include'
 
-interface SingleTooltipProps {
-  position?: PositionProp
-  coord?: { top: string; left: string }
+export interface TooltipProps {
   label?: string
+  position?: PositionProp
 }
 
-const useTooltip = (() => {
-  let SingleTooltip: DefineSetupFnComponent<any>
+const initTooltipContent = (() => {
+  const props = reactive({
+    coord: {},
+    label: '',
+    position: Position.Top
+  })
 
-  function initTooltip() {
-    SingleTooltip = defineComponent(() => {
-      let offMouseOver: () => void
-      let offMouseOut: () => void
+  const { state, on, off } = useToggle()
 
-      const props = reactive<SingleTooltipProps>({})
-      const { state, show, hide } = useVisible()
+  let removeMouseover: (() => void) | null,
+    removeMouseout: (() => void) | null,
+    tooltipCounter: number = 0
 
-      onMounted(() => {
-        offMouseOver = onListener('mouseover', (evt: Event) => {
-          const el = evt.target as HTMLElement
-          const { tooltipLabel: label, tooltipPosition: position } = el.dataset
+  const [mount, unmount] = useRender(() => {
+    function onAfterLeave() {
+      unmount({ delay: 10 * 1000 })
+    }
 
-          if (label && position) {
-            props.label = label
-
-            if (['top', 'right', 'bottom', 'left'].includes(position)) {
-              props.position = position as SingleTooltipProps['position']
-            }
-
-            const rect = el.getBoundingClientRect()
-            props.coord = {
-              top: ['right', 'left'].includes(props.position!)
-                ? `${(rect.bottom + rect.top) / 2}px`
-                : `${rect[props.position!]}px`,
-              left: ['top', 'bottom'].includes(props.position!)
-                ? `${(rect.right + rect.left) / 2}px`
-                : `${rect[props.position!]}px`
-            }
-
-            show()
-          }
-        })
-
-        offMouseOut = onListener('mouseout', () => void (state.value && hide()))
-      })
-
-      onUnmounted(() => {
-        offMouseOver()
-        offMouseOut()
-      })
-
-      const classes = computed(() => {
-        return clsx(
-          props.position
-            ? {
-                top: 'translate-y-1',
-                right: '-translate-x-1',
-                bottom: '-translate-y-1',
-                left: 'translate-x-1'
-              }[props.position]
-            : void 0,
-          'opacity-0'
-        )
-      })
-
-      return () => (
-        <Transition enterFromClass={classes.value} leaveToClass={classes.value}>
-          {state.value && (
-            <div style={props.coord} class='fixed z-30 h-0 w-0 transition-all duration-300'>
-              <div
-                class={[
-                  'pointer-events-none absolute h-8 text-nowrap rounded-v1 bg-on-bsc px-3 text-sm/8 tracking-wide text-bsc shadow shadow-on-bsc/32 transition-colors duration-300 before:absolute before:h-2 before:w-2 before:rotate-45 before:bg-inherit',
-                  {
-                    'left-1/2 -translate-x-1/2 before:left-1/2 before:-translate-x-1/2': [
-                      'top',
-                      'bottom'
-                    ].includes(props.position!),
-                    'top-1/2 -translate-y-1/2 before:top-1/2 before:-translate-y-1/2': [
-                      'right',
-                      'left'
-                    ].includes(props.position!)
-                  },
-                  {
-                    top: 'bottom-2 before:-bottom-1',
-                    right: 'left-2 before:-left-1',
-                    bottom: 'top-2 before:-top-1',
-                    left: 'right-2 before:-right-1'
-                  }[props.position!]
-                ]}
-              >
-                {props.label}
-              </div>
-            </div>
-          )}
-        </Transition>
-      )
-    })
-
-    useRender(SingleTooltip)
-  }
+    return (
+      <TooltipTransition position={props.position} onAfterLeave={onAfterLeave}>
+        {state.value && (
+          <TooltipContent position={props.position} coord={props.coord}>
+            {props.label}
+          </TooltipContent>
+        )}
+      </TooltipTransition>
+    )
+  })
 
   return () => {
-    if (!SingleTooltip) initTooltip()
+    tooltipCounter++
+
+    if (!removeMouseover) {
+      removeMouseover = addListenerToBody('mouseover', evt => {
+        const el = evt.target as HTMLElement
+        const { tooltipLabel: tl, tooltipPosition: tp } = el.dataset
+
+        if (!tl || !tp) return
+
+        const rect = el.getBoundingClientRect()
+
+        props.label = tl
+        props.position = tp as Position
+        props.coord = {
+          top: [Position.Right, Position.Left].includes(tp as Position)
+            ? `${(rect.bottom + rect.top) / 2}px`
+            : `${rect[props.position]}px`,
+          left: [Position.Top, Position.Bottom].includes(tp as Position)
+            ? `${(rect.right + rect.left) / 2}px`
+            : `${rect[props.position]}px`
+        }
+
+        mount()
+        on()
+      })
+    }
+
+    if (!removeMouseout) removeMouseout = addListenerToBody('mouseout', () => off())
+
+    return () => {
+      tooltipCounter--
+
+      if (tooltipCounter == 0) {
+        removeMouseover?.()
+        removeMouseout?.()
+        removeMouseover = removeMouseout = null
+      }
+    }
   }
 })()
 
-const Tooltip: FunctionalComponent<TooltipProps, {}, TooltipSlots> = (
-  { label, position },
-  { slots }
-) => {
-  const first = useFirstVNode(slots.default)
+const Tooltip = defineComponent(
+  (props: TooltipProps, { slots }) => {
+    if (!slots.default) return () => null
+    const ds = slots.default()
+    if (!ds || ds.length == 0) return () => null
 
-  if (first) {
-    const attachProps = {
-      'data-tooltip-label': label,
-      'data-tooltip-position': withRollback(position, ['top', 'right', 'bottom', 'left'])
+    const clear = initTooltipContent()
+    onUnmounted(clear)
+
+    for (const v of ds) {
+      /**
+       * Exclude text node and comment node.
+       */
+      if (typeof v.type == 'symbol') continue
+      v.props = {
+        ...(v.props ?? {}),
+        'data-tooltip-label': props.label,
+        'data-tooltip-position': withFallback({
+          each: eachPosition(),
+          fallback: Position.Top,
+          value: props.position
+        })
+      }
     }
-    const newNode = cloneVNode(first, attachProps)
-    useTooltip()
-    return h(newNode)
-  }
 
-  return slots.default?.()
-}
-
-Tooltip.props = {
-  label: {
-    type: String as PropType<TooltipProps['label']>,
-    required: true
+    return () => <>{ds}</>
   },
-  position: {
-    type: String as PropType<TooltipProps['position']>,
-    default: Position.Top,
-    validator: (value: TooltipProps['position']) => Object.keys(Position).includes(value!)
+  {
+    name: withPrefix('Tooltip'),
+    props: {
+      label: String,
+      position: {
+        type: String as PropType<PositionProp>,
+        default: Position.Top
+      }
+    }
   }
-}
-
-Tooltip.displayName = withPrefix('Tooltip')
+)
 
 export default Tooltip
