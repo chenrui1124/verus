@@ -1,29 +1,36 @@
+<script lang="ts">
+import { Icon, withPrefix } from '@verus-ui/common'
+
+export interface ToggleProps {
+  fallbackIcon?: string
+  fallbackLabel?: string
+  icon?: string
+  label?: string
+}
+
+export interface ToggleModel {
+  modelValue?: boolean | undefined
+}
+</script>
+
 <script setup lang="ts">
-import type { ToggleModel, ToggleProps } from '.'
-
-import { computed } from 'vue'
-import { BasicIcon, withPrefix } from '@verus-ui/common'
-
 defineOptions({ name: withPrefix('Toggle') })
 
-const { icon } = defineProps<ToggleProps>()
+defineProps<ToggleProps>()
 
 const modelValue = defineModel<ToggleModel['modelValue']>()
 
-const _name = computed(() => {
-  return typeof icon == 'string' ? icon : modelValue.value ? icon[1] : icon[0]
-})
+const emit = defineEmits<{ change: [newValue: boolean] }>()
 
-const emit = defineEmits<{ change: [newValue?: boolean] }>()
-
-function onChange(e: Event) {
-  const el = e.target as HTMLInputElement
+function onChange(evt: Event) {
+  const el = evt.target as HTMLInputElement
 
   requestAnimationFrame(() => {
     modelValue.value = el.checked
     emit('change', modelValue.value)
   })
 }
+
 defineSlots<{ default(): any }>()
 </script>
 
@@ -47,9 +54,22 @@ defineSlots<{ default(): any }>()
       enterActiveClass="transition-all duration-500 ease-braking"
       leaveActiveClass="transition-all duration-500 ease-braking absolute left-2.5"
     >
-      <BasicIcon v-if="icon || icon.length" :key="_name" :name="_name" size="lg" class="-mx-1" />
+      <Icon
+        v-if="icon && (modelValue || !fallbackIcon)"
+        :key="icon"
+        :name="icon"
+        size="lg"
+        class="-mx-1"
+      />
+      <Icon
+        v-if="fallbackIcon && !modelValue"
+        :key="fallbackIcon"
+        :name="fallbackIcon"
+        size="lg"
+        class="-mx-1"
+      />
     </TransitionGroup>
 
-    <slot></slot>
+    <slot>{{ fallbackLabel ? (modelValue ? label : fallbackLabel) : label }}</slot>
   </label>
 </template>
