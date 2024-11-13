@@ -2,7 +2,7 @@
 export default {
   plugins: ['prettier-plugin-tailwindcss'],
   tailwindConfig: './packages/theme/tailwind.config.ts',
-  tailwindFunctions: ['clsx', 'twMerge'],
+  tailwindFunctions: ['clsx', 'twMerge', 'cn'],
   bracketSameLine: false,
   jsxSingleQuote: true,
   printWidth: 100,
