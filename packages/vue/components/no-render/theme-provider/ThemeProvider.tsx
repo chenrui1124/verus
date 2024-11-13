@@ -1,11 +1,20 @@
 import type { PropType, WatchStopHandle } from 'vue'
-import type { ThemeProviderModel, ThemeProviderProps } from '.'
+import type { ThemeProp } from '@verus-ui/ts'
 
 import { defineComponent, h, onMounted, onUnmounted, watchEffect } from 'vue'
-import { EACH_THEME } from '.'
-import { withPrefix, withRollback } from '@verus-ui/common'
+import { Theme, eachTheme } from '@verus-ui/ts'
+import { withPrefix, withFallback } from '@verus-ui/common'
 
 const LOCAL_STORAGE_KEY = 'VERUS_THEME'
+
+export interface ThemeProviderProps {
+  persist?: boolean
+  tag?: string
+}
+
+export interface ThemeProviderModel {
+  theme?: ThemeProp
+}
 
 const ThemeProvider = defineComponent<
   ThemeProviderProps & ThemeProviderModel,
@@ -15,18 +24,18 @@ const ThemeProvider = defineComponent<
     let unwatch: WatchStopHandle
 
     onMounted(() => {
-      if (!props.tag) {
-        if (props.persist) {
-          const _theme = localStorage.getItem(LOCAL_STORAGE_KEY) as ThemeProviderModel['theme']
-          if (_theme && EACH_THEME.includes(_theme)) emit('update:theme', _theme)
-        }
+      if (props.tag) return
 
-        unwatch = watchEffect(() => {
-          const _theme = withRollback(props.theme, EACH_THEME)
-          document.documentElement.dataset.theme = _theme
-          if (props.persist) localStorage.setItem(LOCAL_STORAGE_KEY, _theme!)
-        })
+      if (props.persist) {
+        const _theme = localStorage.getItem(LOCAL_STORAGE_KEY) as ThemeProviderModel['theme']
+        if (_theme && eachTheme().includes(_theme)) emit('update:theme', _theme)
       }
+
+      unwatch = watchEffect(() => {
+        const _theme = withFallback({ each: eachTheme(), value: props.theme, fallback: Theme.Auto })
+        document.documentElement.dataset.theme = _theme
+        if (props.persist) localStorage.setItem(LOCAL_STORAGE_KEY, _theme!)
+      })
     })
 
     onUnmounted(() => unwatch?.())
@@ -36,8 +45,8 @@ const ThemeProvider = defineComponent<
         return h(
           props.tag,
           {
-            'data-theme-provider': '',
-            'data-theme': withRollback(props.theme, EACH_THEME)
+            'data-name': 'theme-provider',
+            'data-theme': withFallback({ each: eachTheme(), value: props.theme, fallback: Theme.Auto })
           },
           slots.default?.()
         )
@@ -49,8 +58,8 @@ const ThemeProvider = defineComponent<
   {
     name: withPrefix('ThemeProvider'),
     props: {
-      tag: String,
       persist: Boolean,
+      tag: String,
       theme: String as PropType<ThemeProviderModel['theme']>
     },
     emits: ['update:theme']
