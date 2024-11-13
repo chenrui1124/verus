@@ -1,12 +1,19 @@
-<script setup lang="ts" generic="T">
-import type { IterateProps } from '.'
+<script lang="ts">
+import type { OrReadonly } from 'mm3'
 
 import { withPrefix } from '@verus-ui/common'
 import { computed, ref } from 'vue'
 
+export interface IterateProps<T> {
+  each?: OrReadonly<T[]>
+  init?: number
+}
+</script>
+
+<script setup lang="ts" generic="T">
 defineOptions({ name: withPrefix('Iterate') })
 
-const { each, init = 0 } = defineProps<IterateProps<T>>()
+const { each = [], init = 0 } = defineProps<IterateProps<T>>()
 
 const index = ref<number>(init < each.length && init >= 0 ? init : 0)
 
@@ -22,10 +29,10 @@ function next() {
 }
 
 defineSlots<{
-  default(props: { item: T; index: number; next: typeof next }): any
+  default(props: { item: T; index: number; next: () => void }): any
 }>()
 </script>
 
 <template>
-  <slot v-bind="{ index, item, next }"></slot>
+  <slot :="{ index, item, next }"></slot>
 </template>
