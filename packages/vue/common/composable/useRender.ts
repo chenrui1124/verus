@@ -1,39 +1,48 @@
-import type { App, Component } from 'vue'
-
-import { createApp } from 'vue'
+import { createApp, type App, type Component } from 'vue'
+import { withTimeout } from '@verus-ui/common'
 
 export function useRender(comp: Component) {
-  let app: App | null = null,
-    root: HTMLDivElement | null = null,
-    timer: number | undefined
+  const [start, stop] = withTimeout()
 
-  return [
-    function mount() {
-      if (timer) {
-        clearTimeout(timer)
-        timer = void 0
+  const [render, destroy] = (() => {
+    let inst: App | null = null
+    let root: HTMLElement | null = null
+
+    return [
+      (...args: Parameters<typeof createApp>) => {
+        if (inst && root) return
+        root = document.createElement('div')
+        document.body.appendChild(root)
+        inst = createApp(...args)
+        inst.mount(root)
+      },
+      () => {
+        if (inst) {
+          inst.unmount()
+          inst = null
+        }
+        if (root) {
+          root.remove()
+          root = null
+        }
       }
-      if (app) return
-      app = createApp(comp)
-      root = document.createElement('div')
-      document.body.appendChild(root)
-      app.mount(root)
-    },
-    function unmount(options?: {
-      /**
-       * Unit: ms.
-       */
-      delay?: number
-    }) {
-      if (!app || timer) return
-      requestIdleCallback(() => {
-        timer = window.setTimeout(() => {
-          app?.unmount()
-          root?.remove()
-          app = root = null
-          timer = void 0
-        }, options?.delay)
-      })
+    ]
+  })()
+
+  function mount() {
+    stop()
+    render(comp)
+  }
+
+  function unmount(): void
+  function unmount(options: { delay: number }): Promise<void>
+  function unmount(options?: { delay: number }) {
+    if (options && options.delay) {
+      return start(() => requestIdleCallback(destroy), options.delay)
+    } else {
+      destroy()
     }
-  ]
+  }
+
+  return [mount, unmount] as const
 }

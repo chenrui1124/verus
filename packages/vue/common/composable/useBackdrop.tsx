@@ -22,20 +22,23 @@ function Backdrop({ class: className, onClick }: BackdropProps) {
 export function useBackdrop(attach?: { class?: string; onClick?: (evt?: MouseEvent) => void }) {
   const { state, on, off } = useToggle()
 
-  const [mount, unmount] = useRender(() => (
-    <Transition enterFromClass='opacity-0' leaveToClass='opacity-0' onAfterLeave={() => unmount()}>
-      {state.value && <Backdrop {...attach} />}
-    </Transition>
-  ))
+  const [mount, unmount] = useRender(() => {
+    function onAfterLeave() {
+      unmount({ delay: 10 * 1000 })
+    }
+
+    return (
+      <Transition enterFromClass='opacity-0' leaveToClass='opacity-0' onAfterLeave={onAfterLeave}>
+        {state.value && <Backdrop {...attach} />}
+      </Transition>
+    )
+  })
 
   return {
-    show() {
+    show: () => {
       mount()
       on()
     },
-    hide() {
-      off()
-      unmount({ delay: 10 * 1000 })
-    }
+    hide: () => off()
   }
 }
