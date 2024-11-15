@@ -11,7 +11,7 @@ export interface TooltipProps {
   position?: PositionProp
 }
 
-const initTooltipContent = (() => {
+const initTooltip = (() => {
   const props = reactive({
     coord: {},
     label: '',
@@ -84,30 +84,32 @@ const initTooltipContent = (() => {
 
 const Tooltip = defineComponent(
   (props: TooltipProps, { slots }) => {
-    if (!slots.default) return () => null
-    const ds = slots.default()
-    if (!ds || ds.length == 0) return () => null
-
-    const clear = initTooltipContent()
+    const clear = initTooltip()
     onUnmounted(clear)
 
-    for (const v of ds) {
-      /**
-       * Exclude text node and comment node.
-       */
-      if (typeof v.type == 'symbol') continue
-      v.props = {
-        ...(v.props ?? {}),
-        'data-tooltip-label': props.label,
-        'data-tooltip-position': withFallback({
-          each: eachPosition(),
-          fallback: Position.Top,
-          value: props.position
-        })
-      }
-    }
+    return () => {
+      if (!slots.default) return null
+      const ds = slots.default()
+      if (!ds || ds.length == 0) return null
 
-    return () => <>{ds}</>
+      for (const v of ds) {
+        /**
+         * Exclude text node and comment node.
+         */
+        if (typeof v.type == 'symbol') continue
+        v.props = {
+          ...(v.props ?? {}),
+          'data-tooltip-label': props.label,
+          'data-tooltip-position': withFallback({
+            each: eachPosition(),
+            fallback: Position.Top,
+            value: props.position
+          })
+        }
+      }
+
+      return <>{ds}</>
+    }
   },
   {
     name: withPrefix('Tooltip'),
