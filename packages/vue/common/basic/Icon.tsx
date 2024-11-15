@@ -27,4 +27,6 @@ function Icon({ class: className, name, size = Size.Md }: IconProps) {
   )
 }
 
+Icon.inheritAttrs = false
+
 export default Icon

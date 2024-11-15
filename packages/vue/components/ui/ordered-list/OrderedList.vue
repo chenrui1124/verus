@@ -2,8 +2,8 @@
 import type { VNode } from 'vue'
 import type { MarkerProp } from '@verus-ui/ts'
 
-import { withPrefix } from '@verus-ui/common'
 import { Marker } from '@verus-ui/ts'
+import { withPrefix } from '@verus-ui/common'
 
 export interface OrderedListProps {
   marker?: MarkerProp

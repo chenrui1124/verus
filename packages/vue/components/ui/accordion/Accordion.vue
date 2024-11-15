@@ -6,7 +6,8 @@ import {
   CollapsibleTrigger,
   CollapsibleWrapper,
   htmlAttribute,
-  Icon
+  Icon,
+  withPrefix
 } from '@verus-ui/common'
 
 export interface AccordionProps {
@@ -23,6 +24,8 @@ export interface AccordionProps {
 </script>
 
 <script lang="ts" setup>
+defineOptions({ name: withPrefix('Accordion') })
+
 const { variant = 'solid' } = defineProps<AccordionProps>()
 </script>
 

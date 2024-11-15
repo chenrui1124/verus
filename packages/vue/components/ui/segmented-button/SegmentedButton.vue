@@ -59,7 +59,7 @@ const _each = computed(() => each.map(i => (typeof i == 'string' ? { label: i, v
       :class="[
         'relative box-border h-9 cursor-pointer items-center border-otl bg-transparent px-4 text-on-bsc transition duration-300 hover:bg-pri/8',
         'has-[:checked]:border-pri has-[:checked]:bg-pri-ctr has-[:checked]:text-pri has-[:focus-visible]:v-outline',
-        direction === 'vertical'
+        direction === Direction.Vertical
           ? 'col-span-2 -my-[0.6px] inline-grid grid-cols-subgrid border-1.2 border-solid border-t-transparent first:mt-0 first:rounded-t-inherit first:border-t-otl last:mb-0 last:rounded-b-inherit'
           : '-mx-[0.6px] inline-flex justify-center border-1.2 border-solid border-l-transparent first:ml-0 first:rounded-l-inherit first:border-l-otl last:mr-0 last:rounded-r-inherit'
       ]"

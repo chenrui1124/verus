@@ -1,8 +1,8 @@
 <script lang="ts">
 import type { HTMLAttributes } from 'vue'
 
-import { Icon, cn, htmlAttribute, useClassName, withPrefix } from '@verus-ui/common'
 import { useAttrs } from 'vue'
+import { Icon, cn, htmlAttribute, useClassName, withPrefix } from '@verus-ui/common'
 
 export interface IconButtonProps {
   danger?: boolean

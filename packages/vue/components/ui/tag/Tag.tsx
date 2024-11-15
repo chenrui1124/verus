@@ -23,12 +23,12 @@ const Tag: FunctionalComponent<TagProps> = (
       class={cn(
         'box-border inline-flex h-7 items-center justify-center gap-2 rounded-v1 px-3 align-middle text-xs/7 transition-colors duration-300',
         {
-          default: 'bg-bsc-var text-on-bsc',
-          primary: 'bg-pri-ctr text-pri',
-          success: 'bg-suc-ctr text-on-suc-ctr',
-          warning: 'bg-wan-ctr text-on-wan-ctr',
-          error: 'bg-err-ctr text-on-err-ctr'
-        }[status!],
+          [Status.Default]: 'bg-bsc-var text-on-bsc',
+          [Status.Primary]: 'bg-pri-ctr text-pri',
+          [Status.Success]: 'bg-suc-ctr text-on-suc-ctr',
+          [Status.Warning]: 'bg-wan-ctr text-on-wan-ctr',
+          [Status.Error]: 'bg-err-ctr text-on-err-ctr'
+        }[status],
         cls
       )}
     >

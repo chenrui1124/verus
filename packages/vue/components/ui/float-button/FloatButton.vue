@@ -1,9 +1,10 @@
 <script lang="ts">
+import type { HTMLAttributes } from 'vue'
 import type { VariantProp } from '@verus-ui/ts'
 
+import { useAttrs } from 'vue'
 import { Variant } from '@verus-ui/ts'
 import { cn, Icon, useClassName, withPrefix } from '@verus-ui/common'
-import { useAttrs, type HTMLAttributes } from 'vue'
 
 export interface FloatButtonProps {
   absolute?: boolean

@@ -34,11 +34,11 @@ const {
 
 const emit = defineEmits<{ click: [evt: MouseEvent] }>()
 
-const { class: className, href, ...othersAttrs } = useAttrs()
-
 const listener = computed(() => {
   return href ? {} : { click: (payload: MouseEvent) => void (loading || emit('click', payload)) }
 })
+
+const { class: className, href, ...othersAttrs } = useAttrs()
 </script>
 
 <template>
