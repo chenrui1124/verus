@@ -3,4 +3,4 @@ export { default as CollapsibleTrigger } from './Collapsible/CollapsibleTrigger.
 export { default as CollapsibleWrapper } from './Collapsible/CollapsibleWrapper.vue'
 export { default as ModalContent } from './Modal/ModalContent.vue'
 export { default as ModalTransition } from './Modal/ModalTransition'
-export { default as Icon } from './Icon.vue'
+export { default as Icon } from './Icon'

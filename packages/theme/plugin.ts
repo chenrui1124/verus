@@ -11,15 +11,15 @@ export default function () {
   const { base, utilities, components } = {
     base: {
       '::before, ::after': { '--tw-content': `''` },
-      ':root, [data-name="theme-provider"][data-theme="light"]': colors.light,
-      ':is(:root, [data-name="theme-provider"])[data-theme="dark"]': colors.dark,
-      ':is(:root, [data-name="theme-provider"][data-theme="light"]) :is([data-danger=""], [data-danger="true"])':
+      ':root, [data-name="ThemeProvider"][data-theme="light"]': colors.light,
+      ':is(:root, [data-name="ThemeProvider"])[data-theme="dark"]': colors.dark,
+      ':is(:root, [data-name="ThemeProvider"][data-theme="light"]) :is([data-danger=""], [data-danger="true"])':
         colorsWhenDanger.light,
-      ':is(:root, [data-name="theme-provider"])[data-theme="dark"] :is([data-danger=""], [data-danger="true"])':
+      ':is(:root, [data-name="ThemeProvider"])[data-theme="dark"] :is([data-danger=""], [data-danger="true"])':
         colorsWhenDanger.dark,
       '@media (prefers-color-scheme: dark)': {
-        ':is(:root, [data-name="theme-provider"])[data-theme="auto"]': colors.dark,
-        ':is(:root, [data-name="theme-provider"])[data-theme="auto"] :is([data-danger=""], [data-danger="true"])':
+        ':is(:root, [data-name="ThemeProvider"])[data-theme="auto"]': colors.dark,
+        ':is(:root, [data-name="ThemeProvider"])[data-theme="auto"] :is([data-danger=""], [data-danger="true"])':
           colorsWhenDanger.dark
       }
     },

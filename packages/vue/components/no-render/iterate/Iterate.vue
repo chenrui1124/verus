@@ -11,7 +11,7 @@ export interface IterateProps<T> {
 </script>
 
 <script setup lang="ts" generic="T">
-defineOptions({ name: withPrefix('Iterate') })
+defineOptions({ inheritAttrs: false, name: withPrefix('Iterate') })
 
 const { each = [], init = 0 } = defineProps<IterateProps<T>>()
 

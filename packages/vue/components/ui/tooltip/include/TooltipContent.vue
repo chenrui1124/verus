@@ -3,7 +3,7 @@ import type { PositionProp } from '@verus-ui/ts'
 
 import { Position } from '@verus-ui/ts'
 
-export interface TooltipContentProps {
+interface TooltipContentProps {
   coord: { top?: `${string}px`; left?: `${string}px` }
   position: PositionProp
 }

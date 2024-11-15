@@ -13,8 +13,8 @@ export interface TagProps extends Pick<HTMLAttributes, 'style' | 'class'> {
   status?: StatusProp
 }
 
-const Tag: FunctionalComponent = (
-  { icon, label, status = Status.Default, class: cls, style }: TagProps,
+const Tag: FunctionalComponent<TagProps> = (
+  { icon, label, status = Status.Default, class: cls, style },
   { slots }
 ) => {
   return (

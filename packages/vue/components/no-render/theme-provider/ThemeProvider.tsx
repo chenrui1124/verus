@@ -45,8 +45,12 @@ const ThemeProvider = defineComponent<
         return h(
           props.tag,
           {
-            'data-name': 'theme-provider',
-            'data-theme': withFallback({ each: eachTheme(), value: props.theme, fallback: Theme.Auto })
+            'data-name': 'ThemeProvider',
+            'data-theme': withFallback({
+              each: eachTheme(),
+              value: props.theme,
+              fallback: Theme.Auto
+            })
           },
           slots.default?.()
         )

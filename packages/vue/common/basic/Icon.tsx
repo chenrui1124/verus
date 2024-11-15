@@ -1,26 +1,18 @@
-<script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
 import type { SizeProp } from '@verus-ui/ts'
 
-import { useAttrs } from 'vue'
 import { Size } from '@verus-ui/ts'
 import { cn } from '@verus-ui/common'
 
-defineOptions({ inheritAttrs: false })
-
-const { size = Size.Md } = defineProps<{
+interface IconProps extends HTMLAttributes {
   name: string
   size?: SizeProp
-}>()
+}
 
-const { class: className, ...othersAttrs } = useAttrs()
-</script>
-
-<template>
-  <span
-    :="othersAttrs"
-    :class="
-      cn(
+function Icon({ class: className, name, size = Size.Md }: IconProps) {
+  return (
+    <span
+      class={cn(
         name,
         'pointer-events-none inline-block',
         {
@@ -28,9 +20,11 @@ const { class: className, ...othersAttrs } = useAttrs()
           md: 'min-h-5 min-w-5',
           lg: 'min-h-6 min-w-6',
           xl: 'min-h-7 min-w-7'
-        }[size!],
+        }[size],
         className as HTMLAttributes['class']
-      )
-    "
-  ></span>
-</template>
+      )}
+    />
+  )
+}
+
+export default Icon
